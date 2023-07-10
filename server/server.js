@@ -2,7 +2,7 @@ const express = require("express")
 const morgan = require("morgan")
 const cors = require("cors")
 const mongoose = require("mongoose")
-const products = require("./models/productsModel")
+
 
 const productsRoutes = require("./routes/productsRoutes")
 
