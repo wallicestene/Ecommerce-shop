@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+li{
+  @apply hover:text-orange-500 delay-300  duration-150 uppercase
+}
+.MuiSvgIcon-root{
+  @apply hover:cursor-pointer
+}
