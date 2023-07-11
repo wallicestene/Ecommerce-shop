@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 
 
 const productsRoutes = require("./routes/productsRoutes")
+const categoryRoutes = require("./routes/categoriesRoutes")
 
 require("dotenv").config()
 
@@ -29,6 +30,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // routes
 app.use(productsRoutes)
+app.use(categoryRoutes)
 
 // fallback route for handling unknown routes
 app.use((req, res) => {

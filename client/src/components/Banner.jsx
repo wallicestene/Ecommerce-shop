@@ -31,7 +31,7 @@ const Banner = () => {
       {error && <p>{error}</p>}
       {!loading && (
         <div className=" grid grid-cols-2 gap-1 h-fit rounded-2xl px-3">
-          <div className=" banner-left h-full grid place-items-center">
+          <div className="banner-left h-full grid place-items-center">
             <div>
                 <h1 className=" text-gray-700 font-Montserrat">{bannerData.name}</h1>
             <h2 className=" text-3xl font-Montserrat font-extrabold">Fashion {bannerData.category}</h2>
