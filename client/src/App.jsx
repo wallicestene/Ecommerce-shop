@@ -6,7 +6,9 @@ function App() {
   return (
     <div>
       <Router>
+      <div className='fixed w-full z-40'>
       <Navbar/>
+      </div>
         <Switch >
           {/* Routes Here */}
           <Route component={Home}/>

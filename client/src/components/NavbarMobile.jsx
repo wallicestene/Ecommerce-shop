@@ -6,7 +6,7 @@ const NavbarMobile = () => {
   return (
     <div className=" fixed bg-slate-900 text-gray-100 rounded-lg bg right-0 top-10 h-screen w-1/2 p-10">
       <div className="navbar-center">
-        <ul className=" flex items-center flex-col justify-between gap-10">
+        <ul className=" flex items-center flex-col justify-between gap-10 font-YsabeauInfant">
           <li className=" flex items-center gap-1 ">
             <Home />
             <Link to="/">Home</Link>
