@@ -30,7 +30,7 @@ function Navbar() {
       </div>
       <div className="navbar-right flex items-center gap-5">
         <div>
-          <form className=" bg-gray-50 shadow rounded-md flex items-center overflow-hidden">
+          <form className=" bg-gray-50 shadow rounded-full px-1 flex items-center overflow-hidden">
             <input
               type="text"
               placeholder="Search Item"
