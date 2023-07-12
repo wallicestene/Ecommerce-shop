@@ -2,7 +2,7 @@
 const Categories = require("../models/categoriesModel")
 
 const getAllCategories = (req,res) =>{
-    Categories.find()
+    Categories.find().sort({createdAt: -1})
     .then(result =>{
         res.status(200).json(result)
     })
