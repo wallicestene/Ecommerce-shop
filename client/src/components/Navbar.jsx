@@ -26,11 +26,14 @@ function Navbar() {
           <li>
             <Link to="/contacts">Contact</Link>
           </li>
+          <li>
+            <Link to="/UploadItemsForm">Create</Link>
+          </li>
         </ul>
       </div>
-      <div className="navbar-right flex items-center gap-5">
-        <div>
-          <form className=" bg-gray-50 shadow rounded-full px-1 flex items-center overflow-hidden">
+      <div className="navbar-right flex items-center lg:gap-5 gap-1 px-2">
+        
+          <form className=" bg-gray-50 shadow rounded-full px-1 flex items-center overflow-hidden lg:w-full w-4/5">
             <input
               type="text"
               placeholder="Search Item"
@@ -38,7 +41,7 @@ function Navbar() {
             />
             <Search />
           </form>
-        </div>
+        
         <div className=" h-10 w-10 flex items-center justify-start relative">
           <div>
             <LocalMallIcon />
@@ -46,7 +49,6 @@ function Navbar() {
           <div className=" absolute top-1 right-1 bg-orange-500 h-5 w-5 rounded-full grid place-items-center text-center">
             <h1 className=" text-center text-white text-sm">2</h1>
           </div>
-          
         </div>
         <div
           className=" lg:hidden"
