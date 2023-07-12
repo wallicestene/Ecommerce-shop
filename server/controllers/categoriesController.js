@@ -11,7 +11,10 @@ const getAllCategories = (req,res) =>{
     })
 }
 const addCategory = (req,res) =>{
-    const {name, image_url} = req.body;
+    const {name} = req.body;
+
+    const image_url = req.file.filename
+
     if(!name ||!image_url){
         return  res.status(400).send({message: "Please provide name and image_url of the category"})
     }else{
