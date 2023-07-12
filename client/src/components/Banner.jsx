@@ -18,8 +18,7 @@ const Banner = () => {
       })
       .then((data) => {
         const randomData = Math.floor(Math.random() * data.length );
-        setBannerData(data[0]);
-        console.log(data[0]);
+        setBannerData(data[randomData]);
         setLoading(false);
         setError("");
       })
@@ -33,8 +32,8 @@ const Banner = () => {
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {!loading && (
-        <div className=" grid grid-cols-2 gap-1 h-fit rounded-2xl px-3">
-          <div className="banner-left h-full grid place-items-center">
+        <div className=" grid grid-cols-3 gap-1 h-fit rounded-2xl lg:px-3 px-1 ">
+          <div className="banner-left h-full grid place-items-center col-span-1">
             <div>
                 <h1 className=" text-gray-700 font-Montserrat">{bannerData.name}</h1>
             <h2 className=" text-3xl font-Montserrat font-extrabold">Fashion {bannerData.category}</h2>
@@ -43,7 +42,7 @@ const Banner = () => {
             </div>
             </div>
           </div>
-          <div className=" banner-right lg:h-96 h-80 flex items-center justify-center">
+          <div className=" banner-right lg:h-96 h-80 flex items-center justify-center col-span-2">
             <img src={`${backendURL}/${bannerData.image_url[0]}`} alt="" className="h-full object-cover"/>
           </div>
         </div>

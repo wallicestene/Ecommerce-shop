@@ -13,7 +13,12 @@ export default {
       },
       width: {
         700: "700px"
-      }
+      },
+      flex:{
+        4: "0.4",
+        6: "0.6"
+      },
+
     },
   },
   plugins: [],
