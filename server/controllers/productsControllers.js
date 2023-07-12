@@ -2,6 +2,7 @@
 const Products = require("../models/productsModel")
 const mongoose = require("mongoose")
 
+
 // all products
 const getAllProducts = (req,res) => {
     Products.find().sort({createdAt: -1})
@@ -30,7 +31,9 @@ const getSingleProduct = (req,res) => {
 }
 // add  products
 const addProducts = (req,res) =>{
-    const {name, price, description, category, image_url} = req.body 
+    const {name, price, description, category} = req.body 
+
+    const image_url = req.file.filename
 
     Products.create({name, price, description, category, image_url})
     .then(product => {

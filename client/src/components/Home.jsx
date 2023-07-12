@@ -8,9 +8,9 @@ const Home = () => {
         <div className=' bg-slate-100'>
         <Banner/>
         </div>
-        <div>
+        {/* <div>
           <Categories/>
-        </div>
+        </div> */}
     </div>
   )
 }

@@ -2,7 +2,7 @@ const express = require("express")
 const morgan = require("morgan")
 const cors = require("cors")
 const mongoose = require("mongoose")
-
+const path = require("path");
 
 const productsRoutes = require("./routes/productsRoutes")
 const categoryRoutes = require("./routes/categoriesRoutes")
@@ -27,6 +27,9 @@ mongoose.connect(process.env.MONGO_URI)
     })
 })
 .catch(err => console.log(err.message))
+
+// Serve uploaded files statically
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // routes
 app.use(productsRoutes)

@@ -5,18 +5,30 @@ const UploadItemsForm = () => {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [image_url, setImage_url] = useState("");
+  const [image_url, setImage_url] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("price", price);
+    formData.append("description", description);
+    formData.append("category", category);
+    formData.append("image_url", image_url);
+
     const item = { name, price, description, category, image_url };
     fetch("http://localhost:3000/products", {
       method: "POST",
-      body: JSON.stringify(item),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: formData,
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
     });
+    // const handleImageChange = (e) => {
+    //     const file = e.target.files[0];
+    //     setImage_url(file);
+    //   };
   };
 
   return (
@@ -25,10 +37,15 @@ const UploadItemsForm = () => {
         <h1>Admin Panel</h1>
       </div>
       <div className="w-72 px-5  rounded-md border bg-slate-900 my-2 py-2 text-white">
-        <form className=" w-full " onSubmit={handleSubmit}>
+        <form
+          className=" w-full "
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+        >
           <label className=" block my-1" htmlFor="name">
             Product Name <br />
             <input
+              name="name"
               onChange={(e) => setName(e.target.value)}
               className=" w-full h-8 outline-none bg-transparent border rounded-lg px-2 py-5"
               type="text"
@@ -41,6 +58,7 @@ const UploadItemsForm = () => {
           <label className=" block my-1" htmlFor="price">
             Product Price <br />
             <input
+              name="price"
               onChange={(e) => setPrice(e.target.value)}
               className=" w-full h-8 outline-none bg-transparent border rounded-lg px-2 py-5"
               type="number"
@@ -53,6 +71,7 @@ const UploadItemsForm = () => {
           <label className=" block my-1" htmlFor="description">
             Product Description <br />
             <input
+              name="description"
               onChange={(e) => setDescription(e.target.value)}
               className=" w-full h-8 outline-none bg-transparent border rounded-lg px-2 py-5"
               type="text"
@@ -65,6 +84,7 @@ const UploadItemsForm = () => {
           <label className=" block my-1" htmlFor="category">
             Product Category <br />
             <input
+              name="category"
               onChange={(e) => setCategory(e.target.value)}
               className=" w-full h-8 outline-none bg-transparent border rounded-lg px-2 py-5"
               type="text"
@@ -77,12 +97,13 @@ const UploadItemsForm = () => {
           <label className=" block my-1" htmlFor="image_url">
             Product Image <br />
             <input
-              onChange={(e) => setImage_url(e.target.value)}
-              className=" w-full h-8 outline-none bg-transparent border rounded-lg px-2 py-5"
-              type="text"
+              name="image_url"
+              onChange={(e) => setImage_url(e.target.files[0])}
+              className=" w-full h-8 outline-none bg-transparent border rounded-lg px-2"
+              type="file"
               id="image_url"
-              placeholder="Chose Product image"
-              value={image_url}
+              //   placeholder="Chose Product image"
+              //   value={image_url}
               required
             />
           </label>

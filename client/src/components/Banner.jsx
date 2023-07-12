@@ -4,6 +4,9 @@ const Banner = () => {
   const [bannerData, setBannerData] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+
+  const backendURL = "http://localhost:3000/uploads"
+
   useEffect(() => {
     fetch("http://localhost:3000/products")
       .then((res) => {
@@ -15,8 +18,8 @@ const Banner = () => {
       })
       .then((data) => {
         const randomData = Math.floor(Math.random() * data.length );
-        setBannerData(data[randomData]);
-        console.log(data[randomData]);
+        setBannerData(data[0]);
+        console.log(data[0]);
         setLoading(false);
         setError("");
       })
@@ -41,7 +44,7 @@ const Banner = () => {
             </div>
           </div>
           <div className=" banner-right lg:h-96 h-80 flex items-center justify-center">
-            <img src={bannerData.image_url} alt="" className="h-full object-cover"/>
+            <img src={`${backendURL}/${bannerData.image_url[0]}`} alt="" className="h-full object-cover"/>
           </div>
         </div>
       )}
