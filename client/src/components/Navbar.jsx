@@ -1,16 +1,17 @@
 import { Close, Menu, Search } from "@mui/icons-material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import NavbarMobile from "./NavbarMobile";
-function Navbar() {
-  const [showNavbarMobile, setShowNavbarMobile] = useState(false);
 
+function Navbar({scrollToSection,featiredRef}) {
+  const [showNavbarMobile, setShowNavbarMobile] = useState(false);
+ 
   return (
-    <div className="navbar h-10 p-2 flex items-center justify-between lg:w-11/12 lg:mx-auto">
+    <div className={`navbar h-10 p-2 flex items-center justify-between lg:w-11/12 lg:mx-auto text-slate-950`}>
       <div className="navbar-left">
         <h1 className=" font-Poppins">LOGO</h1>
-        <div className=" lg:hidden">{showNavbarMobile && <NavbarMobile />}</div>
+        <div className=" lg:hidden">{showNavbarMobile && <NavbarMobile scrollToSection={scrollToSection} featiredRef={featiredRef} />}</div>
       </div>
       <div className="navbar-center">
         <ul className="hidden lg:flex items-center justify-between gap-10 font-YsabeauInfant">
@@ -18,7 +19,7 @@ function Navbar() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/shop">Shop</Link>
+           <div onClick={() => scrollToSection(featiredRef)}>Shop</div>
           </li>
           <li>
             <Link to="/blog">Blog</Link>

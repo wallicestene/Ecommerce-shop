@@ -55,7 +55,7 @@ const FeaturedProducts = () => {
           travelled
         </p>
       </div>
-      <div className=" flex flex-row lg:gap-10 items-center justify-center overflow-x-auto w-full">
+      <div className="categories flex flex-row lg:gap-10 items-center justify-center overflow-x-auto w-full">
         {loading && <p>Loading...</p>}
         {error && <p>error</p>}
         <div className=" h-8 text-zinc-500 w-fit px-5 py-1 hover:rounded-full hover:bg-orange-500 hover:text-white cursor-pointer focus:bg-orange-500 delay-150 duration-300">

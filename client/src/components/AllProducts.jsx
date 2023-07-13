@@ -8,7 +8,7 @@ const AllProducts = ({ product }) => {
         <img
           src={`${backendURL}/${product.image_url}`}
           alt=""
-          className="w-full h-60 object-cover bg-slate-100"
+          className="w-full h-60 object-cover bg-gray-200"
         />
         <div>
           <h1 className=" lg:text-sm text-xs text-zinc-800 font-Poppins font-bold">{product.name}</h1>

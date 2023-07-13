@@ -18,7 +18,6 @@ const Categories = () => {
       })
       .then((data) => {
         setCategories(data);
-        console.log(data);
         setLoading(false);
         setError("");
       })
@@ -36,14 +35,14 @@ const Categories = () => {
           categories?.map((category, index) => (
             <div
               key={index}
-              className=" h-32 w-36 border flex-shrink-0 relative bg-slate-100 rounded"
+              className=" h-32 w-36 border flex-shrink-0 relative bg-gray-200 rounded"
             >
               <img
                 src={`${backendURL}/${category.image_url}`}
                 alt=""
                 className="h-full w-full object-cover px-4"
               />
-              <div className=" absolute top-1/2 bottom-1/2 left-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 h-fit w-fit bg-white border rounded-full hover:cursor-pointer">
+              <div className=" absolute top-1/2 bottom-1/2 left-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 h-fit w-fit bg-white border rounded-full">
                 <p className="text-sm px-5 py-1">#{category.name}</p>
               </div>
             </div>
