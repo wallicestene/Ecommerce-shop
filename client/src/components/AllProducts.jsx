@@ -10,9 +10,9 @@ const AllProducts = ({ product }) => {
           alt=""
           className="w-full h-60 object-cover bg-gray-200"
         />
-        <div>
+        <div className=" p-1">
           <h1 className=" lg:text-sm text-xs text-zinc-800 font-Poppins font-bold">{product.name}</h1>
-          <div className=" flex justify-between items-cente">
+          <div className=" flex justify-between items-center">
             <p className=" font-YsabeauInfant lg:text-sm text-xs font-bold">${product.price}.00</p>
             <p className=" font-Montserrat lg:text-sm text-xs text-gray-500">{product.category}</p>
           </div>

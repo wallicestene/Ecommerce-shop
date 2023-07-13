@@ -50,12 +50,13 @@ const FeaturedProducts = () => {
   }, []);
 
   useEffect(() => {
-    // Filter products when a category is selected
+    // Filtering products when a category is selected
     if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category === selectedCategory
+        (product) => product.category.toLowerCase() === selectedCategory.toLowerCase()
       );
       setFilteredProducts(filtered);
+      console.log(filteredProducts)
     } else {
       setFilteredProducts(products);
     }
@@ -76,7 +77,7 @@ const FeaturedProducts = () => {
           travelled
         </p>
       </div>
-      <div className="categories flex flex-row lg:gap-10 items-center justify-center overflow-x-auto w-full">
+      <div className="categories flex flex-row lg:gap-10 items-center justify-center overflow-x-auto w-full text-zinc-500">
         {loading && <p>Loading...</p>}
         {error && <p>error</p>}
         {!loading &&
