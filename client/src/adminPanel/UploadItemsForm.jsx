@@ -38,6 +38,7 @@ const UploadItemsForm = () => {
     setCategory("")
     setDescription("")
     setImage_url(null)
+    setImagePreview("")
   };
 
   const handleImageUpload = (e) => {
@@ -92,14 +93,14 @@ const UploadItemsForm = () => {
           </div>
           <div className=" flex flex-col gap-5 mt-5">
             <div
-              className="border border-slate-900 p-3 rounded-lg flex items-center gap-1 cursor-pointer"
+              className="border border-slate-900 p-3 rounded-lg flex items-center gap-1 cursor-pointer hover:bg-zinc-200 justify-center hover:rounded-full"
               onClick={() => setShowCategoriesForm(false)}
             >
               <h1>Upload new Products</h1>
               <Upload />
             </div>
             <div
-              className="border border-slate-900 p-3 rounded-lg flex items-center gap-1 cursor-pointer"
+              className="border border-slate-900 p-3 rounded-lg flex items-center gap-1 cursor-pointer hover:bg-zinc-200 justify-center hover:rounded-full"
               onClick={() => setShowCategoriesForm(true)}
             >
               <h1>Upload new Categories</h1>

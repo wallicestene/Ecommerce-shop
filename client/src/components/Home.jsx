@@ -1,6 +1,7 @@
 import React from 'react'
 import Banner from './Banner'
 import Categories from './Categories'
+import FeaturedProducts from './FeaturedProducts'
 
 const Home = () => {
   return (
@@ -10,6 +11,9 @@ const Home = () => {
         </div>
         <div>
           <Categories/>
+        </div>
+        <div>
+          <FeaturedProducts/>
         </div>
     </div>
   )
