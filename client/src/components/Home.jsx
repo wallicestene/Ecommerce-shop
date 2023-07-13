@@ -12,7 +12,6 @@ const Home = ({theref}) => {
         <div>
           <Categories/>
         </div>
-        <div onClick={() => scrollToSection(featiredRef)}>featured</div>
         <div ref={theref}>
           <FeaturedProducts/>
         </div>

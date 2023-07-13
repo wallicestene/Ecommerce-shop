@@ -13,7 +13,9 @@ const NavbarMobile = ({scrollToSection,featiredRef}) => {
           </li>
           <li className=" flex items-center gap-1 ">
             <Shop/>
-            <div onClick={() => scrollToSection(featiredRef)}>Shop</div>
+            <div onClick={() => scrollToSection(featiredRef)}>
+            <Link to="/">Shop</Link>
+            </div>
           </li>
           <li className=" flex items-center gap-1 ">
             <NoteAlt/>

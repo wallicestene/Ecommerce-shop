@@ -6,7 +6,6 @@ import NavbarMobile from "./NavbarMobile";
 
 function Navbar({scrollToSection,featiredRef}) {
   const [showNavbarMobile, setShowNavbarMobile] = useState(false);
- 
   return (
     <div className={`navbar h-10 p-2 flex items-center justify-between lg:w-11/12 lg:mx-auto text-slate-950`}>
       <div className="navbar-left">
@@ -19,7 +18,9 @@ function Navbar({scrollToSection,featiredRef}) {
             <Link to="/">Home</Link>
           </li>
           <li>
-           <div onClick={() => scrollToSection(featiredRef)}>Shop</div>
+           <div onClick={() => scrollToSection(featiredRef)}>
+           <Link to="/">Shop</Link>
+           </div>
           </li>
           <li>
             <Link to="/blog">Blog</Link>

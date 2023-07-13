@@ -4,14 +4,17 @@ import AllProducts from "./AllProducts";
 const FeaturedProducts = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
+    // Fetch categories
     fetch("http://localhost:3000/product/categories")
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Error when fetching data");
+          throw new Error("Error when fetching categories");
         } else {
           return res.json();
         }
@@ -25,11 +28,12 @@ const FeaturedProducts = () => {
         setError(err.message);
         setLoading(false);
       });
-    // all products
+
+    // Fetch all products
     fetch("http://localhost:3000/products")
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Error when fetching data");
+          throw new Error("Error when fetching products");
         } else {
           return res.json();
         }
@@ -44,13 +48,30 @@ const FeaturedProducts = () => {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    // Filter products when a category is selected
+    if (selectedCategory) {
+      const filtered = products.filter(
+        (product) => product.category === selectedCategory
+      );
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts(products);
+    }
+  }, [selectedCategory, products]);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
   return (
-    <main className=" grid place-items-center mt-5">
-      <div className=" text-center">
-        <h1 className=" font-Poppins font-extrabold text-2xl uppercase">
+    <main className="grid place-items-center mt-5">
+      <div className="text-center">
+        <h1 className="font-Poppins font-extrabold text-2xl uppercase">
           Featured Products
         </h1>
-        <p className=" text-zinc-500">
+        <p className="text-zinc-500">
           A collection of textile samples lay spread out on the table Samsa was
           travelled
         </p>
@@ -58,27 +79,29 @@ const FeaturedProducts = () => {
       <div className="categories flex flex-row lg:gap-10 items-center justify-center overflow-x-auto w-full">
         {loading && <p>Loading...</p>}
         {error && <p>error</p>}
-        <div className=" h-8 text-zinc-500 w-fit px-5 py-1 hover:rounded-full hover:bg-orange-500 hover:text-white cursor-pointer focus:bg-orange-500 delay-150 duration-300">
-          <h2>Shop</h2>
-        </div>
         {!loading &&
           categories?.map((category, index) => (
             <div
               key={index}
-              className=" h-8 text-zinc-500 w-fit px-5 py-1 hover:rounded-full hover:bg-orange-500 hover:text-white cursor-pointer focus:bg-orange-500 delay-150 duration-300"
+              className={`h-8  w-fit px-5 py-1 hover:rounded-full hover:bg-orange-500 hover:text-white cursor-pointer focus:bg-orange-500 delay-150 duration-300 ${
+                selectedCategory === category.name
+                  ? "bg-orange-500 text-white rounded-full"
+                  : ""
+              }`}
+              onClick={() => handleCategoryClick(category.name)}
             >
               <h2>{category.name}</h2>
             </div>
           ))}
       </div>
-      <div className=" grid lg:grid-cols-4 grid-cols-2 md:grid-cols-3 lg:gap-5 gap-3 my-5">
-          {loading && <p>Loading...</p>}
-          {error && <p>error</p>}
-          {!loading &&
-            products.map((product, index) => (
-              <AllProducts product={product} key={index} />
-            ))}
-        </div>
+      <div className="grid lg:grid-cols-4 grid-cols-2 md:grid-cols-3 lg:gap-5 gap-3 my-5">
+        {loading && <p>Loading...</p>}
+        {error && <p>error</p>}
+        {!loading &&
+          filteredProducts.map((product, index) => (
+            <AllProducts product={product} key={index} />
+          ))}
+      </div>
     </main>
   );
 };
