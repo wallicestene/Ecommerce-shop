@@ -4,9 +4,9 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 const AllProducts = ({ product }) => {
   const backendURL = "http://localhost:3000/uploads";
   return (
-    <div className="h-72 w-40 shadow-md">
+    <div className="h-72 w-40 shadow-md hover:-translate-y-0  hover:scale-110 duration-300 delay-75">
       <Link to={`/product/${product._id}`}>
-        <div className="w-full flex flex-col justify-between h-full">
+        <div className="w-full flex flex-col justify-between h-full ">
           <img
             src={`${backendURL}/${product.image_url}`}
             alt=""
