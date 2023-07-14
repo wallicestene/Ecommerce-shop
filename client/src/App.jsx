@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import { HashRouter as Router, Route, Switch, HashRouter } from 'react-router-dom/cjs/react-router-dom.min'
 import Home from './components/Home'
 import UploadItemsForm from './adminPanel/UploadItemsForm'
+import ProductsDetailsPage from './components/ProductsDetailsPage'
 function App() {
 
   const[show, setShow] = useState(false)
@@ -35,6 +36,7 @@ function App() {
             <Home theref={featiredRef}/>
             </Route>
           <Route path="/UploadItemsForm" component={UploadItemsForm}/>
+          <Route path="/product/:id" component={ProductsDetailsPage}/>
         </Switch>
       </Router>
     </div>
