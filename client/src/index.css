@@ -16,3 +16,6 @@ li{
 body::-webkit-scrollbar{
   display: none;
 }
+.cart::-webkit-scrollbar{
+  display: none;
+}

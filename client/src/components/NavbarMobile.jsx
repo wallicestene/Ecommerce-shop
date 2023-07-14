@@ -4,7 +4,7 @@ import { ContactPage, Create, Home, NoteAlt, Search, Shop } from "@mui/icons-mat
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 const NavbarMobile = ({scrollToSection,featiredRef}) => {
   return (
-    <div className=" fixed bg-slate-900 text-gray-100 rounded-lg bg right-0 top-10 h-screen w-1/2 p-10 z-40">
+    <div className=" fixed bg-slate-900 text-gray-100 rounded-lg bg right-0 top-10 h-screen w-1/2 p-10 z-50">
       <div className="navbar-center">
         <ul className=" flex items-center flex-col justify-between gap-10 font-YsabeauInfant">
           <li className=" flex items-center gap-1 ">

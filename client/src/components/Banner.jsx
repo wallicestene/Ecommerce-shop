@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Banner = () => {
   const [bannerData, setBannerData] = useState([]);
@@ -38,7 +39,9 @@ const Banner = () => {
                 <h1 className=" text-gray-700 font-Montserrat">{bannerData.name}</h1>
             <h2 className=" text-3xl font-Poppins font-extrabold">Fashion {bannerData.category}</h2>
             <div className=" bg-zinc-800 inline-block rounded-full text-white w-24 h-7 text-center hover:cursor-pointer mt-5">
+                <Link to={`/product/${bannerData._id}`}>
                 <p className=" font-Montserrat text-sm px-2 py-1">Shop Now</p>
+                </Link>
             </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { Add, KeyboardBackspace, LocalMall, Minimize, Remove } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useCartcontext } from "./context/CartContex";
 
 const ProductsDetailsPage = () => {
   const [details, setDetails] = useState([]);
@@ -12,6 +13,8 @@ const ProductsDetailsPage = () => {
   const backendURL = "http://localhost:3000/uploads";
   const { id } = useParams();
 
+  const [{cart, quantity}, dispatch] = useCartcontext()
+console.log(quantity)
   useEffect(() => {
     fetch(`http://localhost:3000/products/${id}`)
       .then((res) => {
@@ -31,6 +34,28 @@ const ProductsDetailsPage = () => {
         setLoading(false);
       });
   }, []);
+
+  const addToCart = (item) =>{
+    const inCart = cart.find(product => product._id === item._id)
+    if(inCart){
+        alert('Item already added to your Cart')
+    }else{
+        dispatch({
+            type: "ADD_TO_CART",
+            cart: item
+        })
+    }
+  }
+//   const addQuantity = () =>{
+//     dispatch({
+//         type: "ADD_QUANTITY"
+//     })
+//   }
+//   const removeQuantity = () =>{
+//     dispatch({
+//         type: "REMOVE_QUANTITY"
+//     })
+//   }
   return (
     <div className=" grid place-items-center lg:h-screen h-screen md:h-full bg-gradient-to-r from-gray-100 from-10% to-100% via-gray-200 to-gray-400 overflow-y-auto">
       {loading && <p>Loading...</p>}
@@ -43,7 +68,7 @@ const ProductsDetailsPage = () => {
               alt=""
               className="h-full w-full lg:object-contain object-cover drop-shadow-2xl shadow-black"
             />
-            <div className="fixed top-10 hover:bg-gray-100 hover:shadow-lg hover:rounded-full h-12 w-12 grid place-items-center z-40 " onClick={() => history.go(-1)}>
+            <div className="fixed top-10 hover:bg-gray-100 hover:shadow-lg hover:rounded-full h-12 w-12 grid place-items-center z-10" onClick={() => history.go(-1)}>
                 <KeyboardBackspace fontSize="large"/>
             </div>
           </div>
@@ -62,13 +87,17 @@ const ProductsDetailsPage = () => {
             </div>
             <div className=" flex lg:flex-row flex-col items-center lg:gap-5 gap-2 mt-2 lg:mt-0">
               <div className=" flex items-center bg-gray-300  justify-between  w-full  h-10 rounded-lg">
+                <div>
                 <Remove />
-                <p>2</p>
+                </div>
+                <p>{quantity}</p>
+                <div>
                 <Add />
+                </div>
               </div>
-              <div className="flex items-center bg-orange-500 justify-center h-10 rounded-lg w-full gap-2">
-                <LocalMall />
-                <p>Add to Cart</p>
+              <div className="flex items-center bg-orange-500 justify-center h-10 rounded-lg w-full gap-2" onClick={() => addToCart(details)}>
+                
+                <button className=" w-full h-full"><LocalMall /> Add to Cart</button>
               </div>
             </div>
             </div>
