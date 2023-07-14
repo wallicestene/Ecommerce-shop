@@ -28,7 +28,7 @@ const Banner = () => {
       });
   }, []);
   return (
-    <div className="banner mx-auto lg:w-4/5">
+    <div className="banner mx-auto lg:w-11/12 bg-gradient-to-r from-gray-300 from-15% to-100% via-gray-200 to-gray-400 rounded-br-md rounded-bl-md">
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {!loading && (

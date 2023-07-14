@@ -6,7 +6,7 @@ const Home = ({theref}) => {
   
   return (
     <div className='Home'> 
-        <div className=' bg-gradient-to-r from-gray-300 from-15% to-100% via-gray-200 to-gray-400'>
+        <div className=' '>
         <Banner/>
         </div>
         <div>

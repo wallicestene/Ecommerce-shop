@@ -7,7 +7,7 @@ import NavbarMobile from "./NavbarMobile";
 function Navbar({scrollToSection,featiredRef}) {
   const [showNavbarMobile, setShowNavbarMobile] = useState(false);
   return (
-    <div className={`navbar h-10 p-2 flex items-center justify-between lg:w-11/12 lg:mx-auto text-slate-950`}>
+    <div className={`navbar h-10 p-2 flex items-center justify-between lg:w-11/12 lg:mx-auto  text-slate-950`}>
       <div className="navbar-left">
         <h1 className=" font-Poppins">E-SHOP</h1>
         <div className=" lg:hidden">{showNavbarMobile && <NavbarMobile scrollToSection={scrollToSection} featiredRef={featiredRef} />}</div>
