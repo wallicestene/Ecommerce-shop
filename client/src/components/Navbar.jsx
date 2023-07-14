@@ -9,7 +9,7 @@ function Navbar({scrollToSection,featiredRef}) {
   return (
     <div className={`navbar h-10 p-2 flex items-center justify-between lg:w-11/12 lg:mx-auto text-slate-950`}>
       <div className="navbar-left">
-        <h1 className=" font-Poppins">LOGO</h1>
+        <h1 className=" font-Poppins">E-SHOP</h1>
         <div className=" lg:hidden">{showNavbarMobile && <NavbarMobile scrollToSection={scrollToSection} featiredRef={featiredRef} />}</div>
       </div>
       <div className="navbar-center">

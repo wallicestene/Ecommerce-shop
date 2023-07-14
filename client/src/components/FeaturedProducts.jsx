@@ -53,10 +53,10 @@ const FeaturedProducts = () => {
     // Filtering products when a category is selected
     if (selectedCategory) {
       const filtered = products.filter(
-        (product) => product.category.toLowerCase() === selectedCategory.toLowerCase()
+        (product) =>
+          product.category.toLowerCase() === selectedCategory.toLowerCase()
       );
       setFilteredProducts(filtered);
-     
     } else {
       setFilteredProducts(products);
     }
@@ -77,10 +77,13 @@ const FeaturedProducts = () => {
           travelled
         </p>
       </div>
-      <div className="categories flex flex-row lg:gap-10 items-center justify-center overflow-x-auto w-full text-zinc-500">
+      <div className="categories flex flex-row lg:gap-10 items-center justify-center flex-wrap w-full text-zinc-500">
         {loading && <p>Loading...</p>}
         {error && <p>error</p>}
-        <div onClick={() => setFilteredProducts(products)} className="h-8  w-fit px-5 py-1 hover:rounded-full hover:bg-orange-500 hover:text-white cursor-pointer focus:bg-orange-500 delay-150 duration-300 ">
+        <div
+          onClick={() => setFilteredProducts(products)}
+          className="h-8  w-fit px-5 py-1 hover:rounded-full hover:bg-orange-500 hover:text-white cursor-pointer focus:bg-orange-500 delay-150 duration-300 "
+        >
           <h1>All</h1>
         </div>
         {!loading &&

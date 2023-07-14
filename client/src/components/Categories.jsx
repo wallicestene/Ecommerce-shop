@@ -30,7 +30,7 @@ const Categories = () => {
     <div className=" mt-3 ">
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <div className=" flex items-center gap-4 w-full justify-center overflow-x-auto">
+      <div className="categories flex items-center gap-4 w-full justify-center overflow-x-auto">
         {!loading &&
           categories?.map((category, index) => (
             <div
@@ -43,7 +43,7 @@ const Categories = () => {
                 className="h-full w-full object-cover px-4"
               />
               <div className=" absolute top-1/2 bottom-1/2 left-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 h-fit w-fit bg-white border rounded-full">
-                <p className="text-sm px-5 py-1">#{category.name}</p>
+                <p className="text-sm px-5 py-1 font-YsabeauInfant">#{category.name}</p>
               </div>
             </div>
           ))}
