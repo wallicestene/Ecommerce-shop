@@ -1,9 +1,10 @@
 const CartItem = require("../models/cartModel");
 const mongoose = require("mongoose");
+
 // addToCart
 const addToCart = (req, res) => {
-  const { itemId, quantity } = req.body;
-  CartItem.create({ itemId, quantity })
+  const { item, quantity } = req.body;
+  CartItem.create({ item, quantity })
     .then((result) => {
       res.status(200).json(result);
     })
@@ -26,5 +27,5 @@ const getItemsInCart = (req,res) => {
 
 module.exports = {
     addToCart,
-    getItemsInCart
+    getItemsInCart,
 }
