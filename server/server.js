@@ -8,11 +8,23 @@ const productsRoutes = require("./routes/productsRoutes")
 const categoryRoutes = require("./routes/categoriesRoutes")
 const cartRoutes = require("./routes/cartRoute")
 
+
+
 require("dotenv").config()
 
 
 // init app 
 const app = express()
+
+// socket
+const server = require("http").createServer(app)
+
+const io = require("socket.io")(server, {
+    cors:{
+        origin: "*"
+    }
+})
+ 
 
 // middleware
 app.use(morgan("dev"))
