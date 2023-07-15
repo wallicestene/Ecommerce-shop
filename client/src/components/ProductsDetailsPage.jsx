@@ -44,6 +44,14 @@ console.log(quantity)
             type: "ADD_TO_CART",
             cart: item
         })
+        const itemToAdd = {itemId: item._id, quantity}
+        fetch("http://localhost:3000/product/cart", {
+          method: "POST",
+          body: JSON.stringify(itemToAdd),
+          headers: {
+                "Content-Type": "application/json",
+              },
+        })
     }
   }
 //   const addQuantity = () =>{

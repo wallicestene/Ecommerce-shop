@@ -6,6 +6,7 @@ const path = require("path");
 
 const productsRoutes = require("./routes/productsRoutes")
 const categoryRoutes = require("./routes/categoriesRoutes")
+const cartRoutes = require("./routes/cartRoute")
 
 require("dotenv").config()
 
@@ -34,6 +35,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // routes
 app.use(productsRoutes)
 app.use(categoryRoutes)
+app.use(cartRoutes)
 
 // fallback route for handling unknown routes
 app.use((req, res) => {
