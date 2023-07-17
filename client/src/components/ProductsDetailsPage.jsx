@@ -10,11 +10,9 @@ import {
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { useCartcontext } from "./context/CartContex";
 
 const ProductsDetailsPage = () => {
   const [details, setDetails] = useState([]);
-  const [inCart, setInCart] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
@@ -43,29 +41,22 @@ const ProductsDetailsPage = () => {
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
-  const addToCart = (item) => {
-    // const isInCart = inCart.find((product) => product.item.item._id === item._id);
-    const itemToAdd = { item, quantity };
-    fetch("http://localhost:3000/product/cart", {
-      method: "POST",
-      body: JSON.stringify(itemToAdd),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => res.json());
-  };
-  //   const addQuantity = () =>{
-  //     dispatch({
-  //         type: "ADD_QUANTITY"
-  //     })
-  //   }
-  //   const removeQuantity = () =>{
-  //     dispatch({
-  //         type: "REMOVE_QUANTITY"
-  //     })
-  //   }
+
+const addToCart = (item) => {
+  const itemToAdd = { item, quantity };
+  fetch("http://localhost:3000/product/cart", {
+    method: "POST",
+    body: JSON.stringify(itemToAdd),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+};
+
+ 
   return (
     <div className=" grid place-items-center lg:h-screen h-screen md:h-full bg-gradient-to-r from-gray-100 from-10% to-100% via-gray-200 to-gray-400 overflow-y-auto">
       {loading && <p>Loading...</p>}

@@ -40,6 +40,8 @@ const Cart = ({ setShowCart}) => {
         setLoading(false);
       });
   }, []);
+
+
   return (
     <div className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40  bg-slate-300 w-96 h-screen flex flex-col">
       <div className=" relative h-full w-full">

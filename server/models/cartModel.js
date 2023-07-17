@@ -5,4 +5,12 @@ const cartShema = new Schema({
     item: Object,
     quantity: Number,
 })
-module.exports = mongoose.model("cartItem", cartShema)
+const CartItem = mongoose.model("CartItem", cartShema);
+
+// Create a change stream for the CartItem collection
+const changeStream = CartItem.watch();
+
+module.exports = {
+  CartItem,
+  changeStream,
+};
