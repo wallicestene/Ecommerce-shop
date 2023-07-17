@@ -3,6 +3,7 @@ const morgan = require("morgan")
 const cors = require("cors")
 const mongoose = require("mongoose")
 const path = require("path");
+const socketIO = require("socket.io") 
 
 const productsRoutes = require("./routes/productsRoutes")
 const categoryRoutes = require("./routes/categoriesRoutes")
@@ -17,13 +18,10 @@ require("dotenv").config()
 const app = express()
 
 // socket
-const server = require("http").createServer(app)
+const http = require("http")
+const server = http.createServer(app)
 
-const io = require("socket.io")(server, {
-    cors:{
-        origin: "*"
-    }
-})
+const io = socketIO(server)
  
 
 // middleware

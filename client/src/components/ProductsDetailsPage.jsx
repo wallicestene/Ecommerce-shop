@@ -14,15 +14,16 @@ import { useCartcontext } from "./context/CartContex";
 
 const ProductsDetailsPage = () => {
   const [details, setDetails] = useState([]);
+  const [inCart, setInCart] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1);
 
   const history = useHistory();
 
   const backendURL = "http://localhost:3000/uploads";
   const { id } = useParams();
 
-  const [{ cart, quantity }, dispatch] = useCartcontext();
   console.log(quantity);
   useEffect(() => {
     fetch(`http://localhost:3000/products/${id}`)
@@ -45,20 +46,15 @@ const ProductsDetailsPage = () => {
   }, []);
 
   const addToCart = (item) => {
-    const inCart = cart.find((product) => product.item._id === item._id);
-    if (inCart) {
-      alert("Item already added to your Cart");
-    } else {
-      const itemToAdd = { item, quantity };
-      fetch("http://localhost:3000/product/cart", {
-        method: "POST",
-        body: JSON.stringify(itemToAdd),
-        headers: {
-          "Content-Type": "application/json",
-        }
-      })
-      .then(res => res.json())
-    }
+    // const isInCart = inCart.find((product) => product.item.item._id === item._id);
+    const itemToAdd = { item, quantity };
+    fetch("http://localhost:3000/product/cart", {
+      method: "POST",
+      body: JSON.stringify(itemToAdd),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json());
   };
   //   const addQuantity = () =>{
   //     dispatch({
@@ -104,11 +100,22 @@ const ProductsDetailsPage = () => {
               </div>
               <div className=" flex lg:flex-row flex-col items-center lg:gap-5 gap-2 mt-2 lg:mt-0">
                 <div className=" flex items-center bg-gray-300  justify-between  w-full  h-10 rounded-lg">
-                  <div>
+                  <div
+                    onClick={() => {
+                      if (quantity <= 1) {
+                        return 1;
+                      }
+                      setQuantity((prevSate) => prevSate - 1);
+                    }}
+                  >
                     <Remove />
                   </div>
                   <p>{quantity}</p>
-                  <div>
+                  <div
+                    onClick={() => {
+                      setQuantity((prevSate) => prevSate + 1);
+                    }}
+                  >
                     <Add />
                   </div>
                 </div>

@@ -37,7 +37,7 @@ const Banner = () => {
           <div className="banner-left h-full grid place-items-center col-span-1">
             <div>
                 <h1 className=" text-gray-700 font-Montserrat">{bannerData.name}</h1>
-            <h2 className=" text-3xl font-Poppins font-extrabold">Fashion {bannerData.category}</h2>
+            <h2 className=" lg:text-3xl text-xl font-Poppins font-extrabold">Fashion {bannerData.category}</h2>
             <div className=" bg-zinc-800 inline-block rounded-full text-white w-24 h-7 text-center hover:cursor-pointer mt-5">
                 <Link to={`/product/${bannerData._id}`}>
                 <p className=" font-Montserrat text-sm px-2 py-1">Shop Now</p>

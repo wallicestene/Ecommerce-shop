@@ -10,6 +10,7 @@ function Navbar({ scrollToSection, featiredRef }) {
   const [showNavbarMobile, setShowNavbarMobile] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [{ cart }, dispatch] = useCartcontext();
+ 
   return (
     <div
       className={`navbar h-10 p-2 flex items-center justify-between lg:w-11/12 lg:mx-auto  text-slate-950`}
@@ -24,7 +25,7 @@ function Navbar({ scrollToSection, featiredRef }) {
             />
           )}
         </div>
-        <div>{showCart && <Cart />}</div>
+        <div>{showCart && <Cart setShowCart={setShowCart}/>}</div>
       </div>
       <div className="navbar-center">
         <ul className="hidden lg:flex items-center justify-between gap-10 font-YsabeauInfant">
@@ -58,13 +59,13 @@ function Navbar({ scrollToSection, featiredRef }) {
         </form>
 
         <div
-          className=" h-10 w-10 flex items-center justify-start relative cursor-pointer"
+          className=" h-10 w-10 flex items-center justify-start relative cursor-pointer bg-gray-50 rounded-full px-1 py-1"
           onClick={() => {
             setShowCart(!showCart);
             setShowNavbarMobile(false);
           }}
         >
-          <div>
+          <div className=" bg-gray-50 rounded-full px-1 py-1">
             <LocalMallIcon />
           </div>
           {cart.length > 0 && (
@@ -74,7 +75,7 @@ function Navbar({ scrollToSection, featiredRef }) {
           )}
         </div>
         <div
-          className=" lg:hidden"
+          className=" lg:hidden bg-gray-50 rounded-full h-10 w-10 grid place-items-center"
           onClick={() => {
             setShowNavbarMobile(!showNavbarMobile);
             setShowCart(false);
