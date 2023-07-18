@@ -23,8 +23,8 @@ const ProductsDetailsPage = () => {
   const backendURL = "http://localhost:3000/uploads";
   const { id } = useParams();
 
-  console.log(quantity);
   useEffect(() => {
+
     fetch(`http://localhost:3000/products/${id}`)
       .then((res) => {
         if (!res.ok) {
@@ -56,8 +56,7 @@ const ProductsDetailsPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Item added to cart:", data);
-
+        console.log("Item added to cart")
       })
       .catch((error) => {
         console.log("Error adding item to cart:", error);

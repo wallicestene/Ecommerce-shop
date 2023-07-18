@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Delete } from "@mui/icons-material";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import io from 'socket.io-client';
+import io from "socket.io-client";
 
 const Cart = ({ setShowCart }) => {
   const [cartData, setCartData] = useState([]);
@@ -11,62 +11,60 @@ const Cart = ({ setShowCart }) => {
   const backendURL = "http://localhost:3000/uploads";
   const history = useHistory();
 
-
   useEffect(() => {
-    const socket = io('http://localhost:3000');
-  const fetchCartItems = () => {
-      fetch('http://localhost:3000/product/cart') // Replace with your API endpoint for fetching cart items
-        .then(response => response.json())
-        .then(data => {
+    const socket = io("http://localhost:3000");
+
+    const fetchCartItems = () => {
+      fetch("http://localhost:3000/product/cart")
+        .then((response) => response.json())
+        .then((data) => {
           setCartData(data);
           setLoading(false);
         })
-        .catch(error => {
+        .catch((error) => {
           setError("Failed to fetch cart items.");
           setLoading(false);
+        });
+    };
+    // fetching initial item in the cart
+    fetchCartItems();
+
+    // Socket.IO event listener for cart updates
+
+    socket.on("dataChange", (change) => {
+      // Handling the change event
+
+      if (change.type === "cartItemAdded") {
+        const newItem = change.cartItem;
+        
+        setCartData((prevData) => [...prevData, newItem]);
+      } else if (change.type === "cartItemDeleted") {
+       
+        const deletedItemId = change.cartItem._id;
+        setCartData((prevData) =>
+          prevData.filter((item) => item._id !== deletedItemId)
+        );
+      }
     });
-  };
 
-  // Fetch initial cart items
-  fetchCartItems();
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
-  // Socket.IO event listener for cart updates
-  socket.on('dataChange', (change) => {
-    // Handle the change event
-    if (change.type === 'cartItemAdded') {
-      const newItem = change.cartItem;
-      setCartData((prevData) => [...prevData, newItem]);
-    } else if (change.type === 'cartItemDeleted') {
-      const deletedItemId = change.itemId;
-      setCartData((prevData) => prevData.filter(item => item._id !== deletedItemId));
-    }
-  });
-
-  return () => {
-    socket.disconnect();
-  };
-}, []);
-  
-const removeFromCart = (item) => {
-  return new Promise((resolve, reject) => {
-    fetch(`/api/cartItems/${item._id}`, {
-      method: 'DELETE',
+  const removeFromCart = (item) => {
+    fetch(`http://localhost:3000/product/cart/${item._id}`, {
+      method: "DELETE",
     })
       .then(() => {
-        // Alternatively, you can emit a Socket.IO event to notify the server about the deletion
-
-        // Update the cart data in the component state
-        setCartData(prevData => prevData.filter(i => i._id !== item._id));
-        resolve();
+        // Updating the cart data in the component state
+        setCartData((prevData) => prevData.filter((product) => product._id !== item._id));
       })
-      .catch(error => {
+      .catch((error) => {
         setError("Failed to remove item from the cart.");
-        reject();
       });
-  });
-};
+  };
 
- 
   return (
     <div className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500 rounded-md w-96 h-screen flex flex-col">
       <div className=" relative h-full w-full">
@@ -91,7 +89,9 @@ const removeFromCart = (item) => {
                       <p>{item.item.name}</p>
                       <p className=" text-sm text-gray-700">
                         ${item.item.price.toLocaleString()}.00 X {item.quantity}{" "}
-                        <strong className="text-base text-black">${item.item.price * item.quantity}.00</strong>
+                        <strong className="text-base text-black">
+                          ${item.item.price * item.quantity}.00
+                        </strong>
                       </p>
                     </div>
                   </div>

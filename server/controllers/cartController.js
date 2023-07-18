@@ -23,7 +23,7 @@ const addToCart = (req, res) => {
 // get All items in cart
 // TODO query the items according to the user signed in
 const getItemsInCart = (req, res) => {
-  CartItem.find()
+  CartItem.find().sort({ createdAt: -1 })
     .then((result) => {
       res.status(200).json(result);
     })

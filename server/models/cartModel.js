@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const cartShema = new Schema({
     item: Object,
     quantity: Number,
-})
+},{ timestamps: true})
 const CartItem = mongoose.model("CartItem", cartShema);
 
 // Create a change stream for the CartItem collection
