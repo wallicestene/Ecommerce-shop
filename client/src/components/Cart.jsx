@@ -95,10 +95,11 @@ const Cart = ({ setShowCart }) => {
                       </p>
                     </div>
                   </div>
+                  </Link>
                   <div onClick={() => removeFromCart(item)} className="text-slate-950">
                     <Delete />
                   </div>
-                </Link>
+                
               </li>
             ))
           ) : (
