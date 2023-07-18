@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 li{
-  @apply hover:text-orange-500 delay-300  duration-150 uppercase cursor-pointer
+  @apply uppercase cursor-pointer
 }
 .MuiSvgIcon-root{
   @apply hover:cursor-pointer

@@ -10,6 +10,7 @@ import {
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
+import socketIOClient from 'socket.io-client';
 
 const ProductsDetailsPage = () => {
   const [details, setDetails] = useState([]);
@@ -44,18 +45,25 @@ const ProductsDetailsPage = () => {
   }, [id]);
 
 
-const addToCart = (item) => {
-  const itemToAdd = { item, quantity };
-  fetch("http://localhost:3000/product/cart", {
-    method: "POST",
-    body: JSON.stringify(itemToAdd),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-};
+  const addToCart = (item) => {
+    const itemToAdd = { item, quantity };
+    fetch("http://localhost:3000/product/cart", {
+      method: "POST",
+      body: JSON.stringify(itemToAdd),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Item added to cart:", data);
 
+      })
+      .catch((error) => {
+        console.log("Error adding item to cart:", error);
+      });
+  };
+  
  
   return (
     <div className=" grid place-items-center lg:h-screen h-screen md:h-full bg-gradient-to-r from-gray-100 from-10% to-100% via-gray-200 to-gray-400 overflow-y-auto">

@@ -1,55 +1,80 @@
 import React, { useEffect, useState } from "react";
-import { useCartcontext } from "./context/CartContex";
 import { Delete } from "@mui/icons-material";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import io from 'socket.io-client';
 
-const Cart = ({ setShowCart}) => {
+const Cart = ({ setShowCart }) => {
   const [cartData, setCartData] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const [{ cart }, dispatch] = useCartcontext();
   const backendURL = "http://localhost:3000/uploads";
-  const history = useHistory()
+  const history = useHistory();
 
-  const removeFromcart = (item) => {
-    fetch(`http://localhost:3000/product/cart/${item._id}`, {
-      method: "DELETE"
-    })
-    .then(data => data.json())
-    .catch(err => console.log(err.message))
-  };
 
   useEffect(() => {
-    fetch("http://localhost:3000/product/cart")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Error when fetching data");
-        } else {
-          return res.json();
-        }
+    const socket = io('http://localhost:3000');
+  const fetchCartItems = () => {
+      fetch('http://localhost:3000/product/cart') // Replace with your API endpoint for fetching cart items
+        .then(response => response.json())
+        .then(data => {
+          setCartData(data);
+          setLoading(false);
+        })
+        .catch(error => {
+          setError("Failed to fetch cart items.");
+          setLoading(false);
+    });
+  };
+
+  // Fetch initial cart items
+  fetchCartItems();
+
+  // Socket.IO event listener for cart updates
+  socket.on('dataChange', (change) => {
+    // Handle the change event
+    if (change.type === 'cartItemAdded') {
+      const newItem = change.cartItem;
+      setCartData((prevData) => [...prevData, newItem]);
+    } else if (change.type === 'cartItemDeleted') {
+      const deletedItemId = change.itemId;
+      setCartData((prevData) => prevData.filter(item => item._id !== deletedItemId));
+    }
+  });
+
+  return () => {
+    socket.disconnect();
+  };
+}, []);
+  
+const removeFromCart = (item) => {
+  return new Promise((resolve, reject) => {
+    fetch(`/api/cartItems/${item._id}`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        // Alternatively, you can emit a Socket.IO event to notify the server about the deletion
+
+        // Update the cart data in the component state
+        setCartData(prevData => prevData.filter(i => i._id !== item._id));
+        resolve();
       })
-      .then((data) => {
-        setCartData(data);
-        console.log(data);
-        setLoading(false);
-        setError("");
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
+      .catch(error => {
+        setError("Failed to remove item from the cart.");
+        reject();
       });
-  }, []);
+  });
+};
 
-
+ 
   return (
-    <div className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40  bg-slate-300 w-96 h-screen flex flex-col">
+    <div className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500 rounded-md w-96 h-screen flex flex-col">
       <div className=" relative h-full w-full">
         <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center bg-orange-500 rounded-lg">
-          <button className=" w-full h-full">Checkout</button>
+          <button className=" w-full h-full text-gray-50">Checkout</button>
         </div>
         <div className=" border-b-2 py-2 px-5 border-gray-500">
-          <h1>Cart</h1>
+          <h1 className=" text-gray-50">Cart</h1>
         </div>
         <div className="cart flex flex-col gap-5 p-2 overflow-y-scroll h-4/5">
           {cartData.length > 0 ? (
@@ -70,7 +95,7 @@ const Cart = ({ setShowCart}) => {
                       </p>
                     </div>
                   </div>
-                  <div onClick={() => removeFromcart(item)}>
+                  <div onClick={() => removeFromCart(item)}>
                     <Delete />
                   </div>
                 </div>
@@ -78,11 +103,16 @@ const Cart = ({ setShowCart}) => {
             ))
           ) : (
             <div className=" text-center flex flex-col items-center justify-center h-full">
-              <p>Your shopping cart is empty!</p>
-              <p className=" px-10 py-2 bg-gray-200 rounded-md mt-2 cursor-pointer" onClick={() =>{
-                 history.push("/")
-                 setShowCart(false)
-              }}>Continue Shopping</p>
+              <p className=" text-gray-50">Your shopping cart is empty!</p>
+              <p
+                className=" px-10 py-2 bg-gray-200 rounded-md mt-2 cursor-pointer"
+                onClick={() => {
+                  history.push("/");
+                  setShowCart(false);
+                }}
+              >
+                Continue Shopping
+              </p>
             </div>
           )}
         </div>

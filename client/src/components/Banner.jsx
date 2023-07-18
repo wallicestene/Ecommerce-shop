@@ -29,16 +29,16 @@ const Banner = () => {
       });
   }, []);
   return (
-    <div className="banner mx-auto lg:w-11/12 bg-gradient-to-r from-gray-300 from-15% to-100% via-gray-200 to-gray-400 rounded-br-md rounded-bl-md">
+    <div className="banner mx-auto lg:w-11/12 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500 rounded-br-md rounded-bl-md">
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {!loading && (
         <div className=" grid grid-cols-3 gap-1 h-fit rounded-2xl lg:px-3 px-1 ">
           <div className="banner-left h-full grid place-items-center col-span-1">
             <div>
-                <h1 className=" text-gray-700 font-Montserrat">{bannerData.name}</h1>
-            <h2 className=" lg:text-3xl text-xl font-Poppins font-extrabold">Fashion {bannerData.category}</h2>
-            <div className=" bg-zinc-800 inline-block rounded-full text-white w-24 h-7 text-center hover:cursor-pointer mt-5">
+                <h1 className=" text-gray-50 font-Montserrat">{bannerData.name}</h1>
+            <h2 className=" lg:text-3xl text-xl font-Poppins font-extrabold text-ebony-950">Fashion {bannerData.category}</h2>
+            <div className=" bg-ebony-800 inline-block rounded-full text-white w-24 h-7 text-center hover:cursor-pointer mt-5  transition duration-500 hover:scale-125 hover:bg-sky-600">
                 <Link to={`/product/${bannerData._id}`}>
                 <p className=" font-Montserrat text-sm px-2 py-1">Shop Now</p>
                 </Link>

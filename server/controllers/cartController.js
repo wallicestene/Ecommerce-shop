@@ -8,9 +8,12 @@ const addToCart = (req, res) => {
   CartItem.create({ item, quantity })
     .then((result) => {
       // Emit the 'dataChange' event to notify clients about the new item in the cart
-      changeStream.emit("dataChange", { type: "cartItemAdded", cartItem: result });
+      const change = { type: "cartItemAdded", cartItem: result };
+      changeStream.emit("dataChange", change);
       res.status(200).json(result);
+
     })
+
     .catch((err) => {
       console.log(err.message);
       res.json({ error: "Error in adding a product to cart collection" });
@@ -41,7 +44,8 @@ const deleteItemInCart = (req, res) => {
         return res.status(404).json({ error: "No Such Item in cart" });
       } else {
         // Emit the 'dataChange' event to notify clients about the item deletion
-        changeStream.emit("dataChange", { type: "cartItemDeleted", cartItem: result });
+        const change = { type: "cartItemDeleted", cartItem: result };
+        changeStream.emit("dataChange", change);
         res.status(200).json(result);
       }
     })

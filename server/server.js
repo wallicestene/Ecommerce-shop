@@ -20,7 +20,7 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app);
 const io = socketIO(server, {
-    cors:{
+    cors: {
         origin: "*"
     }
 });
@@ -53,9 +53,11 @@ app.use(categoryRoutes);
 app.use(cartRoutes);
 
 // Emit data changes to connected clients
-changeStream.on("change", (change) => {
+changeStream.on("dataChange", (change) => {
   io.emit("dataChange", change);
+  console.log(change);
 });
+
 
 // Set up WebSocket connection
 io.on("connection", (socket) => {
