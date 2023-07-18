@@ -10,8 +10,6 @@ import {
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
-import socketIOClient from 'socket.io-client';
-
 const ProductsDetailsPage = () => {
   const [details, setDetails] = useState([]);
   const [error, setError] = useState("");
@@ -21,10 +19,9 @@ const ProductsDetailsPage = () => {
   const history = useHistory();
 
   const backendURL = "http://localhost:3000/uploads";
-  const { id } = useParams();
+  const { id } = useParams();  
 
   useEffect(() => {
-
     fetch(`http://localhost:3000/products/${id}`)
       .then((res) => {
         if (!res.ok) {
