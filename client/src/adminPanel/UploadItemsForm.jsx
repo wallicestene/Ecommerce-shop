@@ -10,7 +10,9 @@ const UploadItemsForm = () => {
   const [category, setCategory] = useState("");
   const [image_url, setImage_url] = useState(null);
   const [showCategoriesForm, setShowCategoriesForm] = useState(false);
-  const [imagePreview, setImagePreview] = useState("");
+  const [imagePreview, setImagePreview] = useState("")
+  const [newItem, setNewItem] = useState(false)
+  console.log(newItem)
 
 
   const history = useHistory();
@@ -24,8 +26,8 @@ const UploadItemsForm = () => {
     formData.append("description", description);
     formData.append("category", category);
     formData.append("image_url", image_url);
-
-    const item = { name, price, description, category, image_url };
+    formData.append("newItem", newItem);
+    const item = { name, price, description, category, image_url, newItem };
     fetch("http://localhost:3000/products", {
       method: "POST",
       body: formData,
@@ -43,6 +45,7 @@ const UploadItemsForm = () => {
     setDescription("")
     setImage_url(null)
     setImagePreview("")
+    setNewItem(false)
   };
 
   const handleImageUpload = (e) => {
@@ -198,6 +201,17 @@ const UploadItemsForm = () => {
                   </div>
                 )}
               </label>
+              <label className=" block my-1" htmlFor="newItem">
+                New product <br />
+                <input
+                  name="newItem"
+                  checked={newItem}
+                  onChange={(e) => setNewItem(e.target.value)}
+                  className=" "
+                  type="checkbox"
+                  id="newItem"
+                />
+              </label>
               <div className=" bg-red-600 text-center rounded-full mt-4 h-10">
                 <button className=" h-full w-full">Submit</button>
               </div>
@@ -231,6 +245,7 @@ const UploadItemsForm = () => {
                   required
                 />
               </label>
+              
               <div className=" bg-red-600 text-center rounded-full mt-4 h-10">
                 <button className=" h-full w-full">Submit</button>
               </div>

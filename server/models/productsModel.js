@@ -22,6 +22,9 @@ const productSchema = new Schema({
     image_url :{
         type: Array,
         required:true
-    }
+    },
+    newItem: {
+        type: Boolean,
+    },
 }, {timestamps : true})
 module.exports = mongoose.model("product", productSchema)

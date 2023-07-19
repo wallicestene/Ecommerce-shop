@@ -18,7 +18,7 @@ const AllProducts = ({ product }) => {
             </h1>
             <div className=" flex justify-between items-center">
               <p className=" font-YsabeauInfant lg:text-sm text-xs font-bold">
-                ${product.price}.00
+                ${(product.price).toLocaleString()}.00
               </p>
               <p className=" font-Montserrat text-xs text-gray-500">
                 {product.category}

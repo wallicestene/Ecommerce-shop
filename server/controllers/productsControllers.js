@@ -31,11 +31,11 @@ const getSingleProduct = (req,res) => {
 }
 // add  products
 const addProducts = (req,res) =>{
-    const {name, price, description, category} = req.body 
+    const {name, price, description, category, newItem} = req.body 
 
     const image_url = req.file.filename
 
-    Products.create({name, price, description, category, image_url})
+    Products.create({name, price, description, category, image_url, newItem})
     .then(product => {
         res.json(product)
     })

@@ -71,7 +71,7 @@ const Cart = ({ setShowCart }) => {
   };
 
   return (
-    <div className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200 rounded-md w-3/4 h-screen flex flex-col">
+    <div className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md w-3/4 h-screen flex flex-col">
       <div className=" relative h-full w-full">
         {
           cartData.length > 0 && <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center bg-orange-500 rounded-lg">
@@ -95,9 +95,9 @@ const Cart = ({ setShowCart }) => {
                     <div>
                       <p className=" lowercase tracking-tighter first-letter:uppercase text-ebony-50">{item.item.name}</p>
                       <p className=" text-xs text-ebony-50 font-semibold">
-                        ${item.item.price.toLocaleString()}.00 X {item.quantity}{" "}
+                        ${(item.item.price).toLocaleString()}.00 X {item.quantity}{" "}
                         <strong className="text-base shadow-xl text-ebony-50">
-                          ${item.item.price * item.quantity}.00
+                          ${(item.item.price * item.quantity).toLocaleString()}.00
                         </strong>
                       </p>
                     </div>
