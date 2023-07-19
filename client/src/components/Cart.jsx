@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Delete } from "@mui/icons-material";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import io from "socket.io-client";
+import { useCartcontext } from "./context/CartContex";
 
 const Cart = ({ setShowCart }) => {
   const [cartData, setCartData] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-
+  const [{ itemsInCart }, dispatch] = useCartcontext();
   const backendURL = "http://localhost:3000/uploads";
   const history = useHistory();
 
@@ -20,6 +21,10 @@ const Cart = ({ setShowCart }) => {
         .then((data) => {
           setCartData(data);
           setLoading(false);
+          dispatch({
+            type:"ADD_IN_CART",
+            inCart : data.length
+          })
         })
         .catch((error) => {
           setError("Failed to fetch cart items.");
@@ -76,10 +81,10 @@ const Cart = ({ setShowCart }) => {
         <div className=" border-b-2 py-2 px-5 border-gray-500 ">
           <h1 className="bg-orange-500 inline py-1 px-5 rounded text-gray-50">Cart</h1>
         </div>
-        <ul className="cart flex flex-col gap-5 p-2 overflow-y-scroll h-4/5">
+        <ul className="cart flex flex-col gap-5 p-1 overflow-y-scroll h-4/5">
           {cartData.length > 0 ? (
             cartData.map((item, index) => (
-              <li key={index} className=" shadow-md bg-gradient-to-r from-gray-900 to-gray-600 rounded-l-xl cursor-default rounded-r-lg relative">
+              <li key={index} className=" shadow-md bg-gradient-to-r rounded-lg from-gray-900 to-gray-600 cursor-default  relative p-0">
                 <Link className=" flex items-center justify-between" to={`/product/${item.item._id}`} onClick={() => setShowCart(false)}>
                   <div className=" flex items-center gap-1 lg:gap-5">
                     <img
@@ -88,7 +93,7 @@ const Cart = ({ setShowCart }) => {
                       className="h-20 w-20 object-cover bg-slate-200 rounded-lg"
                     />
                     <div>
-                      <p className=" lowercase first-letter:uppercase text-ebony-50">{item.item.name}</p>
+                      <p className=" lowercase tracking-tighter first-letter:uppercase text-ebony-50">{item.item.name}</p>
                       <p className=" text-xs text-ebony-50 font-semibold">
                         ${item.item.price.toLocaleString()}.00 X {item.quantity}{" "}
                         <strong className="text-base shadow-xl text-ebony-50">
@@ -106,14 +111,14 @@ const Cart = ({ setShowCart }) => {
           ) : (
             <div className=" text-center flex flex-col items-center justify-center h-full">
               <p className=" text-gray-50">Your shopping cart is empty!</p>
-              <p
-                className=" px-10 py-2 bg-gray-200 rounded-md mt-2 cursor-pointer"
+              <button
+                className=" px-10 py-2 bg-gray-200 rounded-md mt-2 hover:bg-opacity-30 hover:text-white duration-500"
                 onClick={() => {
                   setShowCart(false);
                 }}
               >
                 Continue Shopping
-              </p>
+              </button>
             </div>
           )}
         </ul>

@@ -1,6 +1,7 @@
-import { Upload } from "@mui/icons-material";
+import { KeyboardBackspace, Upload } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const UploadItemsForm = () => {
   const [name, setName] = useState("");
@@ -10,6 +11,9 @@ const UploadItemsForm = () => {
   const [image_url, setImage_url] = useState(null);
   const [showCategoriesForm, setShowCategoriesForm] = useState(false);
   const [imagePreview, setImagePreview] = useState("");
+
+
+  const history = useHistory();
 
   const handleProductSubmit = (e) => {
     e.preventDefault();
@@ -77,8 +81,15 @@ const UploadItemsForm = () => {
     setName("")
     setImage_url(null)
   };
+
   return (
-    <div className=" flex flex-col items-center justify-center h-screen font-Montserrat">
+    <div className="relative flex flex-col items-center justify-center h-screen font-Montserrat">
+       <div
+              className="fixed top-10 left-5 bg-gray-100 hover:shadow-lg rounded-full h-12 w-12 grid place-items-center z-10"
+              onClick={() => history.go(-1)}
+            >
+              <KeyboardBackspace fontSize="large" />
+            </div>
       <div className="flex lg:flex-row flex-col w-full gap-2 mt-10">
         <div className=" flex-4 p-1 flex flex-col justify-center">
           <div className="">

@@ -72,9 +72,8 @@ const FeaturedProducts = () => {
         <h1 className="font-Poppins font-extrabold text-2xl uppercase">
           Featured Products
         </h1>
-        <p className="text-zinc-500">
-          A collection of textile samples lay spread out on the table Samsa was
-          travelled
+        <p className="text-zinc-500 font-YsabeauInfant text-sm lg:text-base md:text-base my-2">
+        Discover our handpicked collection of trendy and stylish clothing, showcasing the latest fashion must-haves for men, women, and kids on our featured products page.
         </p>
       </div>
       <div className="categories flex flex-row lg:gap-10 items-center justify-center flex-wrap w-full text-zinc-500">

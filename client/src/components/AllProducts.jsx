@@ -10,7 +10,7 @@ const AllProducts = ({ product }) => {
           <img
             src={`${backendURL}/${product.image_url}`}
             alt=""
-            className="w-full h-60 object-cover bg-gray-200"
+            className="w-full h-60 object-cover bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-fuchsia-100 via-green-200 to-rose-500"
           />
           <div className=" p-1">
             <h1 className=" lg:text-sm text-xs text-zinc-800 font-Poppins font-bold">
@@ -20,7 +20,7 @@ const AllProducts = ({ product }) => {
               <p className=" font-YsabeauInfant lg:text-sm text-xs font-bold">
                 ${product.price}.00
               </p>
-              <p className=" font-Montserrat lg:text-sm text-xs text-gray-500">
+              <p className=" font-Montserrat text-xs text-gray-500">
                 {product.category}
               </p>
             </div>

@@ -5,6 +5,7 @@ import {
   Minimize,
   Remove,
 } from "@mui/icons-material";
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import {
   useHistory,
@@ -62,7 +63,7 @@ const ProductsDetailsPage = () => {
   
  
   return (
-    <div className=" grid place-items-center lg:h-screen h-screen md:h-full bg-gradient-to-r from-gray-100 from-10% to-100% via-gray-200 to-gray-400 overflow-y-auto">
+    <div className=" grid place-items-center lg:h-screen h-screen md:h-full overflow-y-auto">
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {!loading && (
@@ -90,11 +91,11 @@ const ProductsDetailsPage = () => {
                   {details.description}
                 </p>
                 <p className=" font-YsabeauInfant font-extrabold mt-5 bg-gray-200 inline px-2 w-fit rounded shadow-md">
-                  ${details.price}.00
+                  Price ${details.price.toLocaleString()}.00
                 </p>
               </div>
               <div className=" flex lg:flex-row flex-col items-center lg:gap-5 gap-2 mt-2 lg:mt-0">
-                <div className=" flex items-center bg-gray-300  justify-between  w-full  h-10 rounded-lg">
+                <div className=" flex items-center bg-gray-200  justify-between  w-full  h-10 rounded-lg shadow-md">
                   <div
                     onClick={() => {
                       if (quantity <= 1) {
@@ -105,7 +106,7 @@ const ProductsDetailsPage = () => {
                   >
                     <Remove />
                   </div>
-                  <p>{quantity}</p>
+                  <p className=" font-Poppins font-semibold text-lg tracking-wide">{quantity}</p>
                   <div
                     onClick={() => {
                       setQuantity((prevSate) => prevSate + 1);
@@ -115,12 +116,15 @@ const ProductsDetailsPage = () => {
                   </div>
                 </div>
                 <div
-                  className="flex items-center bg-orange-500 justify-center h-10 rounded-lg w-full gap-2"
+                  className="flex items-center justify-center h-10 rounded-lg w-full gap-2 text-white"
                   onClick={() => addToCart(details)}
                 >
-                  <button className=" w-full h-full">
+                  {/* <button className=" w-full h-full">
+                    
+                  </button> */}
+                  <Button  className=" w-full h-full flex gap-2 items-center" color="success" variant="contained">
                     <LocalMall /> Add to Cart
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

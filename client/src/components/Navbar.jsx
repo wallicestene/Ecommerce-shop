@@ -9,19 +9,20 @@ import { useCartcontext } from "./context/CartContex";
 function Navbar({ scrollToSection, featiredRef }) {
   const [showNavbarMobile, setShowNavbarMobile] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  const [{ cart }, dispatch] = useCartcontext();
+  const [{ itemsInCart }, dispatch] = useCartcontext();
  
   return (
     <div
       className={`navbar h-10 p-2 flex items-center justify-between lg:w-11/12 lg:mx-auto  text-slate-950`}
     >
       <div className="navbar-left">
-        <h1 className=" font-Poppins">E-SHOP</h1>
+        <h1 className=" font-YsabeauInfant">E-Shop</h1>
         <div className=" lg:hidden">
           {showNavbarMobile && (
             <NavbarMobile
               scrollToSection={scrollToSection}
               featiredRef={featiredRef}
+              setShowNavbarMobile={setShowNavbarMobile}
             />
           )}
         </div>
@@ -38,10 +39,10 @@ function Navbar({ scrollToSection, featiredRef }) {
             </div>
           </li>
           <li>
-            <Link to="/blog">Blog</Link>
+            <Link to="">Blog</Link>
           </li>
           <li>
-            <Link to="/contacts">Contact</Link>
+            <Link to="">Contact</Link>
           </li>
           <li>
             <Link to="/UploadItemsForm">Create</Link>
@@ -68,9 +69,9 @@ function Navbar({ scrollToSection, featiredRef }) {
           <div className=" bg-gray-50 rounded-full px-1 py-1">
             <LocalMallIcon />
           </div>
-          {cart.length > 0 && (
+          {itemsInCart >= 1 && (
             <div className=" absolute top-1  right-1 bg-orange-500 h-5 w-5 rounded-full grid place-items-center text-center">
-              <h1 className=" text-center text-white text-sm">{cart.length}</h1>
+              <h1 className=" text-center text-white text-sm">{itemsInCart}</h1>
             </div>
           )}
         </div>
