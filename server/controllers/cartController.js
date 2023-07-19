@@ -1,19 +1,24 @@
-
 const mongoose = require("mongoose");
 const { changeStream, CartItem } = require("../models/cartModel"); // Import the change stream from the cartModel file
 
 // addToCart
 const addToCart = (req, res) => {
   const { item, quantity } = req.body;
-  CartItem.create({ item, quantity })
-    .then((result) => {
-      // Emit the 'dataChange' event to notify clients about the new item in the cart
-      const change = { type: "cartItemAdded", cartItem: result };
-      changeStream.emit("dataChange", change);
-      res.status(200).json(result);
+  // cheking if the item already exists
+  CartItem.findOne({ item: item })
+    .then((existingCartItem) => {
+      if (!existingCartItem) {
+        CartItem.create({ item, quantity }).then((result) => {
+          // Emitting the 'dataChange' event to notify clients about the new item in the cart
+          const change = { type: "cartItemAdded", cartItem: result };
+          changeStream.emit("dataChange", change);
+          res.status(200).json(result);
+        });
+      }else{
+        throw new Error("Item already added to Cart!")
+      }
 
     })
-
     .catch((err) => {
       console.log(err.message);
       res.json({ error: "Error in adding a product to cart collection" });
@@ -23,7 +28,8 @@ const addToCart = (req, res) => {
 // get All items in cart
 // TODO query the items according to the user signed in
 const getItemsInCart = (req, res) => {
-  CartItem.find().sort({ createdAt: -1 })
+  CartItem.find()
+    .sort({ createdAt: -1 })
     .then((result) => {
       res.status(200).json(result);
     })
@@ -43,7 +49,7 @@ const deleteItemInCart = (req, res) => {
       if (!result) {
         return res.status(404).json({ error: "No Such Item in cart" });
       } else {
-        // Emit the 'dataChange' event to notify clients about the item deletion
+        // Emitting the 'dataChange' event to notify clients about the item deletion
         const change = { type: "cartItemDeleted", cartItem: result };
         changeStream.emit("dataChange", change);
         res.status(200).json(result);

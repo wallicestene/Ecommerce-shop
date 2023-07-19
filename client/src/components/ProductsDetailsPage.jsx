@@ -56,7 +56,7 @@ const ProductsDetailsPage = () => {
         console.log("Item added to cart")
       })
       .catch((error) => {
-        console.log("Error adding item to cart:", error);
+        console.log("Error adding item to cart:", error.message);
       });
   };
   
