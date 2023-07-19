@@ -66,18 +66,20 @@ const Cart = ({ setShowCart }) => {
   };
 
   return (
-    <div className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500 rounded-md w-3/4 h-screen flex flex-col">
+    <div className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200 rounded-md w-3/4 h-screen flex flex-col">
       <div className=" relative h-full w-full">
-        <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center bg-orange-500 rounded-lg">
+        {
+          cartData.length > 0 && <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center bg-orange-500 rounded-lg">
           <button className=" w-full h-full text-gray-50">Checkout</button>
         </div>
-        <div className=" border-b-2 py-2 px-5 border-gray-500">
-          <h1 className=" text-gray-50">Cart</h1>
+        }
+        <div className=" border-b-2 py-2 px-5 border-gray-500 ">
+          <h1 className="bg-orange-500 inline py-1 px-5 rounded text-gray-50">Cart</h1>
         </div>
         <ul className="cart flex flex-col gap-5 p-2 overflow-y-scroll h-4/5">
           {cartData.length > 0 ? (
             cartData.map((item, index) => (
-              <li key={index} className=" shadow shadow-orange-700 rounded cursor-default">
+              <li key={index} className=" shadow-md bg-gradient-to-r from-gray-900 to-gray-600 rounded-l-xl cursor-default rounded-r-lg relative">
                 <Link className=" flex items-center justify-between" to={`/product/${item.item._id}`} onClick={() => setShowCart(false)}>
                   <div className=" flex items-center gap-1 lg:gap-5">
                     <img
@@ -87,16 +89,15 @@ const Cart = ({ setShowCart }) => {
                     />
                     <div>
                       <p className=" lowercase first-letter:uppercase text-ebony-50">{item.item.name}</p>
-                      <p className=" text-xs text-gray-200 font-semibold">
+                      <p className=" text-xs text-ebony-50 font-semibold">
                         ${item.item.price.toLocaleString()}.00 X {item.quantity}{" "}
                         <strong className="text-base shadow-xl text-ebony-50">
                           ${item.item.price * item.quantity}.00
                         </strong>
                       </p>
                     </div>
-                  </div>
-                  </Link>
-                  <div onClick={() => removeFromCart(item)} className="text-slate-950">
+                  </div></Link>
+                  <div onClick={() => removeFromCart(item)} className="text-ebony-950 absolute lg:right-2 right-1 z-30 top-1/2 bottom-1/2 -translate-y-1/2 bg-gray-50 rounded-full h-10 w-10 grid place-items-center cursor-pointer">
                     <Delete />
                   </div>
                 
@@ -108,7 +109,6 @@ const Cart = ({ setShowCart }) => {
               <p
                 className=" px-10 py-2 bg-gray-200 rounded-md mt-2 cursor-pointer"
                 onClick={() => {
-                  history.push("/");
                   setShowCart(false);
                 }}
               >

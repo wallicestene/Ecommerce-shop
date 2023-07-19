@@ -55,7 +55,6 @@ app.use(cartRoutes);
 // Emit data changes to connected clients
 changeStream.on("dataChange", (change) => {
   io.emit("dataChange", change);
-  console.log(change);
 });
 
 
