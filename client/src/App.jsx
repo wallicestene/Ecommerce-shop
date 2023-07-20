@@ -25,9 +25,9 @@ function App() {
     return () => window.removeEventListener("scroll", handleshow)
   },[])
   return (
-    <div> 
+    <div className=''> 
       <Router>
-      <div className={`fixed w-full z-40 ${show && "backdrop-blur-xl bg-white/30 shadow"}`}>
+      <div className={`fixed w-full z-10 ${show && "backdrop-blur-xl bg-white/30 shadow"}`}>
       <Navbar scrollToSection={scrollToSection} featiredRef={featiredRef}/>
       </div>
         <Switch >

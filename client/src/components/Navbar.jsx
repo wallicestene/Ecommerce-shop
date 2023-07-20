@@ -13,7 +13,7 @@ function Navbar({ scrollToSection, featiredRef }) {
  
   return (
     <div
-      className={`navbar h-10 p-2 flex items-center justify-between lg:w-11/12 lg:mx-auto  text-slate-950`}
+      className={`navbar h-10 p-2 flex items-center justify-between lg:w-11/12 lg:mx-auto `}
     >
       <div className="navbar-left">
         <h1 className=" font-YsabeauInfant">E-Shop</h1>
