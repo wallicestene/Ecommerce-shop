@@ -22,9 +22,9 @@ const Cart = ({ setShowCart }) => {
           setCartData(data);
           setLoading(false);
           dispatch({
-            type:"ADD_IN_CART",
-            inCart : data.length
-          })
+            type: "ADD_IN_CART",
+            inCart: data.length,
+          });
         })
         .catch((error) => {
           setError("Failed to fetch cart items.");
@@ -41,10 +41,9 @@ const Cart = ({ setShowCart }) => {
 
       if (change.type === "cartItemAdded") {
         const newItem = change.cartItem;
-        
+
         setCartData((prevData) => [...prevData, newItem]);
       } else if (change.type === "cartItemDeleted") {
-       
         const deletedItemId = change.cartItem._id;
         setCartData((prevData) =>
           prevData.filter((item) => item._id !== deletedItemId)
@@ -63,7 +62,9 @@ const Cart = ({ setShowCart }) => {
     })
       .then(() => {
         // Updating the cart data in the component state
-        setCartData((prevData) => prevData.filter((product) => product._id !== item._id));
+        setCartData((prevData) =>
+          prevData.filter((product) => product._id !== item._id)
+        );
       })
       .catch((error) => {
         setError("Failed to remove item from the cart.");
@@ -73,19 +74,28 @@ const Cart = ({ setShowCart }) => {
   return (
     <div className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md w-3/4 h-screen flex flex-col">
       <div className=" relative h-full w-full">
-        {
-          cartData.length > 0 && <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center bg-orange-500 rounded-lg">
-          <button className=" w-full h-full text-gray-50">Checkout</button>
-        </div>
-        }
+        {cartData.length > 0 && (
+          <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center bg-orange-500 rounded-lg">
+            <button className=" w-full h-full text-gray-50">Checkout</button>
+          </div>
+        )}
         <div className=" border-b-2 py-2 px-5 border-gray-500 ">
-          <h1 className="bg-orange-500 inline py-1 px-5 rounded text-gray-50">Cart</h1>
+          <h1 className="bg-orange-500 font-Poppins font-extrabold tracking-wider  inline py-1 px-5 rounded text-gray-50">
+            Cart
+          </h1>
         </div>
         <ul className="cart flex flex-col gap-5 p-1 overflow-y-scroll h-4/5">
           {cartData.length > 0 ? (
             cartData.map((item, index) => (
-              <li key={index} className=" shadow-md bg-gradient-to-r rounded-lg from-gray-900 to-gray-600 cursor-default  relative p-0">
-                <Link className=" flex items-center justify-between" to={`/product/${item.item._id}`} onClick={() => setShowCart(false)}>
+              <li
+                key={index}
+                className=" shadow-md bg-gradient-to-r rounded-lg from-gray-900 to-gray-600 cursor-default  relative p-0"
+              >
+                <Link
+                  className=" flex items-center justify-between"
+                  to={`/product/${item.item._id}`}
+                  onClick={() => setShowCart(false)}
+                >
                   <div className=" flex items-center gap-1 lg:gap-5">
                     <img
                       src={`${backendURL}/${item?.item.image_url}` || ""}
@@ -93,19 +103,34 @@ const Cart = ({ setShowCart }) => {
                       className="h-20 w-20 object-cover bg-slate-200 rounded-lg"
                     />
                     <div>
-                      <p className=" lowercase tracking-tighter first-letter:uppercase text-ebony-50">{item.item.name}</p>
+                      <p className=" lowercase tracking-tighter first-letter:uppercase text-ebony-50">
+                        {item.item.name}
+                      </p>
                       <p className=" text-xs text-ebony-50 font-semibold">
-                        ${(item.item.price).toLocaleString()}.00 X {item.quantity}{" "}
+                        {item.item.price.toLocaleString("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        })}{" "}
+                        x {item.quantity}{" "}
                         <strong className="text-base shadow-xl text-ebony-50">
-                          ${(item.item.price * item.quantity).toLocaleString()}.00
+                          {(item.item.price * item.quantity).toLocaleString(
+                            "en-US",
+                            {
+                              style: "currency",
+                              currency: "USD",
+                            }
+                          )}
                         </strong>
                       </p>
                     </div>
-                  </div></Link>
-                  <div onClick={() => removeFromCart(item)} className="text-ebony-950 absolute lg:right-2 right-1 z-30 top-1/2 bottom-1/2 -translate-y-1/2 bg-gray-50 rounded-full h-10 w-10 grid place-items-center cursor-pointer">
-                    <Delete />
                   </div>
-                
+                </Link>
+                <div
+                  onClick={() => removeFromCart(item)}
+                  className="text-ebony-950 absolute lg:right-2 right-1 z-30 top-1/2 bottom-1/2 -translate-y-1/2 bg-gray-50 rounded-full h-10 w-10 grid place-items-center cursor-pointer"
+                >
+                  <Delete />
+                </div>
               </li>
             ))
           ) : (

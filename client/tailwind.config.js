@@ -31,8 +31,15 @@ export default {
           '800': '#253c4a',
           '900': '#22343f',
           '950': '#0c161d',
+      },      
       },
-      
+      fontSize:{
+        6:'1.6rem'
+      },
+      fontWeight:{
+        bold: 700,
+        extrabold: 800,
+        black: 900
       }
     },
   },

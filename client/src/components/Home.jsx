@@ -3,6 +3,8 @@ import Banner from './Banner'
 import Categories from './Categories'
 import FeaturedProducts from './FeaturedProducts'
 import { useCartcontext } from './context/CartContex'
+import NewsLetterForm from './NewsLetterForm'
+import Footer from './Footer'
 
 const Home = ({theref}) => {
   const [{ itemsInCart }, dispatch] = useCartcontext();
@@ -34,6 +36,12 @@ const Home = ({theref}) => {
         </div>
         <div ref={theref}>
           <FeaturedProducts/>
+        </div>
+        <div>
+          <NewsLetterForm/>
+        </div>
+        <div>
+          <Footer/>
         </div>
     </div>
   )

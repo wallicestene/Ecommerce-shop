@@ -18,7 +18,10 @@ const AllProducts = ({ product }) => {
             </h1>
             <div className=" flex justify-between items-center">
               <p className=" font-YsabeauInfant lg:text-sm text-xs font-bold">
-                ${(product.price).toLocaleString()}.00
+                {(product.price).toLocaleString("en-US", {
+                  style:"currency",
+                  currency: "USD"
+                })}
               </p>
               <p className=" font-Montserrat text-xs text-gray-500">
                 {product.category}
@@ -29,7 +32,7 @@ const AllProducts = ({ product }) => {
       </Link>
       {
         product.isNewItem && (
-          <div className=" absolute top-1 left-2 bg bg-orange-600 text-ebony-50 h-10 w-10 grid place-items-center rounded-full">
+          <div className=" absolute top-1 left-2 shadow-lg bg-red-600 text-ebony-50 h-10 w-10 grid place-items-center rounded-full">
             <p>New</p>
           </div>
         )
