@@ -208,13 +208,13 @@ const UploadItemsForm = () => {
                   </div>
                 )}
               </label>
-              <label className=" block my-1" htmlFor="isNewItem">
-                New product <br />
+              <label className=" my-1 flex items-center gap-5" htmlFor="isNewItem">
+                <p>Is it a New product?</p> 
                 <input
                   name="isNewItem"
                   checked={productData.isNewItem}
                   onChange={handleChange}
-                  className=" "
+                  className=""
                   type="checkbox"
                   id="isNewItem"
                 />
