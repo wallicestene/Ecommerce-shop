@@ -4,16 +4,17 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const UploadItemsForm = () => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [productData, SetProductData] = useState({
+    name: "",
+    price: "",
+    description: "",
+    category: "",
+    isNewItem: false,
+  });
+  console.log(productData.isNewItem);
   const [image_url, setImage_url] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
   const [showCategoriesForm, setShowCategoriesForm] = useState(false);
-  const [imagePreview, setImagePreview] = useState("")
-  const [newItem, setNewItem] = useState(false)
-  console.log(newItem)
-
 
   const history = useHistory();
 
@@ -21,13 +22,13 @@ const UploadItemsForm = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("price", price);
-    formData.append("description", description);
-    formData.append("category", category);
+    formData.append("name", productData.name);
+    formData.append("price", productData.price);
+    formData.append("description", productData.description);
+    formData.append("category", productData.category);
     formData.append("image_url", image_url);
-    formData.append("newItem", newItem);
-    const item = { name, price, description, category, image_url, newItem };
+    formData.append("isNewItem",  JSON.parse(productData.isNewItem));
+    // const item = { name, price, description, category, image_url};
     fetch("http://localhost:3000/products", {
       method: "POST",
       body: formData,
@@ -35,17 +36,26 @@ const UploadItemsForm = () => {
       //     "Content-Type": "application/json",
       //   },
     });
-    // const handleImageChange = (e) => {
-    //     const file = e.target.files[0];
-    //     setImage_url(file);
-    //   };
-    setName("")
-    setPrice("")
-    setCategory("")
-    setDescription("")
-    setImage_url(null)
+    SetProductData((prevData) => ({
+      ...prevData,
+      name: "",
+      price: "",
+      description: "",
+      category: "",
+      isNewItem: false
+    }));
     setImagePreview("")
-    setNewItem(false)
+    setImage_url(null)
+  };
+
+  const handleChange = (event) => {
+
+    const { name, value, type, checked } = event.target;
+
+    SetProductData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value
+    }));
   };
 
   const handleImageUpload = (e) => {
@@ -68,7 +78,7 @@ const UploadItemsForm = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("name", name);
+    formData.append("name", productData.name);
     formData.append("image_url", image_url);
     fetch("http://localhost:3000/product/categories", {
       method: "POST",
@@ -77,27 +87,24 @@ const UploadItemsForm = () => {
       //     "Content-Type": "application/json",
       //   },
     });
-    // const handleImageChange = (e) => {
-    //     const file = e.target.files[0];
-    //     setImage_url(file);
-    //   };
-    setName("")
-    setImage_url(null)
+    setImage_url(null);
   };
 
   return (
     <div className="relative flex flex-col items-center justify-center h-screen font-Montserrat">
-       <div
-              className="fixed top-10 left-5 bg-gray-100 hover:shadow-lg rounded-full h-12 w-12 grid place-items-center z-10"
-              onClick={() => history.go(-1)}
-            >
-              <KeyboardBackspace fontSize="large" />
-            </div>
+      <div
+        className="fixed top-10 left-5 bg-gray-100 hover:shadow-lg rounded-full h-12 w-12 grid place-items-center z-10"
+        onClick={() => history.go(-1)}
+      >
+        <KeyboardBackspace fontSize="large" />
+      </div>
       <div className="flex lg:flex-row flex-col w-full gap-2 mt-10">
         <div className=" flex-4 p-1 flex flex-col justify-center">
           <div className="">
             <div className=" text-center py-1">
-              <h1 className=" font-bold first-letter:uppercase text-xl lg:text-4xl ">Admin Panel</h1>
+              <h1 className=" font-bold first-letter:uppercase text-xl lg:text-4xl ">
+                Admin Panel
+              </h1>
             </div>
             <div className="flex items-center lg:gap-2 gap-1">
               <Avatar />
@@ -133,12 +140,12 @@ const UploadItemsForm = () => {
                 Product Name <br />
                 <input
                   name="name"
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={handleChange}
                   className=" w-full h-8 outline-none bg-transparent border rounded-lg px-2 py-5"
                   type="text"
                   id="name"
                   placeholder="Enter product name"
-                  value={name}
+                  value={productData.name}
                   required
                 />
               </label>
@@ -146,12 +153,12 @@ const UploadItemsForm = () => {
                 Product Price <br />
                 <input
                   name="price"
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={handleChange}
                   className=" w-full h-8 outline-none bg-transparent border rounded-lg px-2 py-5"
                   type="number"
                   id="price"
                   placeholder="Enter product price"
-                  value={price}
+                  value={productData.price}
                   required
                 />
               </label>
@@ -159,12 +166,12 @@ const UploadItemsForm = () => {
                 Product Description <br />
                 <input
                   name="description"
-                  onChange={(e) => setDescription(e.target.value)}
+                  onChange={handleChange}
                   className=" w-full h-8 outline-none bg-transparent border rounded-lg px-2 py-5"
                   type="text"
                   id="description"
                   placeholder="Enter product description"
-                  value={description}
+                  value={productData.description}
                   required
                 />
               </label>
@@ -172,12 +179,12 @@ const UploadItemsForm = () => {
                 Product Category <br />
                 <input
                   name="category"
-                  onChange={(e) => setCategory(e.target.value)}
+                  onChange={handleChange}
                   className=" w-full h-8 outline-none bg-transparent border rounded-lg px-2 py-5"
                   type="text"
                   id="category"
                   placeholder="Enter product Category"
-                  value={category}
+                  value={productData.category}
                   required
                 />
               </label>
@@ -201,15 +208,15 @@ const UploadItemsForm = () => {
                   </div>
                 )}
               </label>
-              <label className=" block my-1" htmlFor="newItem">
+              <label className=" block my-1" htmlFor="isNewItem">
                 New product <br />
                 <input
-                  name="newItem"
-                  checked={newItem}
-                  onChange={(e) => setNewItem(e.target.value)}
+                  name="isNewItem"
+                  checked={productData.isNewItem}
+                  onChange={handleChange}
                   className=" "
                   type="checkbox"
-                  id="newItem"
+                  id="isNewItem"
                 />
               </label>
               <div className=" bg-red-600 text-center rounded-full mt-4 h-10">
@@ -223,12 +230,12 @@ const UploadItemsForm = () => {
                 Category Name <br />
                 <input
                   name="name"
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={handleChange}
                   className=" w-full h-8 outline-none bg-transparent border rounded-lg px-2 py-5"
                   type="text"
                   id="name"
                   placeholder="Enter product name"
-                  value={name}
+                  value={productData.name}
                   required
                 />
               </label>
@@ -245,7 +252,7 @@ const UploadItemsForm = () => {
                   required
                 />
               </label>
-              
+
               <div className=" bg-red-600 text-center rounded-full mt-4 h-10">
                 <button className=" h-full w-full">Submit</button>
               </div>

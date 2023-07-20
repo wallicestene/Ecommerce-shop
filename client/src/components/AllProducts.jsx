@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 const AllProducts = ({ product }) => {
   const backendURL = "http://localhost:3000/uploads";
   return (
-    <div className="h-72 w-40 shadow-md hover:-translate-y-0  hover:scale-110 duration-300 delay-75">
+    <div className="h-72 w-40 shadow-md hover:-translate-y-0  hover:scale-110 duration-300 delay-75 relative">
       <Link to={`/product/${product._id}`}>
         <div className="w-full flex flex-col justify-between h-full ">
           <img
@@ -27,6 +27,13 @@ const AllProducts = ({ product }) => {
           </div>
         </div>
       </Link>
+      {
+        product.isNewItem && (
+          <div className=" absolute top-1 left-2 bg bg-orange-600 text-ebony-50 h-10 w-10 grid place-items-center rounded-full">
+            <p>New</p>
+          </div>
+        )
+      }
     </div>
   );
 };

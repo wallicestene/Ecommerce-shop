@@ -23,8 +23,10 @@ const productSchema = new Schema({
         type: Array,
         required:true
     },
-    newItem: {
+    isNewItem: {
         type: Boolean,
+        default: false,
+        required:true
     },
 }, {timestamps : true})
 module.exports = mongoose.model("product", productSchema)
