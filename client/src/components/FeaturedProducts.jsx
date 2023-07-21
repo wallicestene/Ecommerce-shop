@@ -100,7 +100,7 @@ const FeaturedProducts = () => {
             </div>
           ))}
       </div>
-      <div className="grid lg:grid-cols-4 grid-cols-2 md:grid-cols-3 lg:gap-5 gap-3 my-5">
+      <div className="grid lg:grid-cols-4 grid-cols-2 md:grid-cols-3 lg:gap-5 gap-5 my-5 ">
         {loading && <p>Loading...</p>}
         {error && <p>error</p>}
         {!loading &&
