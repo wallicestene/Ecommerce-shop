@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const AllProducts = ({ product }) => {
-  const backendURL = "http://localhost:3000/uploads";
+  const backendURL = "https://e-shop-xlam.onrender.com/uploads";
   return (
     <div className="h-72 w-40 shadow-md transform transition ease-in-out duration-500 hover:scale-110 relative">
       <Link to={`/product/${product._id}`}>

@@ -19,11 +19,11 @@ const ProductsDetailsPage = () => {
 
   const history = useHistory();
 
-  const backendURL = "http://localhost:3000/uploads";
+  const backendURL = "https://e-shop-xlam.onrender.com/uploads";
   const { id } = useParams();  
 
   useEffect(() => {
-    fetch(`http://localhost:3000/products/${id}`)
+    fetch(`https://e-shop-xlam.onrender.com/products/${id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error when fetching data");
@@ -45,7 +45,7 @@ const ProductsDetailsPage = () => {
 
   const addToCart = (item) => {
     const itemToAdd = { item, quantity };
-    fetch("http://localhost:3000/product/cart", {
+    fetch("https://e-shop-xlam.onrender.com/product/cart", {
       method: "POST",
       body: JSON.stringify(itemToAdd),
       headers: {

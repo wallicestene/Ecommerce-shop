@@ -11,7 +11,7 @@ const FeaturedProducts = () => {
 
   useEffect(() => {
     // Fetch categories
-    fetch("http://localhost:3000/product/categories")
+    fetch("https://e-shop-xlam.onrender.com/product/categories")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error when fetching categories");
@@ -30,7 +30,7 @@ const FeaturedProducts = () => {
       });
 
     // Fetch all products
-    fetch("http://localhost:3000/products")
+    fetch("https://e-shop-xlam.onrender.com/products")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error when fetching products");

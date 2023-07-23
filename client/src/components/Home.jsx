@@ -10,7 +10,7 @@ const Home = ({theref}) => {
   const [{ itemsInCart }, dispatch] = useCartcontext();
     useEffect(() => {  
       const fetchCartItems = () => {
-        fetch("http://localhost:3000/product/cart")
+        fetch("https://e-shop-xlam.onrender.com/product/cart")
           .then((response) => response.json())
           .then((data) => {
             dispatch({

@@ -9,14 +9,14 @@ const Cart = ({ setShowCart }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [{ itemsInCart }, dispatch] = useCartcontext();
-  const backendURL = "http://localhost:3000/uploads";
+  const backendURL = "https://e-shop-xlam.onrender.com/uploads";
   const history = useHistory();
 
   useEffect(() => {
-    const socket = io("http://localhost:3000");
+    const socket = io("https://e-shop-xlam.onrender.com");
 
     const fetchCartItems = () => {
-      fetch("http://localhost:3000/product/cart")
+      fetch("https://e-shop-xlam.onrender.com/product/cart")
         .then((response) => response.json())
         .then((data) => {
           setCartData(data);
@@ -57,7 +57,7 @@ const Cart = ({ setShowCart }) => {
   }, []);
 
   const removeFromCart = (item) => {
-    fetch(`http://localhost:3000/product/cart/${item._id}`, {
+    fetch(`https://e-shop-xlam.onrender.com/product/cart/${item._id}`, {
       method: "DELETE",
     })
       .then(() => {

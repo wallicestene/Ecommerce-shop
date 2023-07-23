@@ -5,10 +5,10 @@ const Categories = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const backendURL = "http://localhost:3000/uploads";
+  const backendURL = "https://e-shop-xlam.onrender.com/uploads";
 
   useEffect(() => {
-    fetch("http://localhost:3000/product/categories")
+    fetch("https://e-shop-xlam.onrender.com/product/categories")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error when fetching data");

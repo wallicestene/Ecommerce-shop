@@ -6,10 +6,10 @@ const Banner = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const backendURL = "http://localhost:3000/uploads"
+  const backendURL = "https://e-shop-xlam.onrender.com/uploads"
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch("https://e-shop-xlam.onrender.com/products")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error when fetching data");
