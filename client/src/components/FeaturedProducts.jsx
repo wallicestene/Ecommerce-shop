@@ -82,7 +82,10 @@ const FeaturedProducts = () => {
       <div className="categories flex flex-row lg:gap-10 gap-2 items-center justify-center flex-wrap w-full text-zinc-500">
         {loading &&
           skeletonArr.map((index) => (
-            <Skeleton key={index} variant="rounded" width={90} height={30} />
+            <div key={index}>
+              <Skeleton  variant="rounded" sx={{ bgcolor: "grey.700" }} width={90} height={30} />
+            </div>
+            
           ))}
         {error && <p>{error}</p>}
         {!loading && (
@@ -111,15 +114,15 @@ const FeaturedProducts = () => {
       <div className="grid lg:grid-cols-4 grid-cols-2 md:grid-cols-3 lg:gap-5 gap-5 my-5 ">
         {loading &&
           skeletonArr.map((index) => (
-            <div className=" flex flex-col gap-2">
+            <div className=" flex flex-col gap-2"  key={index}>
               <Skeleton
-                key={index}
+               sx={{ bgcolor: "grey.700" }}
                 variant="rectangle"
                 width={160}
                 height={230}
               />
-              <Skeleton key={index} variant="rounded" width={130} height={14} />
-              <Skeleton key={index} variant="rounded" width={80} height={14} />
+              <Skeleton variant="rounded" sx={{ bgcolor: "grey.700" }}  width={130} height={14} />
+              <Skeleton variant="rounded" sx={{ bgcolor: "grey.700" }} width={80} height={14} />
             </div>
           ))}
         {error && <p>error</p>}

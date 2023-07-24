@@ -10,7 +10,7 @@ const Banner = () => {
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
 
   useEffect(() => {
-    fetch("https://e-shop-xlam.onrender.com/productss")
+    fetch("https://e-shop-xlam.onrender.com/products")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error when fetching data");
@@ -37,32 +37,32 @@ const Banner = () => {
         {loading && (
           <>
             <div className=" grid col-span-1 place-items-center gap-1">
-              <div className=" flex flex-col gap-2 lg:w-full w-48">
+              <div className=" flex flex-col gap-2 lg:w-full w-fit">
                   <Skeleton
-                    sx={{ bgcolor: "grey.900" }}
+                    sx={{ bgcolor: "grey.700" }}
                     variant="rounded"
-                    width={"100%"}
+                    width={190}
                     height={22}
                   />
                   <Skeleton
-                    sx={{ bgcolor: "grey.900" }}
+                    sx={{ bgcolor: "grey.700" }}
                     variant="rounded"
-                    width={150}
+                    width={140}
                     height={22}
                   />
                   <Skeleton
-                    sx={{ bgcolor: "grey.900" }}
+                    sx={{ bgcolor: "grey.700" }}
                     variant="rounded"
-                    width={100}
-                    height={22}
+                    width={90}
+                    height={30}
                   />
               </div>
             </div>
-            <div className="grid col-span-2 place-items-center">
+            <div className="grid col-span-2 place-items-center ml-2">
               <Skeleton
-                sx={{ bgcolor: "grey.900" }}
+                sx={{ bgcolor: "grey.700" }}
                 variant="rounded"
-                width={"60%"}
+                width={"53%"}
                 height={300}
               />
             </div>

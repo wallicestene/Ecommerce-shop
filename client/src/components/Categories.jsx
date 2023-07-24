@@ -1,10 +1,12 @@
+import { Skeleton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-
+  const skeletonArr = [1, 2, 3, 4];
+  
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
 
   useEffect(() => {
@@ -28,9 +30,18 @@ const Categories = () => {
   }, []);
   return (
     <div className=" mt-3 ">
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      
+      
       <div className="categories flex items-center gap-4 w-full justify-center overflow-x-auto">
+        {loading && (
+        skeletonArr.map((index) => (
+          <div key={index} >
+            <Skeleton variant="rounded" sx={{ bgcolor: "grey.700" }} width={115} height={125} />
+          </div>
+          
+        ))
+      )}
+      {error && <p>{error}</p>}
         {!loading &&
           categories?.map((category, index) => (
             <div
