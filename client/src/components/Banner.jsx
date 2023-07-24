@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -25,12 +26,24 @@ const Banner = () => {
       })
       .catch((err) => {
         setError(err.message);
-        setLoading(false);
+        setLoading(true);
       });
   }, []);
   return (
     <div className="banner mx-auto lg:w-11/12 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500 rounded-br-md rounded-bl-md">
-      {loading && <p>Loading...</p>}
+      {loading &&
+      <div className=" w-full h-fit grid grid-cols-2 px-5">
+          <div className=" flex flex-col justify-center gap-2 h-96">
+          <Skeleton sx={{ bgcolor: 'grey.900' }} variant="rounded" width={330} height={22} />
+          <Skeleton sx={{ bgcolor: 'grey.900' }} variant="rounded" width={250} height={22} />
+          <Skeleton className=" mt-4" sx={{ bgcolor: 'grey.900' }} variant="rounded" width={100} height={22} />
+          </div>
+          <div className=" grid place-items-center">
+            <Skeleton   sx={{ bgcolor: 'grey.900' }} variant="rounded" height={300} width={220} />
+          </div>
+          
+      </div>
+      }
       {error && <p>{error}</p>}
       {!loading && (
         <div className=" grid grid-cols-3 gap-1 h-fit rounded-2xl lg:px-3 px-1 ">
