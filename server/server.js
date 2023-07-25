@@ -8,6 +8,7 @@ const socketIO = require("socket.io");
 const productsRoutes = require("./routes/productsRoutes");
 const categoryRoutes = require("./routes/categoriesRoutes");
 const cartRoutes = require("./routes/cartRoute");
+const userRoutes = require("./routes/usersRoute");
 
 const { changeStream } = require("./models/cartModel"); // Import the change stream from the cartModel file
 
@@ -51,6 +52,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(productsRoutes);
 app.use(categoryRoutes);
 app.use(cartRoutes);
+app.use(userRoutes)
 
 // Emit data changes to connected clients
 changeStream.on("dataChange", (change) => {
