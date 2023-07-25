@@ -16,7 +16,7 @@ function Navbar({ scrollToSection, featiredRef }) {
       className={`navbar h-10 p-2 flex items-center justify-between lg:w-11/12 lg:mx-auto `}
     >
       <div className="navbar-left">
-        <h1 className=" font-YsabeauInfant">E-Shop</h1>
+        <h1 className=" font-YsabeauInfant text-black">E-Shop</h1>
         <div className=" lg:hidden">
           {showNavbarMobile && (
             <NavbarMobile
