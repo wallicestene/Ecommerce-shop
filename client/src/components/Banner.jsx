@@ -1,7 +1,7 @@
 import { Skeleton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-
+import { DotLoader} from "react-spinners";
 const Banner = () => {
   const [bannerData, setBannerData] = useState([]);
   const [error, setError] = useState("");
@@ -26,7 +26,7 @@ const Banner = () => {
       })
       .catch((err) => {
         setError(err.message);
-        setLoading(true);
+        setLoading(false);
       });
   }, []);
   return (
@@ -35,38 +35,9 @@ const Banner = () => {
 
       <div className=" grid grid-cols-3 gap-1 h-fit rounded-2xl lg:px-3 px-1 ">
         {loading && (
-          <>
-            <div className=" grid col-span-1 place-items-center gap-1">
-              <div className=" flex flex-col gap-2 lg:w-full w-fit">
-                  <Skeleton
-                    sx={{ bgcolor: "grey.700" }}
-                    variant="rounded"
-                    width={190}
-                    height={22}
-                  />
-                  <Skeleton
-                    sx={{ bgcolor: "grey.700" }}
-                    variant="rounded"
-                    width={140}
-                    height={22}
-                  />
-                  <Skeleton
-                    sx={{ bgcolor: "grey.700" }}
-                    variant="rounded"
-                    width={90}
-                    height={30}
-                  />
-              </div>
-            </div>
-            <div className="grid col-span-2 place-items-center ml-2">
-              <Skeleton
-                sx={{ bgcolor: "grey.700" }}
-                variant="rounded"
-                width={"53%"}
-                height={300}
-              />
-            </div>
-          </>
+          <div className=" h-80 grid place-items-center col-span-3">
+            <DotLoader color="#354649" speedMultiplier={1} />
+          </div>
         )}
         {!loading && (
           <>
