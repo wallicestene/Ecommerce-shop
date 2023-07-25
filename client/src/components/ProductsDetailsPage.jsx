@@ -11,6 +11,7 @@ import {
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
+import { HashLoader } from "react-spinners";
 const ProductsDetailsPage = () => {
   const [details, setDetails] = useState([]);
   const [error, setError] = useState("");
@@ -64,7 +65,11 @@ const ProductsDetailsPage = () => {
  
   return (
     <div className=" grid place-items-center lg:h-screen h-screen md:h-full overflow-y-auto">
-      {loading && <CircularProgress/>}
+      {loading && <HashLoader
+  color="#f34c04"
+  size={60}
+  speedMultiplier={0.7}
+/>}
       {error && <p>{error}</p>}
       {!loading && (
         <div className=" grid lg:grid-cols-2 grid-cols-1 lg:border-l lg:border-t lg:border-b rounded-xl lg:gap-5 gap-2 w-11/12 mx-auto h-full lg:h-96 border-slate-600">
