@@ -36,7 +36,7 @@ const Banner = () => {
       <div className=" grid grid-cols-3 gap-1 h-fit rounded-2xl lg:px-3 px-1 ">
         {loading && (
           <div className=" h-80 grid place-items-center col-span-3">
-            <PropagateLoader color="#626265" size={30} />
+            <PropagateLoader color="#f43500" size={30} />
           </div>
         )}
         {!loading && (
