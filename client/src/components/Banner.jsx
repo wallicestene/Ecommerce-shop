@@ -1,7 +1,7 @@
 import { Skeleton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { DotLoader} from "react-spinners";
+import {PropagateLoader } from "react-spinners";
 const Banner = () => {
   const [bannerData, setBannerData] = useState([]);
   const [error, setError] = useState("");
@@ -36,7 +36,7 @@ const Banner = () => {
       <div className=" grid grid-cols-3 gap-1 h-fit rounded-2xl lg:px-3 px-1 ">
         {loading && (
           <div className=" h-80 grid place-items-center col-span-3">
-            <DotLoader color="#354649" speedMultiplier={1} />
+            <PropagateLoader color="#626265" size={30} />
           </div>
         )}
         {!loading && (

@@ -5,7 +5,7 @@ import {
   Minimize,
   Remove,
 } from "@mui/icons-material";
-import { Button, CircularProgress } from "@mui/material";
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import {
   useHistory,
