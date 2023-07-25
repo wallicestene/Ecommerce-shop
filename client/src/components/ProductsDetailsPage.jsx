@@ -66,7 +66,7 @@ const ProductsDetailsPage = () => {
   return (
     <div className=" grid place-items-center lg:h-screen h-screen md:h-full overflow-y-auto">
       {loading && <HashLoader
-  color="#e84c09"
+  color="#de5920"
   size={60}
   speedMultiplier={0.7}
 />}
