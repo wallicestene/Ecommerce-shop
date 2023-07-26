@@ -59,14 +59,15 @@ function SignupPage() {
   return (
     <div className="grid place-items-center h-screen">
       <form className=" border w-11/12 grid place-items-center">
-        <div className=" bg-slate-200 lg:w-1/2 w-full h-full py-4 px-2">
-          <label htmlFor="email" className="block">
+        <div className=" lg:w-1/2 w-full h-full py-4 px-2">
+          <label htmlFor="email" className="block text-white">
             Email <br />
             <input
               type="text"
               name="email"
               id="email"
-              className=" w-full h-10 rounded-lg outline-none border my-1 indent-2"
+              placeholder="Enter Your Password"
+              className=" w-full h-10 rounded outline-none border my-1 indent-2"
               onChange={handeleChange}
             />
           </label>
@@ -75,8 +76,9 @@ function SignupPage() {
             <input
               type="password"
               name="password"
+              placeholder="Enter Your Email Address"
               id="password"
-              className=" w-full h-10 rounded-lg outline-none border my-1 indent-2"
+              className=" w-full h-10 rounded outline-none border my-1 indent-2"
               onChange={handeleChange}
             />
           </label>
