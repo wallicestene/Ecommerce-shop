@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Switch, HashRouter } from 'react-router-do
 import Home from './components/Home'
 import UploadItemsForm from './adminPanel/UploadItemsForm'
 import ProductsDetailsPage from './components/ProductsDetailsPage'
+import SignupPage from './components/SignupPage'
 function App() {
 
   const[show, setShow] = useState(false)
@@ -37,6 +38,7 @@ function App() {
             </Route>
           <Route path="/UploadItemsForm" component={UploadItemsForm}/>
           <Route path="/product/:id" component={ProductsDetailsPage}/>
+          <Route path="/signup" component={SignupPage}/>
         </Switch>
       </Router>
     </div>
