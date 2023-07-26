@@ -4,7 +4,7 @@ const router = express.Router()
 
 
 router.get("/users", getAllUsers)
-router.post("/users/login", LogIn)
-router.post("/users/signuo", signUp)
+router.post("/user/login", LogIn)
+router.post("/user/signup", signUp)
 
 module.exports = router
