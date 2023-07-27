@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 function SignupPage() {
   const [error, setError] = useState(null);
   const [showSignup, setShowSignup] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -73,25 +74,26 @@ function SignupPage() {
               name="email"
               id="email"
               placeholder="Enter Your Email Address"
-              className=" w-full h-10 rounded outline-none border my-1 indent-2"
+              className=" w-full h-10 rounded outline-none border border-ebony-900 my-1 indent-2"
               onChange={handeleChange}
             />
           </label>
-          <label htmlFor="password" className=" block">
-            Password <br />
+          <label htmlFor="password" className=" block relative">
+            Password<br />
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Enter Your Password"
               id="password"
-              className=" w-full h-10 rounded outline-none border my-1 indent-2"
+              className=" w-full h-10 rounded outline-none border border-ebony-900 my-1 indent-2"
               onChange={handeleChange}
             />
+             <span className=" absolute top-1/2 bottom-1/2 -translate-y-1/2 right-3 z-10" onClick={() => setShowPassword(!showPassword)}>{showPassword ? <VisibilityOffIcon fontSize="small"/> : <VisibilityIcon fontSize="small"/>}</span>
           </label>
           <div className=" flex items-center justify-center">
             {!showSignup && (
               <button
-                className=" bg-green-600 h-10 w-20 rounded-md text-white my-2"
+                className=" bg-green-700 h-10 w-20 rounded-md text-white my-2"
                 onClick={handleLogIn}
               >
                 Log In
@@ -99,7 +101,7 @@ function SignupPage() {
             )}
             {showSignup && (
               <button
-                className=" bg-green-600 h-10 w-20 rounded-md text-white my-2"
+                className=" bg-green-700 h-10 w-20 rounded-md text-white my-2"
                 onClick={handleSignUp}
               >
                 Sign Up
@@ -132,7 +134,7 @@ function SignupPage() {
             }
           </div>
           {error && (
-            <div className=" border-2 mt-3 border-red-600 text-sm text-red-600 w-full text-center rounded flex items-center justify-center gap-1 py-1">
+            <div className=" border mt-3 border-red-600 text-sm text-red-600 w-full text-center rounded flex items-center justify-center gap-1 py-1">
               <div>
                 <ErrorOutlineIcon fontSize="small" />
               </div>
