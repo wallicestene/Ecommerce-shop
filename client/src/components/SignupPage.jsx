@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useUserContext } from "./context/UserContext";
 function SignupPage() {
   const [error, setError] = useState(null);
   const [showSignup, setShowSignup] = useState(false);
@@ -10,6 +11,8 @@ function SignupPage() {
     email: "",
     password: "",
   });
+  const [{user}, dispatch] = useUserContext()
+  console.log(user);
   // handling the user SignUp
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -23,13 +26,17 @@ function SignupPage() {
         if (data.error) {
           throw Error(`${data.error}`);
         } else {
-          console.log(data);
+          dispatch({
+            type:"SET_USER",
+            user: data
+          })
           setError(null);
         }
       })
       .catch((error) => {
         setError(error.message);
       });
+
   };
   // handling the user logIn
   const handleLogIn = (e) => {
@@ -44,6 +51,10 @@ function SignupPage() {
         if (data.error) {
           throw Error(`${data.error}`);
         } else {
+          dispatch({
+            type:"SET_USER",
+            user: data
+          })
           setError(null);
         }
       })
@@ -51,7 +62,7 @@ function SignupPage() {
         setError(error.message);
       });
   };
-  const handeleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData((prevData) => {
       return {
@@ -64,29 +75,29 @@ function SignupPage() {
     <div className="grid place-items-center h-screen">
       <form className=" border w-11/12 grid place-items-center font-Poppins">
         <div className=" mt-2">
-          <h1>{showSignup ? "Sign Up and Create an" : "Log In to your"} <span className=" text-orange-500 font-bold">E-shop</span> Account</h1>
+          <h1>{showSignup ? "Sign Up to Create an" : "Log In to your"} <span className=" text-orange-500 font-bold">E-shop</span> Account</h1>
         </div>
         <div className=" lg:w-1/2 w-full h-full py-4 px-2">
           <label htmlFor="email" className="block">
-            Email <br />
+           <span className=" font-bold">Email</span> <br />
             <input
               type="text"
               name="email"
               id="email"
               placeholder="Enter Your Email Address"
               className=" w-full h-10 rounded outline-none border border-ebony-900 my-1 indent-2"
-              onChange={handeleChange}
+              onChange={handleChange}
             />
           </label>
           <label htmlFor="password" className=" block relative">
-            Password<br />
+          <span className=" font-bold">Password</span> <br />
             <input
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Enter Your Password"
               id="password"
               className=" w-full h-10 rounded outline-none border border-ebony-900 my-1 indent-2"
-              onChange={handeleChange}
+              onChange={handleChange}
             />
              <span className=" absolute top-1/2 bottom-1/2 -translate-y-1/2 right-3 z-10" onClick={() => setShowPassword(!showPassword)}>{showPassword ? <VisibilityOffIcon fontSize="small"/> : <VisibilityIcon fontSize="small"/>}</span>
           </label>

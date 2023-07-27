@@ -5,11 +5,14 @@ import Home from './components/Home'
 import UploadItemsForm from './adminPanel/UploadItemsForm'
 import ProductsDetailsPage from './components/ProductsDetailsPage'
 import SignupPage from './components/SignupPage'
+import { useUserContext } from './components/context/UserContext'
 function App() {
 
   const[show, setShow] = useState(false)
 
   const featiredRef = useRef(null)
+  const [{user}, dispatch] = useUserContext()
+  console.log(user);
   const scrollToSection =(ref)=>{
     ref.current.scrollIntoView({behavior : "smooth"})
   }
@@ -27,7 +30,11 @@ function App() {
   },[])
   return (
     <div className=''> 
-      <Router>
+      {
+        !user ? (
+          <SignupPage/>
+        ) : (
+          <Router>
       <div className={`fixed w-full z-10 ${show && "backdrop-blur-xl bg-white/30 shadow"}`}>
       <Navbar scrollToSection={scrollToSection} featiredRef={featiredRef}/>
       </div>
@@ -41,6 +48,8 @@ function App() {
           <Route path="/signup" component={SignupPage}/>
         </Switch>
       </Router>
+        )
+      }
     </div>
   )
 }
