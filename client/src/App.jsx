@@ -12,7 +12,6 @@ function App() {
 
   const featiredRef = useRef(null)
   const [{user}, dispatch] = useUserContext()
-  console.log(user);
   const scrollToSection =(ref)=>{
     ref.current.scrollIntoView({behavior : "smooth"})
   }
@@ -23,6 +22,17 @@ function App() {
       setShow(false)
     }
   }
+
+  useEffect(() => {
+    const handleAuthState = () => {
+      const loggedInUser = JSON.parse(localStorage.getItem("user"))
+      dispatch({
+        type:"SET_USER",
+        user: loggedInUser
+      })
+    }
+    handleAuthState()
+  },[dispatch])
 
   useEffect(() =>{
     window.addEventListener("scroll", handleshow)
