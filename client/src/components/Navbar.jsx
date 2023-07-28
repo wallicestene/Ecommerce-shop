@@ -14,7 +14,7 @@ function Navbar({ scrollToSection, featiredRef }) {
   const [{user}, dispatch] = useUserContext()
   return (
     <div
-      className={`navbar h-10 p-1 flex items-center justify-between gap-1 lg:w-11/12 lg:mx-auto `}
+      className={`navbar h-10 p-1 flex items-center justify-between gap-1 lg:w-11/12 lg:mx-auto`}
     >
       <div className="navbar-left">
         <div className=" flex items-center gap-1 w-24">
@@ -62,7 +62,7 @@ function Navbar({ scrollToSection, featiredRef }) {
           </li>
         </ul>
       </div>
-      <div className="navbar-right flex items-center justify-end lg:gap-5 gap-1 px-1">
+      <div className="navbar-right flex items-center justify-end gap-1 px-1">
         <form className=" bg-gray-50 shadow rounded-full px-1 flex items-center overflow-hidden lg:w-full w-1/2">
           <input
             type="text"
@@ -97,12 +97,10 @@ function Navbar({ scrollToSection, featiredRef }) {
         >
           {!showNavbarMobile ? <Menu /> : <Close />}
         </div> */}
-        <div className="bg-gradient-to-r from-orange-400 to-rose-400 rounded-full px-2 py-2">
+        <div className="bg-gradient-to-r from-orange-400 tracking-wide to-rose-400 py-2 px-3 rounded-full flex justify-center items-center">
           {
             user && (
-              <>
-              <h1 className=" uppercase text-ebony-50">{user.email[0]}{user.email[1]}</h1>
-              </>
+              <h1 className="uppercase text-ebony-50 font-semibold font-YsabeauInfant">{user.email[0]}{user.email[1]}</h1>
             )
           }
         </div>

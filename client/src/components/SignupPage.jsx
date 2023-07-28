@@ -78,7 +78,7 @@ function SignupPage() {
   };
   return (
     <div className="grid place-items-center h-screen">
-      <form className=" border w-11/12 grid place-items-center font-Poppins">
+      <form className=" border border-ebony-900 w-11/12 grid place-items-center font-Poppins">
         <div className=" mt-2">
           <h1>
             {showSignup ? "Sign Up to Create an" : "Log In to your"}{" "}
@@ -87,7 +87,7 @@ function SignupPage() {
         </div>
         <div className=" lg:w-1/2 w-full h-full py-4 px-2">
           <label htmlFor="email" className="block">
-            <span className=" font-bold">Email</span> <br />
+            <span className=" font-bold tracking-wide">Email</span> <br />
             <input
               type="text"
               name="email"
@@ -98,7 +98,7 @@ function SignupPage() {
             />
           </label>
           <label htmlFor="password" className=" block relative">
-            <span className=" font-bold">Password</span> <br />
+            <span className=" font-bold tracking-wide">Password</span> <br />
             <input
               type={showPassword ? "text" : "password"}
               name="password"
