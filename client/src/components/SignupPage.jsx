@@ -93,7 +93,7 @@ function SignupPage() {
               name="email"
               id="email"
               placeholder="Enter Your Email Address"
-              className=" w-full h-10 rounded outline-none border border-ebony-900 my-1 indent-2"
+              className=" w-full h-10 rounded outline-none border border-ebony-900 my-1 indent-2 font-YsabeauInfant placeholder:text-gray-600"
               onChange={handleChange}
             />
           </label>
@@ -104,7 +104,7 @@ function SignupPage() {
               name="password"
               placeholder="Enter Your Password"
               id="password"
-              className=" w-full h-10 rounded outline-none border border-ebony-900 my-1 indent-2"
+              className=" w-full h-10 rounded outline-none border border-ebony-900 my-1 indent-2 font-YsabeauInfant placeholder:text-gray-600"
               onChange={handleChange}
             />
             <span
@@ -121,7 +121,7 @@ function SignupPage() {
           <div className=" flex items-center justify-center">
             {!showSignup && (
               <button
-                className=" bg-green-700 h-10 w-20 rounded-md text-white my-2"
+                className=" bg-green-700 h-10 lg:w-24 rounded-md text-white my-2 w-full"
                 onClick={handleLogIn}
               >
                 Log In
@@ -129,7 +129,7 @@ function SignupPage() {
             )}
             {showSignup && (
               <button
-                className=" bg-green-700 h-10 w-20 rounded-md text-white my-2"
+                className=" bg-red-600 h-10 lg:w-24 rounded-md text-white my-2 w-full"
                 onClick={handleSignUp}
               >
                 Sign Up
