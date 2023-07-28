@@ -25,10 +25,10 @@ function App() {
 
   useEffect(() => {
     const handleAuthState = () => {
-      const loggedInUser = JSON.parse(localStorage.getItem("user"))
+      const authUser = JSON.parse(localStorage.getItem("user"))
       dispatch({
         type:"SET_USER",
-        user: loggedInUser
+        user: authUser
       })
     }
     handleAuthState()

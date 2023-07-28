@@ -3,12 +3,14 @@ import { Delete } from "@mui/icons-material";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import io from "socket.io-client";
 import { useCartcontext } from "./context/CartContex";
+import { useUserContext } from "./context/UserContext";
 
 const Cart = ({ setShowCart }) => {
   const [cartData, setCartData] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [{ itemsInCart }, dispatch] = useCartcontext();
+  const [{user}] = useUserContext()
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
   const history = useHistory();
 
@@ -16,7 +18,11 @@ const Cart = ({ setShowCart }) => {
     const socket = io("https://e-shop-xlam.onrender.com");
 
     const fetchCartItems = () => {
-      fetch("https://e-shop-xlam.onrender.com/product/cart")
+      fetch("https://e-shop-xlam.onrender.com/product/cart", {
+        headers: {
+          "Authorization": `Bearer ${user.token}`,
+        }
+      })
         .then((response) => response.json())
         .then((data) => {
           setCartData(data);
@@ -32,8 +38,9 @@ const Cart = ({ setShowCart }) => {
         });
     };
     // fetching initial item in the cart
-    fetchCartItems();
-
+    if(user){
+      fetchCartItems();
+    }
     // Socket.IO event listener for cart updates
 
     socket.on("dataChange", (change) => {
@@ -59,6 +66,7 @@ const Cart = ({ setShowCart }) => {
   const removeFromCart = (item) => {
     fetch(`https://e-shop-xlam.onrender.com/product/cart/${item._id}`, {
       method: "DELETE",
+      "Authorization": `Bearer ${user.token}`,
     })
       .then(() => {
         // Updating the cart data in the component state

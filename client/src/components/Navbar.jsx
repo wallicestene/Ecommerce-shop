@@ -97,7 +97,7 @@ function Navbar({ scrollToSection, featiredRef }) {
         >
           {!showNavbarMobile ? <Menu /> : <Close />}
         </div> */}
-        <div className="bg-gradient-to-r from-orange-400 tracking-wide to-rose-400 py-2 px-3 rounded-full flex justify-center items-center">
+        <div className="bg-gradient-to-r from-orange-400 tracking-wide to-rose-400 py-2 px-2 rounded-full flex justify-center items-center">
           {
             user && (
               <h1 className="uppercase text-ebony-50 font-semibold font-YsabeauInfant">{user.email[0]}{user.email[1]}</h1>

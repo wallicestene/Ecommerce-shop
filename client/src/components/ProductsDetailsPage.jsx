@@ -12,12 +12,15 @@ import {
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { HashLoader } from "react-spinners";
+import { useUserContext } from "./context/UserContext";
+
 const ProductsDetailsPage = () => {
   const [details, setDetails] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
-
+  
+const [{user}, dispatch] = useUserContext()
   const history = useHistory();
 
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
@@ -51,6 +54,7 @@ const ProductsDetailsPage = () => {
       body: JSON.stringify(itemToAdd),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${user.token}`,
       },
     })
       .then((res) => res.json())
