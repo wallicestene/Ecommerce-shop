@@ -91,7 +91,6 @@ function SignupPage() {
             <input
               type="text"
               name="email"
-              s
               id="email"
               placeholder="Enter Your Email Address"
               className=" w-full h-10 rounded outline-none border border-ebony-900 my-1 indent-2"
