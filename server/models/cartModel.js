@@ -2,8 +2,18 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 const cartShema = new Schema({
-    item: Object,
-    quantity: Number,
+    item: {
+      type : Object,
+      required : true
+    },
+    quantity: {
+      type: Number,
+      required : true
+    },
+    userId: {
+      type : String,
+      required : true
+    }
 },{ timestamps: true})
 const CartItem = mongoose.model("CartItem", cartShema);
 

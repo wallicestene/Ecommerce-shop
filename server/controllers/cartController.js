@@ -3,12 +3,14 @@ const { changeStream, CartItem } = require("../models/cartModel"); // Import the
 
 // addToCart
 const addToCart = (req, res) => {
-  const { item, quantity } = req.body;
+  const { item, quantity} = req.body;
+  const userId = req.user._id
+  console.log(userId);
   // cheking if the item already exists
   CartItem.findOne({ item: item })
     .then((existingCartItem) => {
       if (!existingCartItem) {
-        CartItem.create({ item, quantity }).then((result) => {
+        CartItem.create({ item, quantity, userId }).then((result) => {
           // Emitting the 'dataChange' event to notify clients about the new item in the cart
           const change = { type: "cartItemAdded", cartItem: result };
           changeStream.emit("dataChange", change);
@@ -28,7 +30,8 @@ const addToCart = (req, res) => {
 // get All items in cart
 // TODO query the items according to the user signed in
 const getItemsInCart = (req, res) => {
-  CartItem.find()
+  const userId = req.user._id
+  CartItem.find({userId})
     .sort({ createdAt: -1 })
     .then((result) => {
       res.status(200).json(result);

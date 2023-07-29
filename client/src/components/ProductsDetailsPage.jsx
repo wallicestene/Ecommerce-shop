@@ -53,6 +53,7 @@ const ProductsDetailsPage = () => {
       body: JSON.stringify(itemToAdd),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${user.token}`,
       },
     })
       .then((res) => res.json())

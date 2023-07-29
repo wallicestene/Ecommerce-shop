@@ -6,6 +6,8 @@ import NavbarMobile from "./NavbarMobile";
 import Cart from "./Cart";
 import { useCartcontext } from "./context/CartContex";
 import { useUserContext } from "./context/UserContext";
+import { Avatar } from "@mui/material";
+import { blue } from "@mui/material/colors";
 
 function Navbar({ scrollToSection, featiredRef }) {
   const [showNavbarMobile, setShowNavbarMobile] = useState(false);
@@ -88,19 +90,12 @@ function Navbar({ scrollToSection, featiredRef }) {
             </div>
           )}
         </div>
-        {/* <div
-          className=" lg:hidden bg-gray-50 rounded-full h-10 w-10 grid place-items-center"
-          onClick={() => {
-            setShowNavbarMobile(!showNavbarMobile);
-            setShowCart(false);
-          }}
-        >
-          {!showNavbarMobile ? <Menu /> : <Close />}
-        </div> */}
-        <div className="bg-gradient-to-r from-orange-400 tracking-wide to-rose-400 py-2 px-2 rounded-full flex justify-center items-center">
+        <div className=" uppercase">
           {
             user && (
-              <h1 className="uppercase text-ebony-50 font-semibold font-YsabeauInfant">{user.email[0]}{user.email[1]}</h1>
+              <Avatar sx={{ bgcolor: "#253748",width: 38, height: 38  }}>
+                 {user.email[0]}
+              </Avatar>
             )
           }
         </div>
