@@ -10,7 +10,7 @@ const Cart = ({ setShowCart }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [{ itemsInCart }, dispatch] = useCartcontext();
-  const [{user}] = useUserContext()
+  const [{user}, dispatchUser] = useUserContext()
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
   const history = useHistory();
 
