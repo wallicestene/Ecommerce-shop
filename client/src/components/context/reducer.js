@@ -3,7 +3,6 @@ export const initialSate = {
     user: null
 }
 const reducer = (state, action) => {
-    console.log(action);
     switch(action.type){
         case 'ADD_IN_CART':
             return {

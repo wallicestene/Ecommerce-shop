@@ -22,33 +22,31 @@ const NavbarMobile = ({ scrollToSection, featiredRef, setShowNavbarMobile }) => 
     })
   }
   return (
-    <div className=" fixed  bg-gradient-to-r from-gray-900 to-gray-600 rounded-l-xl  rounded-lg bg left-0 top-10 h-screen w-1/2 p-10 z-50 text-black">
-      <div className="navbar-center">
+    <div className=" fixed bg-ebony-50 grid place-items-center  rounded-r-xl bg left-0 top-10 h-screen w-1/2 z-40 text-black">
+      <div className="navbar-center w-full">
         <ul className=" flex items-center flex-col justify-between gap-10 font-YsabeauInfant">
-          <li className=" flex items-center gap-1 py-1" onClick={() => setShowNavbarMobile(false)}>
+          <li className="navlistMob " onClick={() => setShowNavbarMobile(false)}>
             <Link to="/">Home</Link>
             <Home />
           </li>
-          <li className=" flex items-center gap-1 py-1" onClick={() => setShowNavbarMobile(false)}>
-            <div onClick={() => scrollToSection(featiredRef)}>
-              <Link to="/">Shop</Link>
+          <li className="navlistMob" onClick={() => setShowNavbarMobile(false)}>
+              <Link  onClick={() => scrollToSection(featiredRef)}  to="/">Shop</Link>
               <Shop />
-            </div>
           </li>
-          <li className=" flex items-center gap-1 py-1" onClick={() => setShowNavbarMobile(false)}>
+          <li className="navlistMob" onClick={() => setShowNavbarMobile(false)}>
             <Link to="">Blog</Link>
             <Article/>
           </li>
-          <li className=" flex items-center justify-center gap-1 py-1" onClick={() => setShowNavbarMobile(false)}>
+          <li className="navlistMob flex flex-row-reverse  items-center justify-center gap-1 py-1" onClick={() => setShowNavbarMobile(false)}>
             <Link to="">Contact</Link>
             <ContactPage />
           </li>
-          <li className=" flex items-center gap-1 py-1" onClick={() => setShowNavbarMobile(false)}>
+          <li className="navlistMob" onClick={() => setShowNavbarMobile(false)}>
             <Link to="/UploadItemsForm">Create</Link>
             <AddCard />
           </li>
         </ul>
-        <div className=" flex items-center justify-center gap-1 bg-ebony-50 mt-2 rounded-full" onClick={handleLogOut}>
+        <div className=" flex items-center justify-center gap-1 bg-ebony-100 mt-5 h-10 hover:cursor-pointer hover:bg-ebony-50 border border-ebony-500 rounded-full" onClick={handleLogOut}>
           <p>Log Out</p>
           <div>
             <Logout fontSize="small"/>

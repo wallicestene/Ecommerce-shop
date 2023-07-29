@@ -12,7 +12,6 @@ function SignupPage() {
     password: "",
   });
   const [{ user }, dispatch] = useUserContext();
-  console.log(user);
   // handling the user SignUp
   const handleSignUp = (e) => {
     e.preventDefault();

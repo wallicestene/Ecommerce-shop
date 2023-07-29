@@ -80,7 +80,7 @@ const ProductsDetailsPage = () => {
               className="h-full w-full lg:object-contain object-cover drop-shadow-2xl shadow-black"
             />
             <div
-              className="fixed top-10 bg-gray-100 hover:shadow-lg rounded-full h-12 w-12 grid place-items-center z-10"
+              className="fixed top-10 bg-gray-100 hover:shadow-lg rounded-full h-12 w-12 grid place-items-center"
               onClick={() => history.go(-1)}
             >
               <KeyboardBackspace fontSize="large" />

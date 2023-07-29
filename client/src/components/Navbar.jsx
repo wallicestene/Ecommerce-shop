@@ -45,21 +45,21 @@ function Navbar({ scrollToSection, featiredRef }) {
       </div>
       <div className="navbar-center">
         <ul className="hidden lg:flex items-center justify-between gap-10 font-YsabeauInfant">
-          <li>
+          <li className="navlist">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="navlist">
             <div onClick={() => scrollToSection(featiredRef)}>
               <Link to="/">Shop</Link>
             </div>
           </li>
-          <li>
+          <li className="navlist">
             <Link to="">Blog</Link>
           </li>
-          <li>
+          <li className="navlist">
             <Link to="">Contact</Link>
           </li>
-          <li>
+          <li className="navlist">
             <Link to="/UploadItemsForm">Create</Link>
           </li>
         </ul>
