@@ -19,12 +19,12 @@ const ProductsDetailsPage = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
-  
-const [{user}, dispatch] = useUserContext()
+
+  const [{ user }, dispatch] = useUserContext();
   const history = useHistory();
 
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
-  const { id } = useParams();  
+  const { id } = useParams();
 
   useEffect(() => {
     fetch(`https://e-shop-xlam.onrender.com/products/${id}`)
@@ -46,7 +46,6 @@ const [{user}, dispatch] = useUserContext()
       });
   }, [id]);
 
-
   const addToCart = (item) => {
     const itemToAdd = { item, quantity };
     fetch("https://e-shop-xlam.onrender.com/product/cart", {
@@ -54,26 +53,22 @@ const [{user}, dispatch] = useUserContext()
       body: JSON.stringify(itemToAdd),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${user.token}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Item added to cart")
+        console.log("Item added to cart");
       })
       .catch((error) => {
         console.log("Error adding item to cart:", error.message);
       });
   };
-  
- 
+
   return (
     <div className=" grid place-items-center lg:h-screen h-screen md:h-full overflow-y-auto">
-      {loading && <HashLoader
-  color="#de5920"
-  size={60}
-  speedMultiplier={0.7}
-/>}
+      {loading && (
+        <HashLoader color="#de5920" size={60} speedMultiplier={0.7} />
+      )}
       {error && <p>{error}</p>}
       {!loading && (
         <div className=" grid lg:grid-cols-2 grid-cols-1 lg:border-l lg:border-t lg:border-b rounded-xl lg:gap-5 gap-2 w-11/12 mx-auto h-full lg:h-96 border-slate-600">
@@ -115,7 +110,9 @@ const [{user}, dispatch] = useUserContext()
                   >
                     <Remove />
                   </div>
-                  <p className=" font-Poppins font-semibold text-lg tracking-wide">{quantity}</p>
+                  <p className=" font-Poppins font-semibold text-lg tracking-wide">
+                    {quantity}
+                  </p>
                   <div
                     onClick={() => {
                       setQuantity((prevSate) => prevSate + 1);
@@ -131,7 +128,11 @@ const [{user}, dispatch] = useUserContext()
                   {/* <button className=" w-full h-full">
                     
                   </button> */}
-                  <Button  className=" w-full h-full flex gap-2 items-center" color="success" variant="contained">
+                  <Button
+                    className=" w-full h-full flex gap-2 items-center"
+                    color="success"
+                    variant="contained"
+                  >
                     <LocalMall /> Add to Cart
                   </Button>
                 </div>
