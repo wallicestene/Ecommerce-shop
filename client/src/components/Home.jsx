@@ -5,12 +5,18 @@ import FeaturedProducts from './FeaturedProducts'
 import { useCartcontext } from './context/CartContex'
 import NewsLetterForm from './NewsLetterForm'
 import Footer from './Footer'
+import { useUserContext } from './context/UserContext'
 
 const Home = ({theref}) => {
   const [{ itemsInCart }, dispatch] = useCartcontext();
+  const [{ user }, dispatchUser] = useUserContext();
     useEffect(() => {  
       const fetchCartItems = () => {
-        fetch("https://e-shop-xlam.onrender.com/product/cart")
+        fetch("https://e-shop-xlam.onrender.com/product/cart", {
+          headers: {
+            "Authorization": `Bearer ${user.token}`,
+          }
+        })
           .then((response) => response.json())
           .then((data) => {
             dispatch({
