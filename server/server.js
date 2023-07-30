@@ -51,9 +51,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // routes
 app.use(productsRoutes);
 app.use(categoryRoutes);
+app.use(userRoutes);
 app.use(cartRoutes);
-app.use(userRoutes)
-
 // Emit data changes to connected clients
 changeStream.on("dataChange", (change) => {
   io.emit("dataChange", change);
