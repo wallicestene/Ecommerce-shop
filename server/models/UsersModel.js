@@ -27,7 +27,7 @@ userSchema.statics.signup = async function (email, password) {
     throw Error("Invalid Email");
   }
   if (!validator.isStrongPassword(password)) {
-    throw Error("Password must include atleast 1 uppercase, lowercase, number and specialCharacter");
+    throw Error("Password must include atleast 1 uppercase, lowercase, number and special character");
   }
   
   const exists = await this.findOne({ email });
