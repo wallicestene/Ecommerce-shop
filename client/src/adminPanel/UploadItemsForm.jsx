@@ -93,7 +93,7 @@ const UploadItemsForm = () => {
   return (
     <div className="relative flex flex-col items-center justify-center h-screen font-Montserrat">
       <div
-        className="fixed top-10 left-5 bg-gray-100 hover:shadow-lg rounded-full h-12 w-12 grid place-items-center z-10"
+        className="fixed top-10 left-5 bg-gray-100 hover:shadow-lg rounded-full h-12 w-12 grid place-items-center"
         onClick={() => history.go(-1)}
       >
         <KeyboardBackspace fontSize="large" />
