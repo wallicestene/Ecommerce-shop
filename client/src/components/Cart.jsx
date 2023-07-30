@@ -66,7 +66,9 @@ const Cart = ({ setShowCart }) => {
   const removeFromCart = (item) => {
     fetch(`https://e-shop-xlam.onrender.com/product/cart/${item._id}`, {
       method: "DELETE",
-       "Authorization": `Bearer ${user.token}`,
+      headers: {
+        "Authorization": `Bearer ${user.token}`,
+      }
     })
       .then(() => {
         // Updating the cart data in the component state

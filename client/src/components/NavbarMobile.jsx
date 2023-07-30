@@ -13,6 +13,7 @@ import {
 } from "@mui/icons-material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useUserContext } from "./context/UserContext";
+
 const NavbarMobile = ({ scrollToSection, featiredRef, setShowNavbarMobile }) => {
   const [{user}, dispatch] = useUserContext()
   const handleLogOut = () => {
@@ -22,7 +23,7 @@ const NavbarMobile = ({ scrollToSection, featiredRef, setShowNavbarMobile }) => 
     })
   }
   return (
-    <div className=" fixed bg-ebony-50 grid place-items-center  rounded-r-xl bg left-0 top-10 h-screen w-1/2 z-40 text-black">
+    <div className=" fixed bg-ebony-50 grid place-items-center  rounded-r-xl bg left-0 top-10 h-screen w-3/5 z-40 text-black">
       <div className="navbar-center w-full">
         <ul className=" flex items-center flex-col justify-between gap-10 font-YsabeauInfant">
           <li className="navlistMob " onClick={() => setShowNavbarMobile(false)}>
