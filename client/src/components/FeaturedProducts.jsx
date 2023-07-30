@@ -10,6 +10,11 @@ const FeaturedProducts = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const skeletonArr = [1, 2, 3, 4];
+  const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const perPage = 4; 
+
+  console.log(products.length)
   useEffect(() => {
     // Fetch categories
     fetch("https://e-shop-xlam.onrender.com/product/categories")
@@ -29,9 +34,10 @@ const FeaturedProducts = () => {
         setError(err.message);
         setLoading(false);
       });
-
+  }, []);
+  useEffect(() => {
     // Fetch all products
-    fetch("https://e-shop-xlam.onrender.com/products")
+    fetch(`https://e-shop-xlam.onrender.com/products?page=${page}&perPage=${perPage}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error when fetching products");
@@ -40,15 +46,22 @@ const FeaturedProducts = () => {
         }
       })
       .then((data) => {
-        setProducts(data);
-        setLoading(false);
-        setError("");
+        const { products: newProducts, totalCount } = data;
+      if (page === 1) {
+        setProducts(newProducts);
+      } else {
+        setProducts((prevProducts) => [...prevProducts, ...newProducts]);
+      }
+
+      setTotalCount(totalCount);
+      setLoading(false);
+      setError("");
       })
       .catch((err) => {
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     // Filtering products when a category is selected
@@ -65,6 +78,9 @@ const FeaturedProducts = () => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+  };
+  const handleShowMore = () => {
+    setPage((prevPage) => prevPage + 1);
   };
 
   return (
@@ -91,7 +107,7 @@ const FeaturedProducts = () => {
         {!loading && (
           <div
             onClick={() => setFilteredProducts(products)}
-            className="h-8  w-fit px-5 py-1 hover:rounded-full hover:bg-orange-500 hover:text-white cursor-pointer focus:bg-orange-500 delay-150 duration-300 "
+            className="h-8  w-fit px-5 py-1 hover:rounded-full hover:bg-orange-500 hover:text-white cursor-pointer focus:bg-orange-500 delay-150 duration-300 font-Poppins "
           >
             <h1>All</h1>
           </div>
@@ -100,7 +116,7 @@ const FeaturedProducts = () => {
           categories?.map((category, index) => (
             <div
               key={index}
-              className={`h-8  w-fit px-5 py-1 hover:rounded-full hover:bg-orange-500 hover:text-white cursor-pointer focus:bg-orange-500 delay-150 duration-300 ${
+              className={`h-8  w-fit px-5 py-1 hover:rounded-full hover:bg-orange-500 hover:text-white cursor-pointer focus:bg-orange-500 delay-150 duration-300 font-Poppins ${
                 selectedCategory === category.name
                   ? "bg-orange-500 text-white rounded-full"
                   : ""
@@ -131,6 +147,16 @@ const FeaturedProducts = () => {
             <AllProducts product={product} key={index} />
           ))}
       </div>
+      {products.length < totalCount && (
+        <div className="text-center my-2">
+          <button
+            className="bg-orange-500 text-white px-4 py-2 rounded-md font-Poppins"
+            onClick={handleShowMore}
+          >
+            Show More
+          </button>
+        </div>
+      )}
     </main>
   );
 };

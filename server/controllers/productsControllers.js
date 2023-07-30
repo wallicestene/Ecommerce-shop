@@ -4,10 +4,28 @@ const mongoose = require("mongoose")
 
 
 // all products
-const getAllProducts = (req,res) => {
-    Products.find().sort({createdAt: -1})
-    .then(result => res.status(200).json(result))
-}
+const getAllProducts = (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const perPage = 4;
+    const skip = (page - 1) * perPage;
+  
+    Products.find()
+      .skip(skip)
+      .limit(perPage)
+      .then((result) => {
+        // Fetch the total count of products for pagination
+        Products.countDocuments().then((totalCount) => {
+          res.status(200).json({
+            products: result,
+            totalCount,
+          })
+        });
+      })
+      .catch((error) => {
+        res.status(500).json({ error: 'Failed to fetch products' });
+      });
+  };
+  
 //get single product
 const getSingleProduct = (req,res) => {
     const { id } = req.params
