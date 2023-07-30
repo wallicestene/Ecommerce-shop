@@ -120,7 +120,7 @@ function SignupPage() {
           <div className=" flex items-center justify-center">
             {!showSignup && (
               <button
-                className=" bg-green-700 h-10 lg:w-24 rounded-md text-white my-2 w-full"
+                className=" bg-green-800 h-10 rounded-md text-white my-2 w-full"
                 onClick={handleLogIn}
               >
                 Log In
@@ -128,7 +128,7 @@ function SignupPage() {
             )}
             {showSignup && (
               <button
-                className=" bg-red-600 h-10 lg:w-24 rounded-md text-white my-2 w-full"
+                className=" bg-blue-950 h-10  rounded-md text-white my-2 w-full"
                 onClick={handleSignUp}
               >
                 Sign Up

@@ -60,7 +60,8 @@ function Navbar({ scrollToSection, featiredRef }) {
             <Link to="">Contact</Link>
           </li>
           <li className="navlist">
-            <Link to="/UploadItemsForm">Create</Link>
+            {/* /UploadItemsForm */}
+            <Link to="">Create</Link>
           </li>
         </ul>
       </div>
