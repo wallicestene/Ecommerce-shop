@@ -19,8 +19,9 @@ const Banner = () => {
         }
       })
       .then((data) => {
-        const randomItem = Math.floor(Math.random() * data.length);
-        setBannerData(data[randomItem]);
+        const itemData = data.products
+        const randomItem = Math.floor(Math.random() * itemData.length);
+        setBannerData(itemData[randomItem]);
         setLoading(false);
         setError("");
       })
