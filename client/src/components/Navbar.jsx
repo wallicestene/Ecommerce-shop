@@ -11,9 +11,38 @@ import { blue } from "@mui/material/colors";
 
 function Navbar({ scrollToSection, featiredRef }) {
   const [showNavbarMobile, setShowNavbarMobile] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   const [showCart, setShowCart] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [{ itemsInCart }] = useCartcontext();
   const [{user}, dispatch] = useUserContext()
+
+
+
+  useEffect(() => {
+    fetch(`https://e-shop-xlam.onrender.com/products`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Error when fetching products");
+        } else {
+          return res.json();
+        }
+      })
+      .then(data => {
+        setProducts(data.products)
+      })
+      .catch(err => {
+        console.log((err.message));
+      })
+  }, [])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // Filter products based on whether the name includes the search input
+    const searchedItems = products.filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase()));
+   setFilteredProducts(searchedItems)
+  }
   return (
     <div
       className={`navbar h-10 p-1 flex items-center justify-between gap-1 lg:w-11/12 lg:mx-auto`}
@@ -65,16 +94,25 @@ function Navbar({ scrollToSection, featiredRef }) {
           </li>
         </ul>
       </div>
-      <div className="navbar-right flex items-center justify-end gap-1 px-1">
-        <form className=" bg-gray-50 shadow rounded-full px-1 flex items-center overflow-hidden lg:w-full w-1/2">
+      <div className="navbar-right relative flex items-center justify-end gap-1 px-1">
+        <form onSubmit={handleSubmit} className=" bg-gray-50 shadow rounded-full px-1 flex items-center overflow-hidden lg:w-full w-1/2">
           <input
+          onChange={(e) => setSearchInput(e.target.value)}
             type="text"
             placeholder="Search Item"
             className=" indent-1 placeholder:text-gray-400 placeholder:font-YsabeauInfant bg-transparent outline-none border-none px-2 py-1 w-full "
           />
           <Search />
         </form>
+        <div className=" absolute top-10 right-1/2 -translate-x-1/2 left-1/2 bg-slate-300 h-fit w-full">
+          {
+            filteredProducts.map((product,index) => (
+              <div key={index}>
 
+              </div>
+            ))
+          }
+        </div>
         <div
           className=" h-10 w-10 flex items-center justify-start relative cursor-pointer bg-gray-50 rounded-full px-1 py-1"
           onClick={() => {

@@ -13,8 +13,6 @@ const FeaturedProducts = () => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const perPage = 4; 
-
-  console.log(products.length)
   useEffect(() => {
     // Fetch categories
     fetch("https://e-shop-xlam.onrender.com/product/categories")
