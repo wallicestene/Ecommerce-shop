@@ -45,6 +45,8 @@ mongoose
   })
   .catch((err) => console.log(err.message));
 
+// Serve uploaded files statically
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // routes
 app.use(productsRoutes);
@@ -56,8 +58,6 @@ changeStream.on("dataChange", (change) => {
   io.emit("dataChange", change);
 });
 
-// Serve uploaded files statically
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Set up WebSocket connection
 io.on("connection", (socket) => {
