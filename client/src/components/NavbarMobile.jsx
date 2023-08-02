@@ -66,7 +66,7 @@ const NavbarMobile = ({
               <ContactPage />
             </li>
           </Link>
-          <Link to="/UploadItemsForm" className="w-full">
+          <Link to="" className="w-full">
             <li
               className="navlistMob"
               onClick={() => setShowNavbarMobile(false)}
