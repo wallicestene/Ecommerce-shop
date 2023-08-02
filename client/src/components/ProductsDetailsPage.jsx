@@ -13,6 +13,7 @@ import {
 } from "react-router-dom/cjs/react-router-dom.min";
 import { HashLoader } from "react-spinners";
 import { useUserContext } from "./context/UserContext";
+import { toast } from "react-hot-toast";
 
 const ProductsDetailsPage = () => {
   const [details, setDetails] = useState([]);
@@ -58,7 +59,14 @@ const ProductsDetailsPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Item added to cart");
+        toast.success((t) => (
+          <span className=" text-sm font-Montserrat">
+           Item added to cart{" "}
+            <button onClick={() => toast.dismiss(t.id)} className=" bg-ebony-50 px-2 py-1 rounded-md border border-ebony-500">
+              Dismiss
+            </button>
+          </span>
+        ));
       })
       .catch((error) => {
         console.log("Error adding item to cart:", error.message);
