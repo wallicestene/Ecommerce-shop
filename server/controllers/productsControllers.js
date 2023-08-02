@@ -21,6 +21,7 @@ const getAllProducts = (req, res) => {
     Products.find()
       .skip(skip)
       .limit(perPage)
+      .sort({createdAt: -1})
       .then((result) => {
         // Fetch the total count of products for pagination
         Products.countDocuments().then((totalCount) => {
