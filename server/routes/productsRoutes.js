@@ -1,23 +1,6 @@
-// const express = require("express")
-// const multer = require("multer");
-// const path = require("path");
-
-// const {getAllProducts, getSingleProduct, addProducts, deleteProduct, updateProduct} = require("../controllers/productsControllers") 
-
-// const router = express.Router()
-
-// router.get("/products", getAllProducts)
-
-// router.get("/products/:id", getSingleProduct)
-
-// router.post("/products", addProducts)
-
-// router.delete("/products/:id", deleteProduct)
-
-// router.patch("/products/:id", updateProduct)
 
 const express = require("express");
-const { getAllProducts, getSingleProduct, addProducts, deleteProduct, updateProduct } = require("../controllers/productsControllers");
+const { getAllProducts, getSingleProduct, addProducts, deleteProduct, updateProduct, searchAll } = require("../controllers/productsControllers");
 const multer = require("multer");
 const path = require("path");
 
@@ -42,6 +25,7 @@ const upload = multer({ storage: storage });
 router.post("/products", upload.single("image_url"), addProducts);
 
 // Other routes
+router.get("/products/all", searchAll)
 router.get("/products", getAllProducts);
 router.get("/products/:id", getSingleProduct);
 router.delete("/products/:id", deleteProduct);

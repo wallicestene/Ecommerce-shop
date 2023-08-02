@@ -21,7 +21,7 @@ function Navbar({ scrollToSection, featiredRef }) {
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
 
   useEffect(() => {
-    fetch(`https://e-shop-xlam.onrender.com/products`)
+    fetch(`http://localhost:3000/products/all`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error when fetching products");
@@ -30,7 +30,7 @@ function Navbar({ scrollToSection, featiredRef }) {
         }
       })
       .then((data) => {
-        setProducts(data.products);
+        setProducts(data);
       })
       .catch((err) => {
         console.log(err.message);

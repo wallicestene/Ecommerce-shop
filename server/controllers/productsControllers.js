@@ -2,8 +2,17 @@
 const Products = require("../models/productsModel")
 const mongoose = require("mongoose")
 
+const searchAll = (req,res) => {
+    Products.find()
+    .then(result => {
+        res.status(200).json(result)
+    })
+    .catch((error) => {
+        res.status(500).json({ error: 'Failed to fetch all products' });
+      });
+}
 
-// all products
+// all products with query
 const getAllProducts = (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const perPage = 4;
@@ -104,4 +113,4 @@ const updateProduct = (req,res) => {
 
 
 
-module.exports = { getAllProducts, getSingleProduct, addProducts, deleteProduct, updateProduct}
+module.exports = { getAllProducts, searchAll ,getSingleProduct, addProducts, deleteProduct, updateProduct}
