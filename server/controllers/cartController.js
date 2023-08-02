@@ -7,7 +7,7 @@ const addToCart = (req, res) => {
   const userId = req.user._id
   console.log(userId);
   // cheking if the item already exists
-  CartItem.findOne({ item: item })
+  CartItem.findOne({ userId })
     .then((existingCartItem) => {
       if (!existingCartItem) {
         CartItem.create({ item, quantity, userId }).then((result) => {
@@ -28,7 +28,6 @@ const addToCart = (req, res) => {
 };
 
 // get All items in cart
-// TODO query the items according to the user signed in
 const getItemsInCart = (req, res) => {
   const userId = req.user._id
   CartItem.find({userId})
