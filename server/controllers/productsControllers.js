@@ -15,7 +15,7 @@ const searchAll = (req,res) => {
 // all products with query
 const getAllProducts = (req, res) => {
     const page = parseInt(req.query.page) || 1;
-    const perPage = 4;
+    const perPage = 8;
     const skip = (page - 1) * perPage;
   
     Products.find()
