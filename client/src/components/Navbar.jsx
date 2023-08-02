@@ -1,4 +1,4 @@
-import { Close, Error, Menu, Search } from "@mui/icons-material";
+import { Close, Error, Logout, Menu, Search } from "@mui/icons-material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
@@ -14,6 +14,7 @@ function Navbar({ scrollToSection, featiredRef }) {
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [showCart, setShowCart] = useState(false);
+  const [showLogOut, setLogOut] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [{ itemsInCart }] = useCartcontext();
   const [{ user }, dispatch] = useUserContext();
@@ -36,7 +37,12 @@ function Navbar({ scrollToSection, featiredRef }) {
         console.log(err.message);
       });
   }, []);
-
+  const handleLogOut = () => {
+    localStorage.removeItem("user");
+    dispatch({
+      type: "LOG_OUT",
+    });
+  };
   const handleChange = (e) => {
     const inputValue = e.target.value.toLowerCase();
     setSearchInput(inputValue);
@@ -50,7 +56,7 @@ function Navbar({ scrollToSection, featiredRef }) {
 
   return (
     <div
-      className={`navbar h-10 p-1 flex items-center justify-between gap-1 lg:w-11/12 lg:mx-auto`}
+      className={`navbar relative h-10 p-1 flex items-center justify-between gap-1 lg:w-11/12 lg:mx-auto`}
     >
       <div className="navbar-left">
         <div className=" flex items-center gap-1 w-24">
@@ -160,13 +166,21 @@ function Navbar({ scrollToSection, featiredRef }) {
             </div>
           )}
         </div>
-        <div className=" uppercase">
+        <div className=" uppercase rounded-full lg:hover:cursor-pointer lg:hover:border border-ebony-50" onClick={() => setLogOut(!showLogOut)}>
           {user && (
-            <Avatar sx={{ bgcolor: "#253748", width: 38, height: 38 }}>
+            <Avatar sx={{ bgcolor: "#253748", width: 38, height: 38}}>
               {user.email[0]}
             </Avatar>
           )}
         </div>
+        {
+          showLogOut && (
+            <button className="hidden lg:flex items-center gap-1 absolute top-10 right-1 py-2 px-5 rounded-full bg-ebony-100 shadow-xl border border-ebony-300" onClick={handleLogOut}>
+          <span>log Out</span>
+          <Logout fontSize="small"/>
+        </button>
+          )
+        }
       </div>
     </div>
   );
