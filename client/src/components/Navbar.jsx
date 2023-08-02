@@ -175,7 +175,7 @@ function Navbar({ scrollToSection, featiredRef }) {
         </div>
         {
           showLogOut && (
-            <button className="hidden lg:flex items-center gap-1 absolute top-10 right-1 py-2 px-5 rounded-full bg-ebony-100 shadow-xl border border-ebony-300" onClick={handleLogOut}>
+            <button className="hidden lg:flex items-center gap-1 absolute top-10 right-1 py-2 px-5 rounded-full bg-ebony-100 shadow-xl border border-ebony-500" onClick={handleLogOut}>
           <span>log Out</span>
           <Logout fontSize="small"/>
         </button>

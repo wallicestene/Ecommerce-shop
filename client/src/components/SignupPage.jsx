@@ -77,7 +77,7 @@ function SignupPage() {
   };
   return (
     <div className="grid place-items-center h-screen">
-      <form className=" border border-ebony-900 w-11/12 grid place-items-center font-Poppins">
+      <form className=" border border-ebony-500 rounded-md bg-ebony-100 w-11/12 grid place-items-center font-Poppins">
         <div className=" mt-2">
           <h1>
             {showSignup ? "Sign Up to Create an" : "Log In to your"}{" "}
@@ -120,7 +120,7 @@ function SignupPage() {
           <div className=" flex items-center justify-center">
             {!showSignup && (
               <button
-                className=" bg-green-800 h-10 rounded-md text-white my-2 w-full"
+                className=" bg-green-700 hover:bg-green-800 h-10 rounded-full text-white my-2 w-full"
                 onClick={handleLogIn}
               >
                 Log In
@@ -128,7 +128,7 @@ function SignupPage() {
             )}
             {showSignup && (
               <button
-                className=" bg-blue-950 h-10  rounded-md text-white my-2 w-full"
+                className=" bg-blue-950 h-10 hover:bg-slate-800  rounded-full text-white my-2 w-full"
                 onClick={handleSignUp}
               >
                 Sign Up
@@ -136,7 +136,7 @@ function SignupPage() {
             )}
           </div>
           {error && (
-            <div className=" border mt-3 border-red-600 text-sm text-red-600 w-full text-center rounded flex items-center justify-center gap-1 py-1 bg-red-100">
+            <div className=" border mt-3 border-red-600 lg:text-sm text-xs font-Poppins text-red-600 w-full text-center rounded flex items-center justify-center gap-1 py-1 bg-red-100">
               <div>
                 <ErrorOutlineIcon fontSize="small" />
               </div>
