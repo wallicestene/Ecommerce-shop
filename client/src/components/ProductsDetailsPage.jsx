@@ -59,7 +59,10 @@ const ProductsDetailsPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success((t) => (
+        if(data.error){
+          throw new Error(data.error);
+        }else{
+          toast.success((t) => (
           <span className=" text-sm font-Montserrat">
            Item added to cart{" "}
             <button onClick={() => toast.dismiss(t.id)} className=" bg-ebony-50 px-2 py-1 rounded-md border border-ebony-500">
@@ -67,9 +70,18 @@ const ProductsDetailsPage = () => {
             </button>
           </span>
         ));
+        }
+        
       })
       .catch((error) => {
-        console.log("Error adding item to cart:", error.message);
+        toast.error((t) => (
+          <span className=" text-sm font-Montserrat">
+           {error.message}{" "}
+            <button onClick={() => toast.dismiss(t.id)} className=" bg-ebony-50 px-2 py-1 rounded-md border border-ebony-500">
+              Dismiss
+            </button>
+          </span>
+        ));
       });
   };
 

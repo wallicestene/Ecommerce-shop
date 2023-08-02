@@ -17,7 +17,7 @@ const addToCart = (req, res) => {
           res.status(200).json(result);
         });
       }else{
-        throw new Error("Item already added to Cart!")
+        throw new Error("Item already added to the Cart!")
       }
 
     })
