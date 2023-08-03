@@ -69,7 +69,7 @@ function Navbar({ scrollToSection, featiredRef }) {
           >
             {!showNavbarMobile ? <Menu /> : <Close />}
           </div>
-          <h1 className=" font-YsabeauInfant text-black tracking-tight lg:tracking-normal">
+          <h1 className=" font-YsabeauInfant tracking-tight bg-ebony-50 w-14 text-center rounded text-orange-500 font-bold lg:tracking-wide">
             E-Shop
           </h1>
         </div>

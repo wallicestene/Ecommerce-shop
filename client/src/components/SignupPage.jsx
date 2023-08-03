@@ -77,7 +77,7 @@ function SignupPage() {
   };
   return (
     <div className="grid place-items-center h-screen">
-      <form className=" border border-ebony-500 rounded-md bg-ebony-100 w-11/12 grid place-items-center font-Poppins">
+      <form className=" border border-ebony-500 rounded-md bg-ebony-50 w-11/12 grid place-items-center font-Poppins">
         <div className=" mt-2">
           <h1>
             {showSignup ? "Sign Up to Create an" : "Log In to your"}{" "}

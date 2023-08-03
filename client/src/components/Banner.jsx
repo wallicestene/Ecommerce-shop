@@ -10,7 +10,7 @@ const Banner = () => {
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
 
   useEffect(() => {
-    fetch("https://e-shop-xlam.onrender.com/products")
+    fetch("https://e-shop-xlam.onrender.com/products/all")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error when fetching data");
@@ -19,7 +19,7 @@ const Banner = () => {
         }
       })
       .then((data) => {
-        const itemData = data.products
+        const itemData = data
         const randomItem = Math.floor(Math.random() * itemData.length);
         setBannerData(itemData[randomItem]);
         setLoading(false);
