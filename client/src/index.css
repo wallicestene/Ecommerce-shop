@@ -16,6 +16,9 @@
 .categories::-webkit-scrollbar{
   display: none;
 }
+.searchResult::-webkit-scrollbar{
+  display:  none;
+}
 body::-webkit-scrollbar{
   display: none;
 }

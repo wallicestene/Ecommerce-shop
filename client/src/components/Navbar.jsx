@@ -118,18 +118,20 @@ function Navbar({ scrollToSection, featiredRef }) {
           <Search />
         </form>
         {searchInput && (
-          <div className=" absolute z-10 border-ebony-50 border shadow-slate-900 flex flex-col gap-2 top-10 right-1/2 -translate-x-1/2 left-1/2 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md shadow-2xl h-fit w-full py-1 px-2">
+          <div className=" absolute z-10 border-ebony-50  border shadow-slate-900 top-10 right-1/2 -translate-x-1/2 left-1/2 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md shadow-2xl w-full py-1 px-2">
             {filteredProducts.length === 0 ? (
               <div >
                 <p className=" lg:text-sm text-xs font-Poppins font-bold text-center bg-slate-900 text-ebony-50 py-2 rounded"> No such item!</p>
               </div>
             ) : (
               <>
+              <div className="text-center lg:text-base text-sm font-Poppins  tracking-wide font-bold my-1">Found {filteredProducts.length} {filteredProducts.length === 1 ? "Result" : "Results"}</div>
+              <div className="searchResult h-72 overflow-auto flex flex-col gap-2">
                 {filteredProducts.map((product, index) => (
                   <Link to={`/product/${product._id}`} key={index} >
                     <div
                       
-                      className=" flex items-center gap-1 bg-slate-900 text-ebony-50 rounded-md hover:bg-ebony-50 delay-75 duration-300 hover:text-slate-900 hover:cursor-pointer"
+                      className=" flex items-center gap-1 bg-slate-900 text-ebony-50 rounded-md hover:bg-ebony-50 delay-75 duration-300 hover:text-slate-900 hover:cursor-pointer border border-ebony-50 shadow-md"
                     >
                       <div className="h-12 w-12 bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-fuchsia-300 via-green-300 to-rose-600 rounded overflow-hidden ">
                         <img
@@ -139,13 +141,14 @@ function Navbar({ scrollToSection, featiredRef }) {
                         />
                       </div>
                       <div>
-                        <h2 className=" lg:text-sm text-xs font-Poppins font-bold">
+                        <h2 className=" lg:text-sm text-xs font-YsabeauInfant tracking-wide font-bold">
                           {product.name}
                         </h2>
                       </div>
                     </div>
                   </Link>
                 ))}
+                </div>
               </>
             )}
           </div>
