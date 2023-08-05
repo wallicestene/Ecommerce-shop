@@ -56,7 +56,7 @@ const Banner = () => {
         {!loading && (
           <>
             <div className="banner-left h-full grid place-items-center col-span-1">
-              <div className=" h-full flex flex-col justify-center z-20 overflow-clip">
+              <div className=" h-full flex flex-col justify-center overflow-clip">
                 <Fade triggerOnce
                   key={bannerData.name}
                   delay={500}
