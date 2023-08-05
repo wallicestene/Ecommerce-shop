@@ -13,6 +13,7 @@ import {
 } from "@mui/icons-material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useUserContext } from "./context/UserContext";
+import { Slide } from "react-awesome-reveal";
 
 const NavbarMobile = ({
   scrollToSection,
@@ -27,7 +28,7 @@ const NavbarMobile = ({
     });
   };
   return (
-    <div className=" fixed bg-ebony-50 grid place-items-center  rounded-r-xl bg left-0 top-10 h-screen w-3/5 z-40 text-black">
+    <Slide duration={1000} delay={200} direction="left" className=" fixed bg-ebony-50 grid place-items-center  rounded-r-xl bg left-0 top-10 h-screen w-3/5 z-40 text-black">
       <div className="navbar-center w-full">
         <ul className=" flex items-center flex-col justify-between gap-10 font-YsabeauInfant">
           <Link to="/" className="w-full">
@@ -86,7 +87,7 @@ const NavbarMobile = ({
           </div>
         </div>
       </div>
-    </div>
+    </Slide>
   );
 };
 
