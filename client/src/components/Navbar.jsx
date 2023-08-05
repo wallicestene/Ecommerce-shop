@@ -121,7 +121,7 @@ function Navbar({ scrollToSection, featiredRef }) {
         {searchInput && (
           
           <div className=" absolute z-10 border-ebony-50  border shadow-slate-900 top-10 right-1/2 -translate-x-1/2 left-1/2 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md shadow-2xl w-full py-1 px-2">
-            <Slide cascade>
+            <Slide triggerOnce>
             {filteredProducts.length === 0 ? (
               <div >
                 <p className=" lg:text-sm text-xs font-Poppins font-bold text-center bg-slate-900 text-ebony-50 py-2 rounded"> No such item!</p>

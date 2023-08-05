@@ -1,7 +1,8 @@
 import { Skeleton } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Fade, Slide } from "react-awesome-reveal";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import {PropagateLoader } from "react-spinners";
+import { PropagateLoader } from "react-spinners";
 const Banner = () => {
   const [bannerData, setBannerData] = useState([]);
   const [error, setError] = useState("");
@@ -9,7 +10,7 @@ const Banner = () => {
 
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
 
-  useEffect(() => {
+  const fetChBannerItem = () => {
     fetch("https://e-shop-xlam.onrender.com/products/all")
       .then((res) => {
         if (!res.ok) {
@@ -19,7 +20,7 @@ const Banner = () => {
         }
       })
       .then((data) => {
-        const itemData = data
+        const itemData = data;
         const randomItem = Math.floor(Math.random() * itemData.length);
         setBannerData(itemData[randomItem]);
         setLoading(false);
@@ -29,7 +30,19 @@ const Banner = () => {
         setError(err.message);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    // Fetching the data initially when the component mounts
+    fetChBannerItem();
+
+    // Settting up the interval to fetch data every 1 minute
+    const interval = setInterval(fetChBannerItem, 5000);
+
+    // Clean up the interval when the component is unmounted
+    return () => clearInterval(interval);
   }, []);
+
   return (
     <div className="banner mx-auto lg:w-11/12 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-fuchsia-500 rounded-br-md rounded-bl-md">
       {error && <p>{error}</p>}
@@ -44,9 +57,10 @@ const Banner = () => {
           <>
             <div className="banner-left h-full grid place-items-center col-span-1">
               <div>
-                <h1 className=" text-gray-50 font-Montserrat">
+              <Fade key={bannerData.name} delay={500} cascade damping={1e-1}
+                className=" text-gray-50 font-Montserrat">
                   {bannerData.name}
-                </h1>
+                </Fade>
                 <h2 className=" lg:text-3xl text-xl font-Poppins font-extrabold text-ebony-950">
                   Fashion {bannerData.category}
                 </h2>
@@ -59,13 +73,15 @@ const Banner = () => {
                 </div>
               </div>
             </div>
-            <div className=" banner-right lg:h-96 h-80 flex items-center justify-center col-span-2">
+            <Fade duration={2000} delay={500} direction="top" key={bannerData.image_url[0]}  className=" banner-right lg:h-96 h-80 flex items-center justify-center col-span-2">
+            <div className="h-full">
+              
               <img
                 src={`${backendURL}/${bannerData.image_url[0]}`}
                 alt=""
                 className="h-full object-cover"
               />
-            </div>
+            </div></Fade>
           </>
         )}
       </div>
