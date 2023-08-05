@@ -95,7 +95,7 @@ const Cart = ({ setShowCart }) => {
             Cart
           </h1>
         </div>
-        <Fade cascade duration={460} direction="down" className="h-full">
+        <Fade cascade duration={300} direction="right" className="h-full">
         <ul className="cart flex flex-col gap-5 p-1 overflow-y-scroll h-4/5">
           {cartData.length > 0 ? (
             cartData.map((item, index) => (
