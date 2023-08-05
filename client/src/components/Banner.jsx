@@ -37,7 +37,7 @@ const Banner = () => {
     fetChBannerItem();
 
     // Settting up the interval to fetch data every 1 minute
-    const interval = setInterval(fetChBannerItem, 5000);
+    const interval = setInterval(fetChBannerItem, 40000);
 
     // Clean up the interval when the component is unmounted
     return () => clearInterval(interval);
@@ -82,10 +82,10 @@ const Banner = () => {
                 </Slide>
               </div>
             </div>
-            <Fade
-              duration={2000}
-              delay={500}
-              direction="top"
+            <Slide
+              duration={1000}
+              delay={200}
+              direction="down"
               key={bannerData.image_url[0]}
               className=" banner-right lg:h-96 h-80 flex items-center justify-center col-span-2"
             >
@@ -96,7 +96,7 @@ const Banner = () => {
                   className="h-full object-cover"
                 />
               </div>
-            </Fade>
+            </Slide>
           </>
         )}
       </div>
