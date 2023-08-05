@@ -8,6 +8,7 @@ import { useCartcontext } from "./context/CartContex";
 import { useUserContext } from "./context/UserContext";
 import { Avatar } from "@mui/material";
 import { blue } from "@mui/material/colors";
+import { Fade, Slide } from "react-awesome-reveal";
 
 function Navbar({ scrollToSection, featiredRef }) {
   const [showNavbarMobile, setShowNavbarMobile] = useState(false);
@@ -126,10 +127,11 @@ function Navbar({ scrollToSection, featiredRef }) {
             ) : (
               <>
               <div className="text-center lg:text-base text-sm font-Poppins  tracking-wide font-bold my-1">Found {filteredProducts.length} {filteredProducts.length === 1 ? "Result" : "Results"}</div>
-              <div className="searchResult h-72 overflow-auto flex flex-col gap-2">
+              <Fade cascade>
+              <ul className="searchResult h-72 overflow-auto flex flex-col gap-2">
                 {filteredProducts.map((product, index) => (
                   <Link to={`/product/${product._id}`} key={index} >
-                    <div
+                    <li
                       
                       className=" flex items-center gap-1 bg-slate-900 text-ebony-50 rounded-md hover:bg-ebony-50 delay-75 duration-300 hover:text-slate-900 hover:cursor-pointer border border-ebony-50 shadow-md"
                     >
@@ -145,10 +147,11 @@ function Navbar({ scrollToSection, featiredRef }) {
                           {product.name}
                         </h2>
                       </div>
-                    </div>
+                    </li>
                   </Link>
                 ))}
-                </div>
+                </ul>
+                </Fade>
               </>
             )}
           </div>
