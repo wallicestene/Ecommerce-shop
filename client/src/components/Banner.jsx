@@ -57,31 +57,46 @@ const Banner = () => {
           <>
             <div className="banner-left h-full grid place-items-center col-span-1">
               <div>
-              <Fade key={bannerData.name} delay={500} cascade damping={1e-1}
-                className=" text-gray-50 font-Montserrat">
+                <Fade
+                  key={bannerData.name}
+                  delay={500}
+                  cascade
+                  damping={1e-1}
+                  className=" text-gray-50 font-Montserrat"
+                >
                   {bannerData.name}
                 </Fade>
-                <h2 className=" lg:text-3xl text-xl font-Poppins font-extrabold text-ebony-950">
-                  Fashion {bannerData.category}
-                </h2>
-                <div className=" bg-ebony-800 inline-block rounded-full text-white w-24 h-7 text-center hover:cursor-pointer mt-5  transition duration-500 hover:scale-125 hover:bg-sky-600">
-                  <Link to={`/product/${bannerData._id}`}>
-                    <p className=" font-Montserrat text-sm px-2 py-1">
-                      Shop Now
-                    </p>
-                  </Link>
-                </div>
+                <Fade key={bannerData.category} delay={500} duration={2000}>
+                  <h2 className=" lg:text-3xl text-xl font-Poppins font-extrabold text-ebony-950">
+                    Fashion {bannerData.category}
+                  </h2>
+                </Fade>
+                <Slide key={bannerData._id} delay={1000} duration={500} >
+                  <div className=" bg-ebony-800 inline-block rounded-full text-white w-24 h-7 text-center hover:cursor-pointer mt-5  transition duration-500 hover:scale-125 hover:bg-sky-600">
+                    <Link to={`/product/${bannerData._id}`}>
+                      <p className=" font-Montserrat text-sm px-2 py-1">
+                        Shop Now
+                      </p>
+                    </Link>
+                  </div>
+                </Slide>
               </div>
             </div>
-            <Fade duration={2000} delay={500} direction="top" key={bannerData.image_url[0]}  className=" banner-right lg:h-96 h-80 flex items-center justify-center col-span-2">
-            <div className="h-full">
-              
-              <img
-                src={`${backendURL}/${bannerData.image_url[0]}`}
-                alt=""
-                className="h-full object-cover"
-              />
-            </div></Fade>
+            <Fade
+              duration={2000}
+              delay={500}
+              direction="top"
+              key={bannerData.image_url[0]}
+              className=" banner-right lg:h-96 h-80 flex items-center justify-center col-span-2"
+            >
+              <div className="h-full">
+                <img
+                  src={`${backendURL}/${bannerData.image_url[0]}`}
+                  alt=""
+                  className="h-full object-cover"
+                />
+              </div>
+            </Fade>
           </>
         )}
       </div>
