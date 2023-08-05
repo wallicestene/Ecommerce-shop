@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import io from "socket.io-client";
 import { useCartcontext } from "./context/CartContex";
 import { useUserContext } from "./context/UserContext";
+import { Fade, Slide } from "react-awesome-reveal";
 
 const Cart = ({ setShowCart }) => {
   const [cartData, setCartData] = useState([]);
@@ -82,7 +83,7 @@ const Cart = ({ setShowCart }) => {
   };
 
   return (
-    <div className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md w-3/4 h-screen flex flex-col">
+    <Slide duration={1000} delay={200} direction="right"  className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md w-3/4 h-screen flex flex-col">
       <div className=" relative h-full w-full">
         {cartData.length > 0 && (
           <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center hover:bg-opacity-70 bg-orange-500 delay-100 duration-150 rounded-lg">
@@ -94,6 +95,7 @@ const Cart = ({ setShowCart }) => {
             Cart
           </h1>
         </div>
+        <Fade cascade duration={460} direction="down" className="h-full">
         <ul className="cart flex flex-col gap-5 p-1 overflow-y-scroll h-4/5">
           {cartData.length > 0 ? (
             cartData.map((item, index) => (
@@ -156,9 +158,9 @@ const Cart = ({ setShowCart }) => {
               </button>
             </div>
           )}
-        </ul>
+        </ul></Fade>
       </div>
-    </div>
+    </Slide>
   );
 };
 
