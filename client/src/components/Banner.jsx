@@ -56,13 +56,13 @@ const Banner = () => {
         {!loading && (
           <>
             <div className="banner-left h-full grid place-items-center col-span-1">
-              <div>
+              <div className=" w-52 h-40 bg-blac z-20 overflow-clip">
                 <Fade triggerOnce
                   key={bannerData.name}
                   delay={500}
                   cascade
                   damping={1e-1}
-                  className=" text-gray-50 font-Montserrat"
+                  className=" text-gray-50 font-Montserrat "
                 >
                   {bannerData.name}
                 </Fade>
