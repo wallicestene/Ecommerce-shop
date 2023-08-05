@@ -2,7 +2,7 @@ import { Skeleton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Fade, Slide } from "react-awesome-reveal";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { PropagateLoader } from "react-spinners";
+import { PropagateLoader, RingLoader } from "react-spinners";
 const Banner = () => {
   const [bannerData, setBannerData] = useState([]);
   const [error, setError] = useState("");
@@ -50,14 +50,15 @@ const Banner = () => {
       <div className=" grid grid-cols-3 gap-1 h-fit rounded-2xl lg:px-3 px-1 ">
         {loading && (
           <div className=" h-80 grid place-items-center col-span-3">
-            <PropagateLoader color="#f43500" size={30} />
+            <RingLoader color="#131516" size={80} speedMultiplier={1} />
           </div>
         )}
         {!loading && (
           <>
             <div className="banner-left h-full grid place-items-center col-span-1">
               <div className=" h-full flex flex-col justify-center overflow-clip">
-                <Fade triggerOnce
+                <Fade
+                  triggerOnce
                   key={bannerData.name}
                   delay={500}
                   cascade
@@ -66,12 +67,22 @@ const Banner = () => {
                 >
                   {bannerData.name}
                 </Fade>
-                <Fade triggerOnce key={bannerData.category} delay={500} duration={2000}>
+                <Fade
+                  triggerOnce
+                  key={bannerData.category}
+                  delay={500}
+                  duration={2000}
+                >
                   <h2 className=" lg:text-3xl text-xl font-Poppins font-extrabold text-ebony-950">
                     Fashion {bannerData.category}
                   </h2>
                 </Fade>
-                <Slide triggerOnce key={bannerData._id} delay={1000} duration={500} >
+                <Slide
+                  triggerOnce
+                  key={bannerData._id}
+                  delay={1000}
+                  duration={500}
+                >
                   <div className=" bg-ebony-800 inline-block rounded-full text-white w-24 h-7 text-center hover:cursor-pointer mt-5  transition duration-500 hover:scale-125 hover:bg-sky-600">
                     <Link to={`/product/${bannerData._id}`}>
                       <p className=" font-Montserrat text-sm px-2 py-1">
@@ -82,17 +93,19 @@ const Banner = () => {
                 </Slide>
               </div>
             </div>
-              <Slide triggerOnce
+            <Slide
+              triggerOnce
               duration={1000}
               delay={200}
               direction="down"
-              key={bannerData.image_url[0]} 
-              className=" banner-right lg:h-96 h-80 flex items-center justify-center col-span-2">
-                <img
-                  src={`${backendURL}/${bannerData.image_url[0]}`}
-                  alt=""
-                  className="h-full object-cover"
-                />
+              key={bannerData.image_url[0]}
+              className=" banner-right lg:h-96 h-80 flex items-center justify-center col-span-2"
+            >
+              <img
+                src={`${backendURL}/${bannerData.image_url[0]}`}
+                alt=""
+                className="h-full object-cover"
+              />
             </Slide>
           </>
         )}

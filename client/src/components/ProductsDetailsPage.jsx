@@ -72,7 +72,7 @@ const ProductsDetailsPage = () => {
         ), {
           style: {
             borderRadius: '10px',
-            background: '#333',
+            background: '#f2741a',
             color: '#fff',
           },
         });
@@ -90,7 +90,7 @@ const ProductsDetailsPage = () => {
         ),{
           style: {
             borderRadius: '10px',
-            background: '#333',
+            background: '#e4341c',
             color: '#fff',
           },
         });

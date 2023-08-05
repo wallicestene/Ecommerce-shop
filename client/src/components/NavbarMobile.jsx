@@ -1,15 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import {
-  AddCard,
-  Article,
-  ContactPage,
-  Create,
-  Home,
   Logout,
-  NoteAlt,
-  Search,
-  Shop,
 } from "@mui/icons-material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useUserContext } from "./context/UserContext";
@@ -37,7 +29,6 @@ const NavbarMobile = ({
               onClick={() => setShowNavbarMobile(false)}
             >
               Home
-              <Home />
             </li>
           </Link>
           <Link onClick={() => scrollToSection(featiredRef)} to="/" className="w-full ">
@@ -46,7 +37,6 @@ const NavbarMobile = ({
               onClick={() => setShowNavbarMobile(false)}
             >
               Shop
-              <Shop />
             </li>
           </Link>
           <Link to="" className="w-full">
@@ -55,7 +45,6 @@ const NavbarMobile = ({
               onClick={() => setShowNavbarMobile(false)}
             >
               Blog
-              <Article />
             </li>
           </Link>{" "}
           <Link to="" className="w-full">
@@ -64,7 +53,6 @@ const NavbarMobile = ({
               onClick={() => setShowNavbarMobile(false)}
             >
               Contact
-              <ContactPage />
             </li>
           </Link>
           <Link to="" className="w-full">
@@ -73,7 +61,6 @@ const NavbarMobile = ({
               onClick={() => setShowNavbarMobile(false)}
             >
               Create
-              <AddCard />
             </li>
           </Link>
         </ul>

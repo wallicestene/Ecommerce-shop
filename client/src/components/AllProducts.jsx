@@ -1,9 +1,11 @@
 import React from "react";
+import { Fade, Slide } from "react-awesome-reveal";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const AllProducts = ({ product }) => {
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
   return (
+    <Fade duration={600} delay={400} triggerOnce>
     <div className="h-72 w-40 shadow-lg transform transition ease-in-out duration-500 hover:scale-110 relative">
       <Link to={`/product/${product._id}`}>
         <div className="w-full flex flex-col justify-between h-full ">
@@ -38,6 +40,7 @@ const AllProducts = ({ product }) => {
         )
       }
     </div>
+    </Fade>
   );
 };
 
