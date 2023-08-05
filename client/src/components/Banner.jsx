@@ -57,7 +57,7 @@ const Banner = () => {
           <>
             <div className="banner-left h-full grid place-items-center col-span-1">
               <div>
-                <Fade
+                <Fade triggerOnce
                   key={bannerData.name}
                   delay={500}
                   cascade
@@ -66,12 +66,12 @@ const Banner = () => {
                 >
                   {bannerData.name}
                 </Fade>
-                <Fade key={bannerData.category} delay={500} duration={2000}>
+                <Fade triggerOnce key={bannerData.category} delay={500} duration={2000}>
                   <h2 className=" lg:text-3xl text-xl font-Poppins font-extrabold text-ebony-950">
                     Fashion {bannerData.category}
                   </h2>
                 </Fade>
-                <Slide key={bannerData._id} delay={1000} duration={500} >
+                <Slide triggerOnce key={bannerData._id} delay={1000} duration={500} >
                   <div className=" bg-ebony-800 inline-block rounded-full text-white w-24 h-7 text-center hover:cursor-pointer mt-5  transition duration-500 hover:scale-125 hover:bg-sky-600">
                     <Link to={`/product/${bannerData._id}`}>
                       <p className=" font-Montserrat text-sm px-2 py-1">
@@ -82,7 +82,7 @@ const Banner = () => {
                 </Slide>
               </div>
             </div>
-            <Slide
+            <Slide triggerOnce
               duration={1000}
               delay={200}
               direction="down"
