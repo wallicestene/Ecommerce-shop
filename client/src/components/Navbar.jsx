@@ -119,7 +119,9 @@ function Navbar({ scrollToSection, featiredRef }) {
           <Search />
         </form>
         {searchInput && (
+          
           <div className=" absolute z-10 border-ebony-50  border shadow-slate-900 top-10 right-1/2 -translate-x-1/2 left-1/2 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md shadow-2xl w-full py-1 px-2">
+            <Slide cascade>
             {filteredProducts.length === 0 ? (
               <div >
                 <p className=" lg:text-sm text-xs font-Poppins font-bold text-center bg-slate-900 text-ebony-50 py-2 rounded"> No such item!</p>
@@ -127,7 +129,7 @@ function Navbar({ scrollToSection, featiredRef }) {
             ) : (
               <>
               <div className="text-center lg:text-base text-sm font-Poppins  tracking-wide font-bold my-1">Found {filteredProducts.length} {filteredProducts.length === 1 ? "Result" : "Results"}</div>
-              <Fade cascade>
+              <Fade cascade duration={200}>
               <ul className="searchResult h-72 overflow-auto flex flex-col gap-2">
                 {filteredProducts.map((product, index) => (
                   <Link to={`/product/${product._id}`} key={index} >
@@ -153,8 +155,9 @@ function Navbar({ scrollToSection, featiredRef }) {
                 </ul>
                 </Fade>
               </>
-            )}
+            )}</Slide>
           </div>
+          
         )}
         <div
           className=" h-10 w-10 flex items-center justify-start relative cursor-pointer bg-gray-50 rounded-full px-1 py-1"
