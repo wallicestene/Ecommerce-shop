@@ -82,20 +82,17 @@ const Banner = () => {
                 </Slide>
               </div>
             </div>
-            <Slide triggerOnce
+              <Slide triggerOnce
               duration={1000}
               delay={200}
               direction="down"
-              key={bannerData.image_url[0]}
-              className=" banner-right lg:h-96 h-80 flex items-center justify-center col-span-2"
-            >
-              <div className="h-full">
+              key={bannerData.image_url[0]} 
+              className=" banner-right lg:h-96 h-80 flex items-center justify-center col-span-2">
                 <img
                   src={`${backendURL}/${bannerData.image_url[0]}`}
                   alt=""
                   className="h-full object-cover"
                 />
-              </div>
             </Slide>
           </>
         )}
