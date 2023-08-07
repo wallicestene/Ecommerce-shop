@@ -19,7 +19,6 @@ const SimilarProducts = ({ProductCategory}) => {
     .then(data => {
         const similar = data.filter(item => item.category === ProductCategory)
         setSimilarProducts(similar)
-        console.log(data)
         setLoading(false)
     })
     .catch(err => {

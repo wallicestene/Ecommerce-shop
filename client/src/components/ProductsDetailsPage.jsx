@@ -175,7 +175,7 @@ const ProductsDetailsPage = () => {
           </div>
         </div>
       )}
-      <div className=" my-5">
+      <div className=" lg:my-5 my-10">
          <SimilarProducts ProductCategory={details.category}/>
       </div>
     </div>
