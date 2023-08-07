@@ -31,7 +31,7 @@ const SimilarProducts = ({ProductCategory}) => {
   return (
     <section>
         {!loading && (
-            <div>
+            <div className=' text-center uppercase font-bold font-Montserrat text-xl border-b border-slate-600'>
                 <h1>you may also like</h1>
             </div>
         )}
