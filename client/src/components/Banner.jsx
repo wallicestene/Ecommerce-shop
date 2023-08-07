@@ -36,8 +36,8 @@ const Banner = () => {
     // Fetching the data initially when the component mounts
     fetChBannerItem();
 
-    // Settting up the interval to fetch data every 1 minute
-    const interval = setInterval(fetChBannerItem, 40000);
+    // Settting up the interval to fetch data every 30 seconds
+    const interval = setInterval(fetChBannerItem, 30000);
 
     // Clean up the interval when the component is unmounted
     return () => clearInterval(interval);
