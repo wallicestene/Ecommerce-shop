@@ -14,6 +14,7 @@ import {
 import { HashLoader } from "react-spinners";
 import { useUserContext } from "./context/UserContext";
 import { toast } from "react-hot-toast";
+import SimilarProducts from "../SimilarProducts";
 
 const ProductsDetailsPage = () => {
   const [details, setDetails] = useState([]);
@@ -104,7 +105,7 @@ const ProductsDetailsPage = () => {
       )}
       {error && <p>{error}</p>}
       {!loading && (
-        <div className=" grid lg:grid-cols-2 grid-cols-1 lg:border-l lg:border-t lg:border-b rounded-xl lg:gap-5 gap-2 w-11/12 mx-auto h-full lg:h-96 border-slate-600">
+        <div className=" grid lg:grid-cols-2 grid-cols-1 lg:border-l lg:border-t lg:border-b rounded-xl lg:gap-5 gap-2 w-11/12 mx-auto h-full lg:h-96 border-slate-600 mt-10">
           <div className="details-right h-full w-full overflow-hidden">
             <img
               src={`${backendURL}/${details.image_url}`}
@@ -113,7 +114,7 @@ const ProductsDetailsPage = () => {
             />
             <div
               className="fixed top-10 bg-gray-100 hover:shadow-lg rounded-full h-12 w-12 grid place-items-center"
-              onClick={() => history.go(-1)}
+              onClick={() => history.push("/")}
             >
               <KeyboardBackspace fontSize="large" />
             </div>
@@ -174,6 +175,9 @@ const ProductsDetailsPage = () => {
           </div>
         </div>
       )}
+      <div className=" my-5">
+         <SimilarProducts ProductCategory={details.category}/>
+      </div>
     </div>
   );
 };
