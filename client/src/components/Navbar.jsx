@@ -129,7 +129,7 @@ function Navbar({ scrollToSection, featiredRef }) {
             ) : (
               <>
               <div className="text-center lg:text-base text-sm font-Poppins  tracking-wide font-bold my-1">Found {filteredProducts.length} {filteredProducts.length === 1 ? "Result" : "Results"}</div>
-              <Fade cascade duration={200} direction="right">
+              <Fade cascade duration={200} direction="right" triggerOnce>
               <ul className="searchResult h-72 overflow-auto flex flex-col gap-2">
                 {filteredProducts.map((product, index) => (
                   <Link to={`/product/${product._id}`} key={index} >
