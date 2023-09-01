@@ -84,7 +84,7 @@ const Cart = ({ setShowCart }) => {
 
   return (
     <Slide duration={1000} delay={200} direction="right"  className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md w-3/4 h-screen flex flex-col">
-      <div className=" relative h-full w-full">
+      {/* <div className=" relative h-full w-full">
         {cartData.length > 0 && (
           <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center hover:bg-opacity-70 bg-orange-500 delay-100 duration-150 rounded-lg">
             <button className=" w-full h-full text-ebony-50 uppercase tracking-wider font-Poppins ">Checkout</button>
@@ -159,7 +159,7 @@ const Cart = ({ setShowCart }) => {
             </div>
           )}
         </ul></Fade>
-      </div>
+      </div> */}
     </Slide>
   );
 };
