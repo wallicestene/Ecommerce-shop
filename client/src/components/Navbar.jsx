@@ -84,7 +84,7 @@ function Navbar({ scrollToSection, featiredRef }) {
             />
           )}
         </div>
-        <div>{showCart && <Cart setShowCart={setShowCart} />}</div>
+        {/* <div>{showCart && <Cart setShowCart={setShowCart} />}</div> */}
       </div>
       <div className="navbar-center">
         <ul className="hidden lg:flex items-center justify-between gap-10 font-YsabeauInfant">
