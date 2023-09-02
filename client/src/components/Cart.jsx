@@ -85,11 +85,11 @@ const Cart = () => {
   return (
     <section className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 h-screen grid place-items-center grid-cols-3">
       <div className="left col-span-2">
-        <ul className=" flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full">
+        <ul className=" flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full scroll-smooth bg-slate-400">
           {
             cartData.length > 0 ? (
               cartData.map((item, index )=> (
-                <li key={index} className=" w-full flex items-center justify-between gap-2 border p-1">
+                <li key={index} className=" w-full flex items-center justify-between gap-2 p-1 bg-gray-200 shadow-md rounded-md">
                   <Link
                   className=" flex items-center"
                   to={`/product/${item.item._id}`}
@@ -99,7 +99,7 @@ const Cart = () => {
                     <img
                       src={`${backendURL}/${item?.item.image_url}` || ""}
                       alt=""
-                      className="h-40 w-40 object-cover bg-slate-200 rounded-lg"
+                      className="h-40 w-40 object-cover bg-slate-200 rounded border"
                     />
                     <div>
                       <p className=" uppercase tracking-tighter first-letter:uppercase ">
@@ -134,7 +134,7 @@ const Cart = () => {
                 </li>
               ))
             ) : (
-              <div className=" text-center flex flex-col items-center justify-center h-full">
+              <div className=" text-center flex flex-col items-center justify-center h-full w-full px-20">
               <p className=" text-gray-50">Your shopping cart is empty!</p>
               <button
                 className=" px-10 py-2 bg-gray-200 rounded-md mt-2 hover:bg-opacity-30 hover:text-white duration-500"
