@@ -14,7 +14,6 @@ function Navbar({ scrollToSection, featiredRef }) {
   const [showNavbarMobile, setShowNavbarMobile] = useState(false);
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [showCart, setShowCart] = useState(false);
   const [showLogOut, setLogOut] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [{ itemsInCart }] = useCartcontext();
@@ -84,7 +83,6 @@ function Navbar({ scrollToSection, featiredRef }) {
             />
           )}
         </div>
-        {/* <div>{showCart && <Cart setShowCart={setShowCart} />}</div> */}
       </div>
       <div className="navbar-center">
         <ul className="hidden lg:flex items-center justify-between gap-10 font-YsabeauInfant">
@@ -162,7 +160,6 @@ function Navbar({ scrollToSection, featiredRef }) {
         <div
           className=" h-10 w-10 flex items-center justify-start relative cursor-pointer bg-gray-50 rounded-full px-1 py-1"
           onClick={() => {
-            setShowCart(!showCart);
             setShowNavbarMobile(false);
           }}
         >
