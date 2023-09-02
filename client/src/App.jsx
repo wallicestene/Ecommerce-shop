@@ -6,6 +6,7 @@ import UploadItemsForm from './adminPanel/UploadItemsForm'
 import ProductsDetailsPage from './components/ProductsDetailsPage'
 import SignupPage from './components/SignupPage'
 import { useUserContext } from './components/context/UserContext'
+import Cart from './components/Cart'
 function App() {
 
   const[show, setShow] = useState(false)
@@ -55,6 +56,7 @@ function App() {
             </Route>
           <Route path="/UploadItemsForm" component={UploadItemsForm}/>
           <Route path="/product/:id" component={ProductsDetailsPage}/>
+          <Route path="/cart" component={Cart}/>
           <Route path="/signup" component={SignupPage}/>
         </Switch>
       </Router>
