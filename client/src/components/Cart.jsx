@@ -89,7 +89,7 @@ const Cart = () => {
     let total = 0;
     for (let index = 0; index < cartData.length; index++) {
       const element = cartData[index];
-      total += element.item.price;
+      total += Number(element?.item.price * element?.quantity);
     }
     return total;
   };
@@ -163,7 +163,7 @@ const Cart = () => {
         <div className="top">
           <div className="flex items-center justify-between">
             <h1 className=" font-bold text-2xl">Total</h1>
-            <p>
+            <p className=" font-Montserrat">
               {getTotal().toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
@@ -171,7 +171,7 @@ const Cart = () => {
             </p>
           </div>
           <div className="flex items-center justify-between">
-            <h2>Delivery</h2>
+            <h2 className=" font-Poppins">Delivery</h2>
             <p className=" font-semibold text-base">
               <LocalShipping fontSize="small" /> Free Shipping
             </p>
@@ -199,79 +199,6 @@ const Cart = () => {
           </div>
         </div>
       </div>
-      {/* <div className=" relative h-full w-full">
-        {cartData.length > 0 && (
-          <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center hover:bg-opacity-70 bg-orange-500 delay-100 duration-150 rounded-lg">
-            <button className=" w-full h-full text-ebony-50 uppercase tracking-wider font-Poppins ">Checkout</button>
-          </div>
-        )}
-        <div className=" border-b-2 py-2 px-5 border-gray-500 ">
-          <h1 className="bg-orange-500 font-Poppins font-extrabold tracking-wider  inline py-1 px-5 rounded text-gray-50">
-            Cart
-          </h1>
-        </div>
-        <Fade cascade duration={350} direction="right" className="h-full">
-        <ul className="cart flex flex-col gap-5 p-1 overflow-y-scroll h-4/5">
-          {cartData.length > 0 ? (
-            cartData.map((item, index) => (
-              <li
-                key={index}
-                className=" shadow-md rounded-lg cursor-default bg-orange-500 relative font-YsabeauInfant  text-ebony-50 p-0"
-              >
-                <Link
-                  className=" flex items-center  justify-between"
-                  to={`/product/${item.item._id}`}
-                  onClick={() => setShowCart(false)}
-                >
-                  <div className=" flex items-center  gap-1 lg:gap-5">
-                    <img
-                      src={`${backendURL}/${item?.item.image_url}` || ""}
-                      alt=""
-                      className="h-20 w-20 object-cover bg-slate-200 rounded-lg"
-                    />
-                    <div>
-                      <p className=" uppercase tracking-tighter first-letter:uppercase ">
-                        {item.item.name}
-                      </p>
-                      <p className=" text-xs font-semibold">
-                        {item.item.price.toLocaleString("en-US", {
-                          style: "currency",
-                          currency: "USD",
-                        })}{" "}
-                        x {item.quantity}{" "}
-                        <strong className="text-base shadow-xl">
-                          {(item.item.price * item.quantity).toLocaleString(
-                            "en-US",
-                            {
-                              style: "currency",
-                              currency: "USD",
-                            }
-                          )}
-                        </strong>
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-                <div
-                  onClick={() => removeFromCart(item)}
-                  className="text-ebony-950 absolute lg:right-2 right-1 z-30 top-1/2 bottom-1/2 -translate-y-1/2 bg-gray-50 rounded-full h-10 w-10 grid place-items-center cursor-pointer"
-                >
-                  <Delete />
-                </div>
-              </li>
-            ))
-          ) : (
-            <div className=" text-center flex flex-col items-center justify-center h-full">
-              <p className=" text-gray-50">Your shopping cart is empty!</p>
-              <button
-                className=" px-10 py-2 bg-gray-200 rounded-md mt-2 hover:bg-opacity-30 hover:text-white duration-500"
-              >
-                Continue Shopping
-              </button>
-            </div>
-          )}
-        </ul></Fade>
-      </div> */}
     </section>
   );
 };
