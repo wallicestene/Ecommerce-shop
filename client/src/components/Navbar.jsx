@@ -117,45 +117,47 @@ function Navbar({ scrollToSection, featiredRef }) {
           <Search />
         </form>
         {searchInput && (
-          
           <div className=" absolute z-10 border-ebony-50  border shadow-slate-900 top-10 right-1/2 -translate-x-1/2 left-1/2 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md shadow-2xl w-full py-1 px-2">
-            <Slide triggerOnce  direction="right">
-            {filteredProducts.length === 0 ? (
-              <div >
-                <p className=" lg:text-sm text-xs font-Poppins font-bold text-center bg-slate-900 text-ebony-50 py-2 rounded"> No such item!</p>
-              </div>
-            ) : (
-              <>
-              <div className="text-center lg:text-base text-sm font-Poppins  tracking-wide font-bold my-1">Found {filteredProducts.length} {filteredProducts.length === 1 ? "Result" : "Results"}</div>
-              <Fade cascade duration={200} direction="right" triggerOnce>
-              <ul className="searchResult h-72 overflow-auto flex flex-col gap-2">
-                {filteredProducts.map((product, index) => (
-                  <Link to={`/product/${product._id}`} key={index} >
-                    <li
-                      
-                      className=" flex items-center gap-1 bg-slate-900 text-ebony-50 rounded-md hover:bg-ebony-50 delay-75 duration-300 hover:text-slate-900 hover:cursor-pointer border border-ebony-50 shadow-md"
-                    >
-                      <div className="h-12 w-12 bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-fuchsia-300 via-green-300 to-rose-600 rounded overflow-hidden ">
-                        <img
-                          src={`${backendURL}/${product.image_url}`}
-                          alt=""
-                          className=" h-full w-full object-contain"
-                        />
-                      </div>
-                      <div>
-                        <h2 className=" lg:text-sm text-xs font-YsabeauInfant tracking-wide font-bold">
-                          {product.name}
-                        </h2>
-                      </div>
-                    </li>
-                  </Link>
-                ))}
-                </ul>
-                </Fade>
-              </>
-            )}</Slide>
+            <Slide triggerOnce direction="right">
+              {filteredProducts.length === 0 ? (
+                <div>
+                  <p className=" lg:text-sm text-xs font-Poppins font-bold text-center bg-slate-900 text-ebony-50 py-2 rounded">
+                    {" "}
+                    No such item!
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <div className="text-center lg:text-base text-sm font-Poppins  tracking-wide font-bold my-1">
+                    Found {filteredProducts.length}{" "}
+                    {filteredProducts.length === 1 ? "Result" : "Results"}
+                  </div>
+                  <Fade cascade duration={200} direction="right" triggerOnce>
+                    <ul className="searchResult h-72 overflow-auto flex flex-col gap-2">
+                      {filteredProducts.map((product, index) => (
+                        <Link to={`/product/${product._id}`} key={index}>
+                          <li className=" flex items-center gap-1 bg-slate-900 text-ebony-50 rounded-md hover:bg-ebony-50 delay-75 duration-300 hover:text-slate-900 hover:cursor-pointer border border-ebony-50 shadow-md">
+                            <div className="h-12 w-12 bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-fuchsia-300 via-green-300 to-rose-600 rounded overflow-hidden ">
+                              <img
+                                src={`${backendURL}/${product.image_url}`}
+                                alt=""
+                                className=" h-full w-full object-contain"
+                              />
+                            </div>
+                            <div>
+                              <h2 className=" lg:text-sm text-xs font-YsabeauInfant tracking-wide font-bold">
+                                {product.name}
+                              </h2>
+                            </div>
+                          </li>
+                        </Link>
+                      ))}
+                    </ul>
+                  </Fade>
+                </>
+              )}
+            </Slide>
           </div>
-          
         )}
         <div
           className=" h-10 w-10 flex items-center justify-start relative cursor-pointer bg-gray-50 rounded-full px-1 py-1"
@@ -163,32 +165,36 @@ function Navbar({ scrollToSection, featiredRef }) {
             setShowNavbarMobile(false);
           }}
         >
-          <div className=" bg-gray-50 rounded-full px-1 py-1">
-            <Link to="/cart">
-            <LocalMallIcon />
-            </Link>
-          </div>
+          <Link to="/cart">
+            <div className=" bg-gray-50 rounded-full px-1 py-1">
+              <LocalMallIcon />
+            </div>
+          
           {itemsInCart >= 1 && (
             <div className=" absolute top-1  right-1 bg-orange-500 h-5 w-5 rounded-full grid place-items-center text-center">
               <h1 className=" text-center text-white text-sm">{itemsInCart}</h1>
             </div>
-          )}
+          )}</Link>
         </div>
-        <div className=" uppercase rounded-full lg:hover:cursor-pointer lg:hover:border border-ebony-50" onClick={() => setLogOut(!showLogOut)}>
+        <div
+          className=" uppercase rounded-full lg:hover:cursor-pointer lg:hover:border border-ebony-50"
+          onClick={() => setLogOut(!showLogOut)}
+        >
           {user && (
-            <Avatar sx={{ bgcolor: "#253748", width: 38, height: 38}}>
+            <Avatar sx={{ bgcolor: "#253748", width: 38, height: 38 }}>
               {user.email[0]}
             </Avatar>
           )}
         </div>
-        {
-          showLogOut && (
-            <button className="hidden lg:flex items-center gap-1 absolute top-10 right-1 py-2 px-5 rounded-full bg-ebony-100 shadow-xl border border-ebony-500" onClick={handleLogOut}>
-          <span>log Out</span>
-          <Logout fontSize="small"/>
-        </button>
-          )
-        }
+        {showLogOut && (
+          <button
+            className="hidden lg:flex items-center gap-1 absolute top-10 right-1 py-2 px-5 rounded-full bg-ebony-100 shadow-xl border border-ebony-500"
+            onClick={handleLogOut}
+          >
+            <span>log Out</span>
+            <Logout fontSize="small" />
+          </button>
+        )}
       </div>
     </div>
   );
