@@ -11,7 +11,7 @@ const Cart = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [{ itemsInCart }, dispatch] = useCartcontext();
-  const [{user}, dispatchUser] = useUserContext()
+  const [{ user }, dispatchUser] = useUserContext();
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
   const history = useHistory();
 
@@ -21,8 +21,8 @@ const Cart = () => {
     const fetchCartItems = () => {
       fetch("https://e-shop-xlam.onrender.com/product/cart", {
         headers: {
-          "Authorization": `Bearer ${user.token}`,
-        }
+          Authorization: `Bearer ${user.token}`,
+        },
       })
         .then((response) => response.json())
         .then((data) => {
@@ -39,7 +39,7 @@ const Cart = () => {
         });
     };
     // fetching initial item in the cart
-    if(user){
+    if (user) {
       fetchCartItems();
     }
     // Socket.IO event listener for cart updates
@@ -68,8 +68,8 @@ const Cart = () => {
     fetch(`https://e-shop-xlam.onrender.com/product/cart/${item._id}`, {
       method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${user.token}`,
-      }
+        Authorization: `Bearer ${user.token}`,
+      },
     })
       .then(() => {
         // Updating the cart data in the component state
@@ -83,8 +83,65 @@ const Cart = () => {
   };
 
   return (
-    <Slide duration={1000} delay={200} direction="right"  className="lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md w-3/4 h-screen flex flex-col">
-      <div className=" relative h-full w-full">
+    <section className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 h-screen grid place-items-center grid-cols-3">
+      <div className="left col-span-2">
+        <ul className=" flex flex-col gap-5 items-start p-1 overflow-y-scroll h-30">
+          {
+            cartData.length > 0 ? (
+              cartData.map((item, index )=> (
+                <li key={index}>
+                  <Link
+                  className=" flex items-center  justify-between"
+                  to={`/product/${item.item._id}`}
+                >
+                  <div className=" flex items-center justify-between gap-10">
+                    {/* Product image */}
+                    <img
+                      src={`${backendURL}/${item?.item.image_url}` || ""}
+                      alt=""
+                      className="h-40 w-40 object-cover bg-slate-200 rounded-lg"
+                    />
+                    <div>
+                      <p className=" uppercase tracking-tighter first-letter:uppercase ">
+                        {item.item.name}
+                      </p>
+                      <p className=" text-xs font-semibold">
+                        {item.item.price.toLocaleString("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        })}{" "}
+                        x {item.quantity}{" "}
+                        <strong className="text-base shadow-xl">
+                          {(item.item.price * item.quantity).toLocaleString(
+                            "en-US",
+                            {
+                              style: "currency",
+                              currency: "USD",
+                            }
+                          )}
+                        </strong>
+                      </p>
+                    </div>
+                  
+                  </div>
+                </Link>
+                </li>
+              ))
+            ) : (
+              <div className=" text-center flex flex-col items-center justify-center h-full">
+              <p className=" text-gray-50">Your shopping cart is empty!</p>
+              <button
+                className=" px-10 py-2 bg-gray-200 rounded-md mt-2 hover:bg-opacity-30 hover:text-white duration-500"
+              >
+                Continue Shopping
+              </button>
+            </div>
+            )
+          }
+        </ul>
+      </div>
+      <div className="right col-span-1">world</div>
+      {/* <div className=" relative h-full w-full">
         {cartData.length > 0 && (
           <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center hover:bg-opacity-70 bg-orange-500 delay-100 duration-150 rounded-lg">
             <button className=" w-full h-full text-ebony-50 uppercase tracking-wider font-Poppins ">Checkout</button>
@@ -156,8 +213,8 @@ const Cart = () => {
             </div>
           )}
         </ul></Fade>
-      </div>
-    </Slide>
+      </div> */}
+    </section>
   );
 };
 
