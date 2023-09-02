@@ -25,3 +25,6 @@ body::-webkit-scrollbar{
 .cart::-webkit-scrollbar{
   display: none;
 }
+.cartUl::-webkit-scrollbar{
+  display: none;
+}

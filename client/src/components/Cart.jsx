@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Delete } from "@mui/icons-material";
+import { Delete, LocalShipping } from "@mui/icons-material";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import io from "socket.io-client";
 import { useCartcontext } from "./context/CartContex";
 import { useUserContext } from "./context/UserContext";
 import { Fade, Slide } from "react-awesome-reveal";
-
+import paypal from "../assets/paypal.webp";
+import masterCard from "../assets/masterCard.webp";
+import visa from "../assets/visa.webp";
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
   const [error, setError] = useState("");
@@ -14,7 +16,7 @@ const Cart = () => {
   const [{ user }, dispatchUser] = useUserContext();
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
   const history = useHistory();
-
+  const [paymentMethods] = useState([masterCard, visa, paypal]);
   useEffect(() => {
     const socket = io("https://e-shop-xlam.onrender.com");
 
@@ -83,13 +85,13 @@ const Cart = () => {
   };
 
   return (
-    <section className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 h-screen grid place-items-center grid-cols-3">
-      <div className="left col-span-2">
-        <ul className=" flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full scroll-smooth bg-slate-400">
+    <section className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 h-screen grid place-items-center lg:grid-cols-2  grid-cols-1 px-5 gap-5">
+      <div className="left grid place-items-center border w-full">
+        <ul className="cartUl flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full scroll-smooth py-3 px-1">
           {
             cartData.length > 0 ? (
               cartData.map((item, index )=> (
-                <li key={index} className=" w-full flex items-center justify-between gap-2 p-1 bg-gray-200 shadow-md rounded-md">
+                <li key={index} className=" w-full flex items-center justify-between gap-2 p-1 shadow-md rounded-md bg-gray-200">
                   <Link
                   className=" flex items-center"
                   to={`/product/${item.item._id}`}
@@ -99,7 +101,7 @@ const Cart = () => {
                     <img
                       src={`${backendURL}/${item?.item.image_url}` || ""}
                       alt=""
-                      className="h-40 w-40 object-cover bg-slate-200 rounded border"
+                      className="h-36 w-36 object-contain bg-slate-300 rounded border"
                     />
                     <div>
                       <p className=" uppercase tracking-tighter first-letter:uppercase ">
@@ -136,17 +138,42 @@ const Cart = () => {
             ) : (
               <div className=" text-center flex flex-col items-center justify-center h-full w-full px-20">
               <p className=" text-gray-50">Your shopping cart is empty!</p>
-              <button
+              <Link to="/"
                 className=" px-10 py-2 bg-gray-200 rounded-md mt-2 hover:bg-opacity-30 hover:text-white duration-500"
               >
                 Continue Shopping
-              </button>
+              </Link>
             </div>
             )
           }
         </ul>
       </div>
-      <div className="right col-span-1">world</div>
+      <div className="right shadow-md bg-slate-300 w-full flex flex-col gap-5 px-8 py-12">
+        <div className="top">
+          <div className="flex items-center justify-between">
+            <h1 className=" font-bold text-2xl">Total</h1>
+            <p>12312</p>
+          </div>
+          <div className="flex items-center justify-between">
+            <h2>Delivery</h2>
+            <p className=" font-semibold text-base"><LocalShipping fontSize="small"/> Free Shipping</p>
+          </div>
+          <hr  className="border-slate-900 mt-3"/>
+        </div>
+        <div className="mid flex items-center justify-center">
+          <button className=" bg-black text-white px-1 py-2 rounded-sm" disabled={cartData.length === 0 ? true : false}>Proceed To Checkout</button>
+        </div>
+        <div className="bottom">
+          <h2>We Accept</h2>
+          <div className=" flex gap-2 mt-2">
+            {
+              paymentMethods.map((method, index ) => (
+                <img key={index} src={method} className=" h-8 object-contain hover:cursor-pointer transition-transform transform lg:hover:scale-75 duration-200 delay-100"/>)
+              )
+            }
+          </div>
+        </div>
+      </div>
       {/* <div className=" relative h-full w-full">
         {cartData.length > 0 && (
           <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center hover:bg-opacity-70 bg-orange-500 delay-100 duration-150 rounded-lg">
