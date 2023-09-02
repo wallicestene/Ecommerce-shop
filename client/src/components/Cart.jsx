@@ -84,15 +84,27 @@ const Cart = () => {
       });
   };
 
+  // looping through the cartItems to get the total amout of the items
+  const getTotal = () => {
+    let total = 0;
+    for (let index = 0; index < cartData.length; index++) {
+      const element = cartData[index];
+      total += element.item.price;
+    }
+    return total;
+  };
+
   return (
     <section className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 h-screen grid place-items-center lg:grid-cols-2  grid-cols-1 px-5 gap-5">
       <div className="left grid place-items-center border w-full">
         <ul className="cartUl flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full scroll-smooth py-3 px-1">
-          {
-            cartData.length > 0 ? (
-              cartData.map((item, index )=> (
-                <li key={index} className=" w-full flex items-center justify-between gap-2 p-1 shadow-md rounded-md bg-gray-200">
-                  <Link
+          {cartData.length > 0 ? (
+            cartData.map((item, index) => (
+              <li
+                key={index}
+                className=" w-full flex items-center justify-between gap-2 p-1 shadow-md rounded-md bg-gray-200"
+              >
+                <Link
                   className=" flex items-center"
                   to={`/product/${item.item._id}`}
                 >
@@ -124,7 +136,6 @@ const Cart = () => {
                         </strong>
                       </p>
                     </div>
-                  
                   </div>
                 </Link>
                 <div
@@ -133,44 +144,58 @@ const Cart = () => {
                 >
                   <Delete />
                 </div>
-                </li>
-              ))
-            ) : (
-              <div className=" text-center flex flex-col items-center justify-center h-full w-full px-20">
+              </li>
+            ))
+          ) : (
+            <div className=" text-center flex flex-col items-center justify-center h-full w-full">
               <p className=" text-gray-50">Your shopping cart is empty!</p>
-              <Link to="/"
+              <Link
+                to="/"
                 className=" px-10 py-2 bg-gray-200 rounded-md mt-2 hover:bg-opacity-30 hover:text-white duration-500"
               >
                 Continue Shopping
               </Link>
             </div>
-            )
-          }
+          )}
         </ul>
       </div>
-      <div className="right shadow-md bg-slate-300 w-full flex flex-col gap-5 px-8 py-12">
+      <div className="right shadow-md rounded bg-slate-300 w-full flex flex-col gap-5 px-8 py-12">
         <div className="top">
           <div className="flex items-center justify-between">
             <h1 className=" font-bold text-2xl">Total</h1>
-            <p>12312</p>
+            <p>
+              {getTotal().toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </p>
           </div>
           <div className="flex items-center justify-between">
             <h2>Delivery</h2>
-            <p className=" font-semibold text-base"><LocalShipping fontSize="small"/> Free Shipping</p>
+            <p className=" font-semibold text-base">
+              <LocalShipping fontSize="small" /> Free Shipping
+            </p>
           </div>
-          <hr  className="border-slate-900 mt-3"/>
+          <hr className="border-slate-900 mt-3" />
         </div>
         <div className="mid flex items-center justify-center">
-          <button className=" bg-black text-white px-1 py-2 rounded-sm" disabled={cartData.length === 0 ? true : false}>Proceed To Checkout</button>
+          <button
+            className=" bg-black text-white px-1 py-2 rounded-sm"
+            disabled={cartData.length === 0 ? true : false}
+          >
+            Proceed To Checkout
+          </button>
         </div>
         <div className="bottom">
-          <h2>We Accept</h2>
-          <div className=" flex gap-2 mt-2">
-            {
-              paymentMethods.map((method, index ) => (
-                <img key={index} src={method} className=" h-8 object-contain hover:cursor-pointer transition-transform transform lg:hover:scale-75 duration-200 delay-100"/>)
-              )
-            }
+          <h2 className=" font-bold text-lg">We Accept</h2>
+          <div className=" flex gap-5 mt-2">
+            {paymentMethods.map((method, index) => (
+              <img
+                key={index}
+                src={method}
+                className=" h-8 object-contain hover:cursor-pointer transition-transform transform lg:hover:scale-75 duration-200 delay-100"
+              />
+            ))}
           </div>
         </div>
       </div>
