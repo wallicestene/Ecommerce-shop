@@ -85,16 +85,16 @@ const Cart = () => {
   return (
     <section className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 h-screen grid place-items-center grid-cols-3">
       <div className="left col-span-2">
-        <ul className=" flex flex-col gap-5 items-start p-1 overflow-y-scroll h-30">
+        <ul className=" flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full">
           {
             cartData.length > 0 ? (
               cartData.map((item, index )=> (
-                <li key={index}>
+                <li key={index} className=" w-full flex items-center justify-between gap-2 border p-1">
                   <Link
-                  className=" flex items-center  justify-between"
+                  className=" flex items-center"
                   to={`/product/${item.item._id}`}
                 >
-                  <div className=" flex items-center justify-between gap-10">
+                  <div className=" flex items-center  gap-1 lg:gap-5 w-full">
                     {/* Product image */}
                     <img
                       src={`${backendURL}/${item?.item.image_url}` || ""}
@@ -125,6 +125,12 @@ const Cart = () => {
                   
                   </div>
                 </Link>
+                <div
+                  onClick={() => removeFromCart(item)}
+                  className="bg-gray-50 rounded-full h-10 w-10 grid place-items-center cursor-pointer"
+                >
+                  <Delete />
+                </div>
                 </li>
               ))
             ) : (
