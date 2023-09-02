@@ -6,7 +6,7 @@ import { useCartcontext } from "./context/CartContex";
 import { useUserContext } from "./context/UserContext";
 import { Fade, Slide } from "react-awesome-reveal";
 
-const Cart = ({ setShowCart }) => {
+const Cart = () => {
   const [cartData, setCartData] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
@@ -83,8 +83,8 @@ const Cart = ({ setShowCart }) => {
   };
 
   return (
-    <Slide duration={1000} delay={200} direction="right"  className=" fixed top-10 right-0 lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md w-3/4 h-screen flex flex-col">
-      {/* <div className=" relative h-full w-full">
+    <Slide duration={1000} delay={200} direction="right"  className="lg:right-0 lg:w-96 z-40 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 rounded-md w-3/4 h-screen flex flex-col">
+      <div className=" relative h-full w-full">
         {cartData.length > 0 && (
           <div className=" absolute bottom-14 z-10 w-full h-10  flex items-center justify-center hover:bg-opacity-70 bg-orange-500 delay-100 duration-150 rounded-lg">
             <button className=" w-full h-full text-ebony-50 uppercase tracking-wider font-Poppins ">Checkout</button>
@@ -150,16 +150,13 @@ const Cart = ({ setShowCart }) => {
               <p className=" text-gray-50">Your shopping cart is empty!</p>
               <button
                 className=" px-10 py-2 bg-gray-200 rounded-md mt-2 hover:bg-opacity-30 hover:text-white duration-500"
-                onClick={() => {
-                  setShowCart(false);
-                }}
               >
                 Continue Shopping
               </button>
             </div>
           )}
         </ul></Fade>
-      </div> */}
+      </div>
     </Slide>
   );
 };

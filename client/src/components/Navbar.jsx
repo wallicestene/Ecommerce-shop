@@ -164,7 +164,9 @@ function Navbar({ scrollToSection, featiredRef }) {
           }}
         >
           <div className=" bg-gray-50 rounded-full px-1 py-1">
+            <Link to="/cart">
             <LocalMallIcon />
+            </Link>
           </div>
           {itemsInCart >= 1 && (
             <div className=" absolute top-1  right-1 bg-orange-500 h-5 w-5 rounded-full grid place-items-center text-center">
