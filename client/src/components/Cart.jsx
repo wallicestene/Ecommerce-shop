@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Delete, LocalShipping } from "@mui/icons-material";
+import { Delete, KeyboardBackspace, LocalShipping } from "@mui/icons-material";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import io from "socket.io-client";
 import { useCartcontext } from "./context/CartContex";
@@ -17,6 +17,8 @@ const Cart = () => {
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
   const history = useHistory();
   const [paymentMethods] = useState([masterCard, visa, paypal]);
+
+
   useEffect(() => {
     const socket = io("https://e-shop-xlam.onrender.com");
 
@@ -95,7 +97,10 @@ const Cart = () => {
   };
 
   return (
-    <section className="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 h-screen grid place-items-center lg:grid-cols-2  grid-cols-1 px-5 gap-5">
+    <section className="relative bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 h-screen grid place-items-center lg:grid-cols-2  grid-cols-1 px-5 gap-5">
+      <div className="fixed top-10 left-10 bg-gray-100 hover:shadow-lg rounded-full h-12 w-12 grid place-items-center" onClick={() => history.go(-1)}>
+        <KeyboardBackspace fontSize="large"/>
+      </div>
       <div className="left grid place-items-center border w-full">
         <ul className="cartUl flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full scroll-smooth py-3 px-1">
           {cartData.length > 0 ? (
