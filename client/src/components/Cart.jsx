@@ -104,7 +104,7 @@ const Cart = () => {
         <KeyboardBackspace fontSize="large" />
       </div>
       <div className="left grid place-items-center border w-full">
-        <Fade cascade triggerOnce>
+        <Fade cascade triggerOnce duration={400}>
           {cartData.length > 0 ? (
             <ul className="cartUl flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full scroll-smooth py-3 px-1">
               {cartData.map((item, index) => (
