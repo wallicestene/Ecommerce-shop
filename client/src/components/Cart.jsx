@@ -102,9 +102,10 @@ const Cart = () => {
         <KeyboardBackspace fontSize="large"/>
       </div>
       <div className="left grid place-items-center border w-full">
-        <ul className="cartUl flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full scroll-smooth py-3 px-1">
+      <Fade cascade>
           {cartData.length > 0 ? (
-            cartData.map((item, index) => (
+             <ul className="cartUl flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full scroll-smooth py-3 px-1">
+            {cartData.map((item, index) => (
               <li
                 key={index}
                 className=" w-full flex items-center justify-between gap-2 p-1 shadow-md rounded-md bg-gray-200"
@@ -150,9 +151,12 @@ const Cart = () => {
                   <Delete />
                 </div>
               </li>
-            ))
+             
+            )) }
+            </ul>
+            
           ) : (
-            <div className=" text-center flex flex-col items-center justify-center h-full w-full">
+            <div className=" text-center h-30 flex flex-col items-center justify-center w-full">
               <p className=" text-gray-50">Your shopping cart is empty!</p>
               <Link
                 to="/"
@@ -161,8 +165,7 @@ const Cart = () => {
                 Continue Shopping
               </Link>
             </div>
-          )}
-        </ul>
+          )}</Fade>
       </div>
       <div className="right shadow-md rounded bg-slate-300 w-full flex flex-col gap-5 px-8 py-12">
         <div className="top">
