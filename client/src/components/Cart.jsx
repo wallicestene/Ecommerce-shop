@@ -121,7 +121,7 @@ const Cart = () => {
                       <img
                         src={`${backendURL}/${item?.item.image_url}` || ""}
                         alt=""
-                        className="lg:h-24 lg:w-24 h-20 w-20 object-contain bg-slate-300 rounded border"
+                        className="lg:h-24 lg:w-24 h-20 w-20 object-contain drop-shadow-lg bg-slate-300 rounded border"
                       />
                       <div>
                         <p className=" uppercase tracking-tighter first-letter:uppercase ">
