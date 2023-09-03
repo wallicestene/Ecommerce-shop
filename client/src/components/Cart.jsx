@@ -18,7 +18,6 @@ const Cart = () => {
   const history = useHistory();
   const [paymentMethods] = useState([masterCard, visa, paypal]);
 
-
   useEffect(() => {
     const socket = io("https://e-shop-xlam.onrender.com");
 
@@ -98,63 +97,64 @@ const Cart = () => {
 
   return (
     <section className="relative bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-10% to-100% from-yellow-200 via-red-400 to-fuchsia-500 h-screen grid place-items-center lg:grid-cols-2  grid-cols-1 px-5 gap-5">
-      <div className="fixed top-10 left-10 bg-gray-100 hover:shadow-lg rounded-full h-12 w-12 grid place-items-center" onClick={() => history.go(-1)}>
-        <KeyboardBackspace fontSize="large"/>
+      <div
+        className="fixed top-10 left-10 z-10 bg-gray-100 hover:shadow-lg rounded-full h-12 w-12 grid place-items-center"
+        onClick={() => history.go(-1)}
+      >
+        <KeyboardBackspace fontSize="large" />
       </div>
       <div className="left grid place-items-center border w-full">
-      <Fade cascade>
+        <Fade cascade triggerOnce>
           {cartData.length > 0 ? (
-             <ul className="cartUl flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full scroll-smooth py-3 px-1">
-            {cartData.map((item, index) => (
-              <li
-                key={index}
-                className=" w-full flex items-center justify-between gap-2 p-1 shadow-md rounded-md bg-gray-200"
-              >
-                <Link
-                  className=" flex items-center"
-                  to={`/product/${item.item._id}`}
+            <ul className="cartUl flex flex-col gap-5 items-start overflow-y-scroll h-30 w-full scroll-smooth py-3 px-1">
+              {cartData.map((item, index) => (
+                <li
+                  key={index}
+                  className=" w-full flex items-center justify-between gap-2 p-1 shadow-md rounded-md bg-gray-200"
                 >
-                  <div className=" flex items-center  gap-1 lg:gap-5 w-full">
-                    {/* Product image */}
-                    <img
-                      src={`${backendURL}/${item?.item.image_url}` || ""}
-                      alt=""
-                      className="lg:h-24 lg:w-24 h-20 w-20 object-contain bg-slate-300 rounded border"
-                    />
-                    <div>
-                      <p className=" uppercase tracking-tighter first-letter:uppercase ">
-                        {item.item.name}
-                      </p>
-                      <p className=" text-xs font-semibold">
-                        {item.item.price.toLocaleString("en-US", {
-                          style: "currency",
-                          currency: "USD",
-                        })}{" "}
-                        x {item.quantity}{" "}
-                        <strong className="text-base shadow-xl">
-                          {(item.item.price * item.quantity).toLocaleString(
-                            "en-US",
-                            {
-                              style: "currency",
-                              currency: "USD",
-                            }
-                          )}
-                        </strong>
-                      </p>
+                  <Link
+                    className=" flex items-center"
+                    to={`/product/${item.item._id}`}
+                  >
+                    <div className=" flex items-center  gap-1 lg:gap-5 w-full">
+                      {/* Product image */}
+                      <img
+                        src={`${backendURL}/${item?.item.image_url}` || ""}
+                        alt=""
+                        className="lg:h-24 lg:w-24 h-20 w-20 object-contain bg-slate-300 rounded border"
+                      />
+                      <div>
+                        <p className=" uppercase tracking-tighter first-letter:uppercase ">
+                          {item.item.name}
+                        </p>
+                        <p className=" text-xs font-semibold">
+                          {item.item.price.toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                          })}{" "}
+                          x {item.quantity}{" "}
+                          <strong className="text-base shadow-xl">
+                            {(item.item.price * item.quantity).toLocaleString(
+                              "en-US",
+                              {
+                                style: "currency",
+                                currency: "USD",
+                              }
+                            )}
+                          </strong>
+                        </p>
+                      </div>
                     </div>
+                  </Link>
+                  <div
+                    onClick={() => removeFromCart(item)}
+                    className="bg-gray-50 rounded-full h-10 w-10 grid place-items-center cursor-pointer"
+                  >
+                    <Delete />
                   </div>
-                </Link>
-                <div
-                  onClick={() => removeFromCart(item)}
-                  className="bg-gray-50 rounded-full h-10 w-10 grid place-items-center cursor-pointer"
-                >
-                  <Delete />
-                </div>
-              </li>
-             
-            )) }
+                </li>
+              ))}
             </ul>
-            
           ) : (
             <div className=" text-center h-30 flex flex-col items-center justify-center w-full">
               <p className=" text-gray-50">Your shopping cart is empty!</p>
@@ -165,7 +165,8 @@ const Cart = () => {
                 Continue Shopping
               </Link>
             </div>
-          )}</Fade>
+          )}
+        </Fade>
       </div>
       <div className="right shadow-md rounded bg-slate-300 w-full flex flex-col gap-5 px-8 py-12">
         <div className="top">
