@@ -210,7 +210,7 @@ const Cart = () => {
         </div>
       </div>
      <div>
-     <CheckoutPage/>
+     {/* <CheckoutPage/> */}
      </div>
     </section>
   );
