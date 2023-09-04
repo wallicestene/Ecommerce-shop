@@ -8,6 +8,7 @@ import { Fade, Slide } from "react-awesome-reveal";
 import paypal from "../assets/paypal.webp";
 import masterCard from "../assets/masterCard.webp";
 import visa from "../assets/visa.webp";
+import CheckoutPage from "./CheckoutPage";
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
   const [error, setError] = useState("");
@@ -208,6 +209,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+      <CheckoutPage/>
     </section>
   );
 };
