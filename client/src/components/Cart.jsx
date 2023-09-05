@@ -209,8 +209,8 @@ const Cart = () => {
           </div>
         </div>
       </div>
-     <div>
-     {/* <CheckoutPage/> */}
+     <div className=" absolute z-10">
+     <CheckoutPage/>
      </div>
     </section>
   );
