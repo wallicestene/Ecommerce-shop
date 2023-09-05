@@ -13,6 +13,7 @@ const Cart = () => {
   const [cartData, setCartData] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [showDetails, setShowDetails] = useState(false);
   const [{ itemsInCart }, dispatch] = useCartcontext();
   const [{ user }, dispatchUser] = useUserContext();
   const backendURL = "https://e-shop-xlam.onrender.com/uploads";
@@ -190,6 +191,7 @@ const Cart = () => {
         </div>
         <div className="mid flex items-center justify-center">
           <button
+          onClick={() => setShowDetails(true)}
             className=" bg-black text-white px-1 py-2 rounded-sm"
             disabled={cartData.length === 0 ? true : false}
           >
@@ -209,9 +211,11 @@ const Cart = () => {
           </div>
         </div>
       </div>
-     <div className=" absolute z-10">
-     <CheckoutPage/>
-     </div>
+      {showDetails && (
+        <div className=" absolute z-10">
+          <CheckoutPage setShowDetails={setShowDetails} />
+        </div>
+      )}
     </section>
   );
 };

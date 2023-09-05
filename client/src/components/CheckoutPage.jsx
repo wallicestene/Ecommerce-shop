@@ -1,7 +1,7 @@
 import { Close } from "@mui/icons-material";
 import React, { useState } from "react";
 
-const CheckoutPage = () => {
+const CheckoutPage = ({setShowDetails}) => {
   const [paymentDetails, setPaymentDetails] = useState({
     name: "",
     email: "",
@@ -10,7 +10,7 @@ const CheckoutPage = () => {
     date: "",
     country: "",
   });
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPaymentDetails((prevDetails) => {
@@ -39,7 +39,7 @@ const CheckoutPage = () => {
     <section className="bg-white h-screen w-screen bg-opacity-50 grid place-items-center">
       <form
         onSubmit={handleSubmit}
-        className=" bg-white lg:w-2/5 w-11/12 shadow-xl py-2 px-7 flex flex-col gap-5 rounded-md"
+        className=" bg-white lg:w-2/5 w-11/12 shadow-xl py-5 px-7 flex flex-col gap-5 rounded-md"
       >
         <div className=" flex items-center justify-between">
           <div>
@@ -48,7 +48,7 @@ const CheckoutPage = () => {
               Enter details below to purchase your products.
             </p>
           </div>
-          <div>
+          <div onClick={() => setShowDetails(false)}>
             <Close />
           </div>
         </div>
@@ -56,6 +56,7 @@ const CheckoutPage = () => {
           <input
             type="text"
             name="name"
+            required
             value={paymentDetails.name}
             onChange={handleChange}
             className=" border outline-none indent-2 py-1 w-full rounded"
@@ -64,6 +65,7 @@ const CheckoutPage = () => {
           <input
             type="email"
             name="email"
+            required
             value={paymentDetails.email}
             id="email"
             onChange={handleChange}
@@ -77,6 +79,7 @@ const CheckoutPage = () => {
                 type="number"
                 value={paymentDetails.cardNumber}
                 name="cardNumber"
+                required
                 onChange={handleChange}
                 className=" col-span-2 border outline-none indent-2 py-1 w-full rounded"
                 placeholder="Card number"
@@ -85,6 +88,7 @@ const CheckoutPage = () => {
                 <input
                   type="password"
                   name="cvv"
+                  required
                   onChange={handleChange}
                   value={paymentDetails.cvv}
                   className=" border outline-none indent-2 py-1 w-full rounded"
@@ -93,6 +97,7 @@ const CheckoutPage = () => {
                 <input
                   type="month"
                   name="date"
+                  required
                   onChange={handleChange}
                   value={paymentDetails.date}
                   className=" border outline-none indent-2 py-1 w-full rounded"
