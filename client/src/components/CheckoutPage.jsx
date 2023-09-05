@@ -1,5 +1,6 @@
 import { Close } from "@mui/icons-material";
 import React, { useState } from "react";
+import { Zoom } from "react-awesome-reveal";
 
 const CheckoutPage = ({setShowDetails}) => {
   const [paymentDetails, setPaymentDetails] = useState({
@@ -36,7 +37,8 @@ const CheckoutPage = ({setShowDetails}) => {
     });
   };
   return (
-    <section className="bg-white h-screen w-screen bg-opacity-50 grid place-items-center">
+    <section className=" bg-white/10 backdrop-blur-sm h-screen w-screen bg-opacity-50 ">
+      <Zoom className=" w-full h-full grid place-items-center">
       <form
         onSubmit={handleSubmit}
         className=" bg-white lg:w-2/5 w-11/12 shadow-xl py-5 px-7 flex flex-col gap-5 rounded-md"
@@ -123,7 +125,7 @@ const CheckoutPage = ({setShowDetails}) => {
             Make Payment
           </button>
         </div>
-      </form>
+      </form></Zoom>
     </section>
   );
 };
