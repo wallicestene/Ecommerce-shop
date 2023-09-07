@@ -9,7 +9,6 @@ const productsRoutes = require("./routes/productsRoutes");
 const categoryRoutes = require("./routes/categoriesRoutes");
 const cartRoutes = require("./routes/cartRoute");
 const userRoutes = require("./routes/usersRoute");
-const adminRouter = require("./routes/adminRouter");
 
 const { changeStream } = require("./models/cartModel"); // Import the change stream from the cartModel file
 
@@ -54,7 +53,6 @@ app.use(productsRoutes);
 app.use(categoryRoutes);
 app.use(userRoutes);
 app.use(cartRoutes);
-app.use(adminRouter);
 // Emit data changes to connected clients
 changeStream.on("dataChange", (change) => {
   io.emit("dataChange", change);
