@@ -8,6 +8,7 @@ import {
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import {
+  Link,
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
@@ -96,7 +97,10 @@ const ProductsDetailsPage = () => {
         //   },
         // });
         toast.custom(
-          <div className=" bg-slate-200 px-2 py-3 rounded-md shadow-md">{error.message}</div>
+          <div className=" bg-slate-200 px-2 py-3 rounded-md shadow-md">
+            <span>{error.message}</span>{" "}
+            <span className=" border px-2 py-1 rounded-md border-ebony-950 hover:cursor-pointer"><Link to="/cart" >Cart</Link></span>
+          </div>
         )
       });
   };
