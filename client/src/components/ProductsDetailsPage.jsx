@@ -8,7 +8,6 @@ import {
 import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import {
-  Link,
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
@@ -64,21 +63,29 @@ const ProductsDetailsPage = () => {
         if(data.error){
           throw new Error(data.error);
         }else{
-          toast.success((t) => (
-          <span className=" text-sm font-Montserrat">
-           Item added to cart{" "}
-            <button onClick={() => toast.dismiss(t.id)} className=" bg-ebony-50 px-2 py-1 rounded-md text-slate-900">
-              Dismiss
-            </button>
-          </span>
-        ), {
-          style: {
-            borderRadius: '10px',
-            background: '#f2741a',
-            color: '#fff',
-          },
-        });
-        }
+        //   toast.success((t) => (
+        //   <span className=" text-sm font-Montserrat">
+        //    Item added to cart{" "}
+        //     <button onClick={() => toast.dismiss(t.id)} className=" bg-ebony-50 px-2 py-1 rounded-md text-slate-900">
+        //       Dismiss
+        //     </button>
+        //   </span>
+        // ), {
+        //   style: {
+        //     borderRadius: '10px',
+        //     background: '#f2741a',
+        //     color: '#fff',
+        //   },
+        // });
+        toast.custom(
+          <div className=" bg-ebony-50 text-ebony-950 px-2 py-3 rounded shadow-md">
+            <span>Item added to cart!</span>{" "}
+            <a href="#cart" className=" bg-orange-500  px-2 py-1 rounded-md hover:cursor-pointer">
+              Cart
+            </a>
+          </div>
+        )
+         }
         
       })
       .catch((error) => {
@@ -97,9 +104,11 @@ const ProductsDetailsPage = () => {
         //   },
         // });
         toast.custom(
-          <div className=" bg-slate-200 px-2 py-3 rounded-md shadow-md">
+          <div className=" bg-red-600 text-white px-2 py-3 rounded shadow-md">
             <span>{error.message}</span>{" "}
-            <span className=" border px-2 py-1 rounded-md border-ebony-950 hover:cursor-pointer"><Link to="/cart" >Cart</Link></span>
+            <a href="#cart" className=" bg-orange-500  px-2 py-1 rounded-md hover:cursor-pointer">
+              Cart
+            </a>
           </div>
         )
       });
