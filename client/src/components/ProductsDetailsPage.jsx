@@ -78,10 +78,9 @@ const ProductsDetailsPage = () => {
         //   },
         // });
         toast.custom(
-          <div className=" bg-ebony-50 text-ebony-950 px-2 py-3 rounded shadow-md">
+          <div className=" bg-orange-500 text-white px-2 py-3 rounded-md shadow-md">
             <span>Item added to cart!</span>{" "}
-            <a href="#cart" className=" bg-orange-500  px-2 py-1 rounded-md hover:cursor-pointer">
-              Cart
+            <a href="#cart" className=" bg-ebony-50 text-slate-900  px-2 py-1 rounded-md hover:cursor-pointer">Cart
             </a>
           </div>
         )
@@ -104,9 +103,9 @@ const ProductsDetailsPage = () => {
         //   },
         // });
         toast.custom(
-          <div className=" bg-red-600 text-white px-2 py-3 rounded shadow-md">
+          <div className=" bg-red-600 text-white px-2 py-3 rounded-md shadow-md">
             <span>{error.message}</span>{" "}
-            <a href="#cart" className=" bg-orange-500  px-2 py-1 rounded-md hover:cursor-pointer">
+            <a href="#cart" className=" bg-ebony-50 text-slate-900  px-2 py-1 rounded-md hover:cursor-pointer">
               Cart
             </a>
           </div>
