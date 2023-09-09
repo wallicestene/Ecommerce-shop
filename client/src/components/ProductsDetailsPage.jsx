@@ -81,20 +81,23 @@ const ProductsDetailsPage = () => {
         
       })
       .catch((error) => {
-        toast.error((t) => (
-          <span className=" text-sm font-Montserrat">
-           {error.message}{" "}
-            <button onClick={() => toast.dismiss(t.id)} className=" bg-ebony-50 px-2 py-1 rounded-md text-slate-950">
-              Dismiss
-            </button>
-          </span>
-        ),{
-          style: {
-            borderRadius: '10px',
-            background: '#e4341c',
-            color: '#fff',
-          },
-        });
+        // toast.error((t) => (
+        //   <span className=" text-sm font-Montserrat">
+        //    {error.message}{" "}
+        //     <button onClick={() => toast.dismiss(t.id)} className=" bg-ebony-50 px-2 py-1 rounded-md text-slate-950">
+        //       Dismiss
+        //     </button>
+        //   </span>
+        // ),{
+        //   style: {
+        //     borderRadius: '10px',
+        //     background: '#e4341c',
+        //     color: '#fff',
+        //   },
+        // });
+        toast.custom(
+          <div className=" bg-slate-200 px-2 py-3 rounded-md shadow-md">{error.message}</div>
+        )
       });
   };
 
